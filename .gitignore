@@ -2,7 +2,9 @@
 /node_modules
 /public/build
 /public/hot
-/public/dashboard-assets
+/public/dashboard-assets/css
+/public/dashboard-assets/datatables
+/public/dashboard-assets/media
 /storage/*.key
 /vendor
 .env
