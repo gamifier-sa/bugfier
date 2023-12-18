@@ -10,8 +10,8 @@
 #/public/dashboard-assets/media/flags
 #/public/dashboard-assets/media/framework-logos
 #/public/dashboard-assets/media/icons
-/public/dashboard-assets/media/illustrations
-/public/dashboard-assets/media/logos
+#/public/dashboard-assets/media/illustrations
+#/public/dashboard-assets/media/logos
 /public/dashboard-assets/media/misc
 /public/dashboard-assets/media/patterns
 /public/dashboard-assets/media/plugins
