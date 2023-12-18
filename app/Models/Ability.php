@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Ability extends Model
+{
+    protected $guarded = [];
+    protected $casts   = ['created_at', 'updated_at' => 'date:Y-m-d'];
+
+    protected $appends = ['create_since'];
+
+    /**
+     * @return null
+     */
+    public function getCreateSinceAttribute()
+    {
+        return $this->created_at?->diffForHumans();
+    }
+}
