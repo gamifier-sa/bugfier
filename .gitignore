@@ -2,8 +2,8 @@
 /node_modules
 /public/build
 /public/hot
-/public/dashboard-assets/media/auth
-/public/dashboard-assets/media/avatars
+#/public/dashboard-assets/media/auth
+#/public/dashboard-assets/media/avatars
 /public/dashboard-assets/media/books
 /public/dashboard-assets/media/email
 /public/dashboard-assets/media/features-logos
