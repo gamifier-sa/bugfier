@@ -6,8 +6,8 @@
 #/public/dashboard-assets/media/avatars
 #/public/dashboard-assets/media/books
 #/public/dashboard-assets/media/email
-/public/dashboard-assets/media/features-logos
-/public/dashboard-assets/media/flags
+#/public/dashboard-assets/media/features-logos
+#/public/dashboard-assets/media/flags
 /public/dashboard-assets/media/framework-logos
 /public/dashboard-assets/media/icons
 /public/dashboard-assets/media/illustrations
