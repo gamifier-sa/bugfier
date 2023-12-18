@@ -3,7 +3,7 @@
 /public/build
 /public/hot
 #/public/dashboard-assets/media/product
-/public/dashboard-assets/media/products
+#/public/dashboard-assets/media/products
 /public/dashboard-assets/media/smiles
 /public/dashboard-assets/media/stock
 /public/dashboard-assets/media/svg
