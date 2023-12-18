@@ -18,11 +18,9 @@ class RoleSeeder extends Seeder
             'admins',
             'roles',
             'settings',
+            'users',
         ];
 
-        $affiliateActions = [
-                'settings'
-            ];
 
         $actions = [
             'view',
@@ -48,17 +46,6 @@ class RoleSeeder extends Seeder
             foreach ( $exceptions[ $category]['unused_actions'] ?? [] as $index ) // remove the unused actions
                 unset( $usedActions[$index]);
 
-            if ($category == 'affiliate'){
-                foreach ( $affiliateActions as $action)
-                {
-                    Ability::create([
-                        'name'     => $action . '_' . str_replace(' ','_',$category),
-                        'category' => $category,
-                        'action'   => $action,
-                    ]);
-                }
-            }
-
             foreach ( array_values($usedActions) as $action)
             {
                 Ability::create([
@@ -80,12 +67,6 @@ class RoleSeeder extends Seeder
             'name_ar'    => 'صلاحيات إفتراضية',
             'name_en'    => 'default roles',
         ]);
-
-        $marketerRole  = Role::create([
-            'name_ar'    => 'صلاحيات المسوق',
-            'name_en'    => 'marketer roles',
-        ]);
-
 
         $superAdminAbilitiesIds = Ability::pluck('id');
 
