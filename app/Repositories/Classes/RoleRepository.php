@@ -95,11 +95,10 @@ class RoleRepository extends BasicRepository implements IMainRepository
         return $this->delete($id);
     }
 
-    public function admins(Role $role)
+    public function admins($id)
     {
-        $role->load('admins:id,name_ar,email,phone,image,created_at');
+        $role  = Role::findOrFail($id)->load('admins:id,name_ar,email,phone,image,created_at');
         $adminsCount = $role->admins()->count();
-
         $page    = $request['page']     ?? 1;
         $perPage = $request['per_page'] ?? 10;
 

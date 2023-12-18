@@ -8,8 +8,6 @@ let KTDatatable = function () {
     let datatable;
     let filter;
 
-
-
     // Private functions
     let initDatatable = function () {
         datatable = $("#kt_datatable").DataTable({
@@ -17,34 +15,34 @@ let KTDatatable = function () {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[5, 'desc']], // display records number and ordering type
+            order: [[6, 'desc']], // display records number and ordering type
             stateSave: false,
             select: {
                 style: 'os',
                 selector: 'td:first-child',
                 className: 'row-selected'
             },
-
             ajax: {
                 data: function () {
                     let datatable = $('#kt_datatable');
                     let info = datatable.DataTable().page.info();
-                    datatable.DataTable().ajax.url(`/dashboard/roles/${roleId}/admins?page=${info.page + 1}&per_page=${info.length}`);
+                    datatable.DataTable().ajax.url(`/dashboard/bugs?page=${info.page + 1}&per_page=${info.length}`);
                 }
             },
             columns: [
                 {data: 'id'},
-                {data: 'name_ar'},
-                {data: 'created_at'},
+                {data: 'title'},
+                {data: 'project.title'},
+                {data: 'user.name'},
+                {data: 'point'},
+                {data: 'create_since'},
                 {data: null},
             ],
             columnDefs: [
                 {
-
                     targets: -1,
                     data: null,
                     render: function (data, type, row) {
-
                         return `
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
                                 ${translate('Actions')}
@@ -57,7 +55,7 @@ let KTDatatable = function () {
 
                                 <!--begin::Menu item-->
                                 <div class="menu-item px-3">
-                                    <a href="/dashboard/admins/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
+                                    <a href="/dashboard/bugs/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
                                        <span> ${translate('Edit')} </span>
                                        <span>  <i class="fa fa-edit text-primary"></i> </span>
                                     </a>
@@ -65,6 +63,24 @@ let KTDatatable = function () {
                                 </div>
                                 <!--end::Menu item-->
 
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="/dashboard/bugs/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
+                                       <span> ${translate('Show')} </span>
+                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
+                                    </a>
+
+                                </div>
+                                <!--end::Menu item-->
+
+                                <!--begin::Menu item-->
+                                   <div class="menu-item px-3">
+                                       <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Projects')}">
+                                           <span> ${translate('Delete')} </span>
+                                           <span>  <i class="fa fa-trash text-danger"></i> </span>
+                                       </a>
+                                   </div>
+                                <!--end::Menu item-->
 
                             </div>
                             <!--end::Menu-->
@@ -76,6 +92,7 @@ let KTDatatable = function () {
         });
 
         table = datatable.$;
+
         datatable.on('draw', function () {
             handleDeleteRows();
             KTMenu.createInstances();
@@ -123,7 +140,7 @@ let KTDatatable = function () {
                     $.ajax({
                         method: 'delete',
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '/dashboard/role-admins/' + rowId,
+                        url: '/dashboard/bugs/' + rowId,
                         success: () => {
 
                             setTimeout( () => {

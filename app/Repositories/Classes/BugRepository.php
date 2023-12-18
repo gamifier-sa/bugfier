@@ -2,24 +2,18 @@
 
 namespace App\Repositories\Classes;
 
-use App\Mail\InvitationEmail;
-use App\Models\Admin;
-use App\Models\User;
-use App\Repositories\Interfaces\IAdminRepository;
-use App\Repositories\Interfaces\IMainRepository;
+use App\Models\Bug;
+use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
-class UserRepository extends BasicRepository implements IAdminRepository, IMainRepository
+class BugRepository extends BasicRepository implements IAdminRepository, IMainRepository
 {
     /**
      * @var array
      */
 
     protected array $fieldSearchable = [
-        'id', 'name',  'email', 'phone'
+        'id', 'title', 'description'
     ];
 
     /**
@@ -27,7 +21,7 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
      **/
     public function model(): string
     {
-        return User::class;
+        return Bug::class;
     }
     /**
      * Return searchable fields
@@ -51,22 +45,36 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
 
     public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
     {
-        return $this->all(orderBy:$request->order);
+        return $this->all(relations:['project' => ['id','title'],'user' => ['id','name']], orderBy: $request->order);
     }
 
     /**
      * @param $data
      */
-    public function store($data)
+    public function store($data) : void
     {
-        $password = Str::random(8);
-        $data['password']    = Hash::make($password);
-        $data['created_by'] = auth()->id();
+//        if (request()->hasFile('images')) {
+//            $file = request()->file('images');
+//            $imagesName = time() . '.' . $file->getClientOriginalExtension();
+//            $file->move(public_path('images'), $imagesName);
+//            $data['images'] = $imagesName;
+//            $data = [
+//                'name' => 'My Logo',
+//                'description' => 'This is my images',
+//            ];
+//
+//            $fileNameServer = 'images.' . \request('images')->getClientOriginalExtension();
+//            $path = '/path/to/store/images';
+//            $type = 'images';
+//
+//
+//            $this->media_upload($data, \request(), $fileNameServer, $path, $type);
+//        }
+//        $this->media_upload($data, request(), "fileNameServer", "path", "type");
         $this->create($data);
     }
     public function list()
     {
-        return $this->all();
     }
     /**
      * @param $id

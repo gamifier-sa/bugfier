@@ -140,6 +140,121 @@
                     </div><!--end:Menu sub-->
                 </div><!--end:Menu item-->
 
+
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('projects')}}">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                            <span class="svg-icon svg-icon-5">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
+                                        fill="currentColor" />
+                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">{{__('Projects')}}</span>
+                        <span class="menu-arrow"></span>
+                    </span><!--end:Menu link-->
+
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        @can('view_projects')
+                        <!--begin:Menu item-->
+                        <div class="menu-item {{prefixShow('dashboard.projects.index')}}">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="{{ route('dashboard.projects.index') }}" data-bs-toggle="tooltip"
+                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __("Projects") }}</span>
+                            </a><!--end:Menu link-->
+                        </div><!--end:Menu item-->
+                        @endcan
+                    </div><!--end:Menu sub-->
+                </div><!--end:Menu item-->
+
+
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('bugs')}}">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                            <span class="svg-icon svg-icon-5">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
+                                        fill="currentColor" />
+                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">{{__('Bugs')}}</span>
+                        <span class="menu-arrow"></span>
+                    </span><!--end:Menu link-->
+
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        @can('view_bugs')
+                        <!--begin:Menu item-->
+                        <div class="menu-item {{prefixShow('dashboard.bugs.index')}}">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="{{ route('dashboard.bugs.index') }}" data-bs-toggle="tooltip"
+                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __("Bugs") }}</span>
+                            </a><!--end:Menu link-->
+                        </div><!--end:Menu item-->
+                        @endcan
+                    </div><!--end:Menu sub-->
+                </div><!--end:Menu item-->
+
+
+
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('awards')}}">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                            <span class="svg-icon svg-icon-5">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
+                                        fill="currentColor" />
+                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">{{__('Awards')}}</span>
+                        <span class="menu-arrow"></span>
+                    </span><!--end:Menu link-->
+
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        @can('view_awards')
+                        <!--begin:Menu item-->
+                        <div class="menu-item {{prefixShow('dashboard.awards.index')}}">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="{{ route('dashboard.awards.index') }}" data-bs-toggle="tooltip"
+                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __("Awards") }}</span>
+                            </a><!--end:Menu link-->
+                        </div><!--end:Menu item-->
+                        @endcan
+                    </div><!--end:Menu sub-->
+                </div><!--end:Menu item-->
+
                 <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click"
                     class="menu-item menu-accordion {{prefixHoverShow('settings')}}">

@@ -2,19 +2,18 @@
 
 namespace App\Repositories\Classes;
 
-use App\Models\Admin;
+use App\Models\Project;
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
-use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class AdminRepository extends BasicRepository implements IAdminRepository, IMainRepository
+class ProjectRepository extends BasicRepository implements IAdminRepository, IMainRepository
 {
     /**
      * @var array
      */
+
     protected array $fieldSearchable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone'
+        'id', 'title', 'description'
     ];
 
     /**
@@ -22,9 +21,8 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
      **/
     public function model(): string
     {
-        return Admin::class;
+        return Project::class;
     }
-
     /**
      * Return searchable fields
      *
@@ -45,7 +43,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         return $this->model->translationKey();
     }
 
-    public function findBy(Request $request): Collection|array
+    public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
     {
         return $this->all(orderBy:$request->order);
     }
@@ -53,44 +51,30 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
     /**
      * @param $data
      */
-    public function store($data) : void
+    public function store($data)
     {
-
-        $data['password'] = Hash::make($data['password']);
-        $user =  $this->create($data);
-        $user->roles()->sync($data['roles']);
+        $this->create($data);
     }
-
-
     public function list()
     {
+        return $this->all();
     }
-
     /**
      * @param $id
-     * @return Builder|Builder[]|Collection|Model|null
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
-    public function show($id) : Model|Collection|Builder|array|null
+    public function show($id)
     {
         return $this->find($id);
     }
-
     /**
      * @param      $request
      * @param null $id
-     * @return Builder|Builder[]|Collection|Model|null
      */
-    public function update($request, $id = null) : Model|Collection|Builder|array|null
+
+    public function update($request, $id = null)
     {
-        if (!isset($request['password'])) {
-            unset($request['password']);
-        }
-        if (isset($request['password'])) {
-            $request['password'] = Hash::make($request['password']);
-        }
-        $user  = $this->save($request, $id);
-        $user->roles()->sync($request['roles']);
-        return $user;
+        return $this->save($request, $id);
     }
 
     /**

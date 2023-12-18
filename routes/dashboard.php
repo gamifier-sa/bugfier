@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Dashboard\{
-    AdminAuthController,
+use App\Http\Controllers\Dashboard\{AdminAuthController,
     AdminController,
+    AwardController,
+    BugController,
     HomeController,
     ProjectController,
     RoleController,
@@ -28,6 +29,8 @@ Route::group([
     Route::resource('admins', AdminController::class);
     Route::resource('users', UserController::class);
     Route::resource('projects', ProjectController::class);
+    Route::resource('bugs', BugController::class);
+    Route::resource('awards', AwardController::class);
     Route::resource('settings', SettingController::class)->only(['index', 'store', 'changeMode']);
 
     Route::view('edit-profile', 'dashboard.admins.edit-profile')->name('edit-profile');

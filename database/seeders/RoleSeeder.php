@@ -19,6 +19,9 @@ class RoleSeeder extends Seeder
             'roles',
             'settings',
             'users',
+            'projects',
+            'bugs',
+            'awards',
         ];
 
 

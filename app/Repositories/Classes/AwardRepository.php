@@ -2,24 +2,19 @@
 
 namespace App\Repositories\Classes;
 
-use App\Mail\InvitationEmail;
-use App\Models\Admin;
-use App\Models\User;
-use App\Repositories\Interfaces\IAdminRepository;
-use App\Repositories\Interfaces\IMainRepository;
+use App\Models\Award;
+use App\Models\Bug;
+use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
-class UserRepository extends BasicRepository implements IAdminRepository, IMainRepository
+class AwardRepository extends BasicRepository implements IAdminRepository, IMainRepository
 {
     /**
      * @var array
      */
 
     protected array $fieldSearchable = [
-        'id', 'name',  'email', 'phone'
+        'id', 'title', 'description', 'point'
     ];
 
     /**
@@ -27,7 +22,7 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
      **/
     public function model(): string
     {
-        return User::class;
+        return Award::class;
     }
     /**
      * Return searchable fields
@@ -51,22 +46,18 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
 
     public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
     {
-        return $this->all(orderBy:$request->order);
+        return $this->all(orderBy: $request->order);
     }
 
     /**
      * @param $data
      */
-    public function store($data)
+    public function store($data) : void
     {
-        $password = Str::random(8);
-        $data['password']    = Hash::make($password);
-        $data['created_by'] = auth()->id();
         $this->create($data);
     }
     public function list()
     {
-        return $this->all();
     }
     /**
      * @param $id

@@ -17,11 +17,11 @@ class AdminController extends Controller
         RoleRepository $roleRepository
     )
     {
-//        $this->authorize('view_admins');
-//        $this->middleware('permission:bunches-create', ['only' => ['create','store']]);
-//        $this->middleware('permission:bunches-edit', ['only' => ['edit','update']]);
-//        $this->middleware('permission:bunches-delete', ['only' => ['destroy']]);
-//        $this->middleware('permission:reports-bunches', ['only' => ['bunches']]);
+//        $this->authorize('view_admins',['index']);
+//        $this->authorize('create_admins', ['create', 'store']);
+//        $this->authorize('show_admins', ['show']);
+//        $this->authorize('update_admins', ['update']);
+//        $this->authorize('delete_admins', ['destroy']);
 
         $this->adminRepository = $adminRepository;
         $this->roleRepository  = $roleRepository;

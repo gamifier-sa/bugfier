@@ -101,14 +101,6 @@ class RoleController extends Controller
      */
     public function admins($id)
     {
-        $role = Role::find($id)->load('admins:id,name_ar,email,phone,image,created_at');
-        $adminsCount = $role->admins()->count();
-        $page    = $request['page']     ?? 1;
-        $perPage = $request['per_page'] ?? 10;
-        return response()->json([
-            "recordsTotal"    => $adminsCount,
-            "recordsFiltered" => $role->admins()->count(),
-            'data'            => $role->admins()->skip(($page - 1) * $perPage)->take($perPage)
-        ]);
+        $this->roleRepository->admins($id);
     }
 }
