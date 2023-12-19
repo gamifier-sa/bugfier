@@ -12,25 +12,18 @@ class AdminController extends Controller
 {
     protected AdminRepository $adminRepository;
     protected RoleRepository $roleRepository;
-    public function __construct(
-        AdminRepository $adminRepository,
-        RoleRepository $roleRepository
-    )
+    public function __construct(AdminRepository $adminRepository, RoleRepository $roleRepository)
     {
-//        $this->authorize('view_admins',['index']);
-//        $this->authorize('create_admins', ['create', 'store']);
-//        $this->authorize('show_admins', ['show']);
-//        $this->authorize('update_admins', ['update']);
-//        $this->authorize('delete_admins', ['destroy']);
-
         $this->adminRepository = $adminRepository;
         $this->roleRepository  = $roleRepository;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index(Request  $request)
     {
+        $this->authorize('view_admins');
         if ($request->ajax()) {
             $admins = $this->adminRepository->findBy($request);
             return response()->json($admins);
@@ -43,6 +36,7 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_admins');
         $roles = $this->roleRepository->findBy();
         return view('dashboard.admins.create',compact('roles'));
     }
@@ -52,6 +46,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
+        $this->authorize('create_admins');
         $this->adminRepository->store($request->validated());
     }
 
@@ -60,7 +55,7 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -68,6 +63,7 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('update_admins');
         $admin = $this->adminRepository->show($id);
         $roles = $this->roleRepository->findBy();
         return view('dashboard.admins.edit', compact('admin', 'roles'));
@@ -78,6 +74,7 @@ class AdminController extends Controller
      */
     public function update(AdminRequest $request, string $id)
     {
+        $this->authorize('update_admins');
         $this->adminRepository->update($request->validated(), $id);
     }
 
@@ -86,6 +83,7 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete_admins');
         $this->adminRepository->destroy($id);
     }
     /**
@@ -93,6 +91,7 @@ class AdminController extends Controller
      */
     public function admins(string $id)
     {
+        $this->authorize('show_admins');
         $this->roleRepository->admins($id);
     }
 }

@@ -17,6 +17,10 @@ class RoleController extends Controller
     public $modules  = [
         'admins',
         'roles',
+        'users',
+        'projects',
+        'bugs',
+        'awards',
     ];
 
     protected RoleRepository       $roleRepository;
@@ -32,6 +36,7 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('view_roles');
         $roles     = $this->roleRepository->findBy(['abilities' => ['id','category','action'] ,'admins' => ['id']]);
         $abilities = $this->abilityRepository->findBy($request);
         return view('dashboard.roles.index',compact('roles','abilities'),['modules' => $this->modules]);
@@ -50,6 +55,7 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request)
     {
+        $this->authorize('create_roles');
         $this->roleRepository->store($request->validated());
         return redirect()->route('dashboard.roles.index');
     }
@@ -85,6 +91,7 @@ class RoleController extends Controller
      */
     public function update(RoleRequest $request, string $id)
     {
+        $this->authorize('update_roles');
         $this->roleRepository->update($request->validated(), $id);
     }
 

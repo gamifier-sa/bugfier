@@ -63,7 +63,7 @@ let KTDatatable = function () {
                                 </div>
                                 <!--end::Menu item-->
 
-                                <!--begin::Menu item-->
+                                <!--begin::Menu item
                                 <div class="menu-item px-3">
                                     <a href="/dashboard/bugs/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
                                        <span> ${translate('Show')} </span>
@@ -71,7 +71,7 @@ let KTDatatable = function () {
                                     </a>
 
                                 </div>
-                                <!--end::Menu item-->
+                                end::Menu item-->
 
                                 <!--begin::Menu item-->
                                    <div class="menu-item px-3">

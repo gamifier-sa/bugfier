@@ -43,17 +43,6 @@ let KTDatatable = function () {
                     data: null,
                     render: function (data, type, row) {
 
-                        let deleteBtn = ''
-                        if (!( row.id == 1 || row.id == currentUserId ))
-                        {
-                            deleteBtn = `<div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('employee')}">
-                                                    <span> ${translate('Delete')} </span>
-                                                    <span>  <i class="fa fa-trash text-danger"></i> </span>
-                                                </a>
-                                            </div>`
-                        }
-
                         return `
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
                                 ${translate('Actions')}
@@ -74,7 +63,7 @@ let KTDatatable = function () {
                                 </div>
                                 <!--end::Menu item-->
 
-                                <!--begin::Menu item-->
+                                <!--begin::Menu item
                                 <div class="menu-item px-3">
                                     <a href="/dashboard/users/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
                                        <span> ${translate('Show')} </span>
@@ -82,10 +71,15 @@ let KTDatatable = function () {
                                     </a>
 
                                 </div>
-                                <!--end::Menu item-->
+                                end::Menu item-->
 
                                 <!--begin::Menu item-->
-                                    ${ deleteBtn }
+                                    <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('employee')}">
+                                                    <span> ${translate('Delete')} </span>
+                                                    <span>  <i class="fa fa-trash text-danger"></i> </span>
+                                                </a>
+                                            </div>
                                 <!--end::Menu item-->
 
                             </div>

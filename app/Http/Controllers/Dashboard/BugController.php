@@ -12,17 +12,8 @@ class BugController extends Controller
     protected BugRepository $bugRepository;
     protected ProjectRepository $projectRepository;
     protected UserRepository $userRepository;
-    public function __construct(
-        BugRepository $bugRepository,
-        ProjectRepository $projectRepository,
-        UserRepository $userRepository,
-    )
+    public function __construct(BugRepository $bugRepository, ProjectRepository $projectRepository, UserRepository $userRepository)
     {
-        //        $this->authorize('view_bugs',['index']);
-        //        $this->authorize('create_bugs', ['create', 'store']);
-        //        $this->authorize('show_bugs', ['show']);
-        //        $this->authorize('update_bugs', ['update']);
-        //        $this->authorize('delete_bugs', ['destroy']);
         $this->bugRepository = $bugRepository;
         $this->projectRepository = $projectRepository;
         $this->userRepository = $userRepository;
@@ -34,6 +25,7 @@ class BugController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('view_bugs');
         if ($request->ajax()) {
             $bugs = $this->bugRepository->findBy($request);
             return response()->json($bugs);
@@ -46,6 +38,7 @@ class BugController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_bugs');
         $projects = $this->projectRepository->list();
         $users    = $this->userRepository->list();
         return view('dashboard.bugs.create', compact('projects','users'));
@@ -56,6 +49,7 @@ class BugController extends Controller
      */
     public function store(BugRequest $request)
     {
+        $this->authorize('create_bugs');
         $this->bugRepository->store($request->validated());
     }
 
@@ -64,7 +58,7 @@ class BugController extends Controller
      */
     public function show(string $id)
     {
-        //
+//        $this->authorize('show_bugs');
     }
 
     /**
@@ -72,6 +66,7 @@ class BugController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('update_bugs');
         $bug = $this->bugRepository->show($id);
         $projects = $this->projectRepository->list();
         $users    = $this->userRepository->list();
@@ -83,6 +78,7 @@ class BugController extends Controller
      */
     public function update(BugRequest $request, string $id)
     {
+        $this->authorize('update_bugs');
         $this->bugRepository->update($request->validated(), $id);
     }
 
@@ -91,6 +87,7 @@ class BugController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete_bugs');
         $this->bugRepository->destroy($id);
     }
 }

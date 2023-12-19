@@ -10,15 +10,8 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     protected ProjectRepository $projectRepository;
-    public function __construct(
-        ProjectRepository $projectRepository,
-    )
+    public function __construct(ProjectRepository $projectRepository)
     {
-        //        $this->authorize('view_projects',['index']);
-        //        $this->authorize('create_projects', ['create', 'store']);
-        //        $this->authorize('show_projects', ['show']);
-        //        $this->authorize('update_projects', ['update']);
-        //        $this->authorize('delete_projects', ['destroy']);
         $this->projectRepository = $projectRepository;
 
     }
@@ -27,6 +20,7 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('view_projects');
         if ($request->ajax()) {
             $projects = $this->projectRepository->findBy($request);
             return response()->json($projects);
@@ -39,6 +33,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_projects');
         return view('dashboard.projects.create');
     }
 
@@ -47,6 +42,7 @@ class ProjectController extends Controller
      */
     public function store(ProjectRequest $request)
     {
+        $this->authorize('create_projects');
         $this->projectRepository->store($request->validated());
     }
 
@@ -55,7 +51,7 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // $this->authorize('show_projects');
     }
 
     /**
@@ -63,6 +59,7 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('update_projects');
         $project = $this->projectRepository->show($id);
         return view('dashboard.projects.edit', compact('project'));
     }
@@ -72,6 +69,7 @@ class ProjectController extends Controller
      */
     public function update(ProjectRequest $request, string $id)
     {
+        $this->authorize('update_projects');
         $this->projectRepository->update($request->validated(), $id);
     }
 
@@ -80,6 +78,7 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete_projects');
         $this->projectRepository->destroy($id);
     }
 }

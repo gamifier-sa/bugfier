@@ -12,15 +12,14 @@ use Illuminate\Http\{JsonResponse, Request};
 class UserController extends Controller
 {
     protected UserRepository $userRepository;
-    public function __construct(
-        UserRepository $userRepository,
-    )
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
     public function index(Request $request)
     {
+        $this->authorize('view_users');
         if ($request->ajax()) {
             $users = $this->userRepository->findBy($request);
             return response()->json($users);
@@ -33,6 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create_users');
         return view('dashboard.users.create');
     }
     /**
@@ -40,11 +40,13 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('create_users');
         $this->userRepository->store($request->validated());
     }
 
     public function edit($id)
     {
+        $this->authorize('update_users');
         $user = $this->userRepository->show($id);
         return view('dashboard.users.edit',compact('user'));
     }
@@ -55,10 +57,8 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-
-        $res = $this->userRepository->update($request->validated(), $id);
-        //        return redirect()->route('super_admin_dashboard.categories.index');
-
+        $this->authorize('update_users');
+        $this->userRepository->update($request->validated(), $id);
     }
 
     /**
@@ -66,6 +66,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete_users');
         $this->userRepository->destroy($id);
     }
 }
