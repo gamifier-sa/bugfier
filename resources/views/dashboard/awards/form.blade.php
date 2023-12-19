@@ -16,10 +16,9 @@
     <!-- begin :: Column -->
     <div class="col-md-12 fv-row">
 
-        <label class="fs-5 fw-bold mb-2">{{ __("Description") }} <span class="text-danger">*</span></label>
+        <label class="fs-5 fw-bold mb-2" for="kt_docs_ckeditor_classic">{{ __("Description") }} <span class="text-danger">*</span></label>
         <div class="form-floating">
-            <textarea class="form-control" id="description_inp" name="description" required>{{old('description', $award->description)}}</textarea>
-            <label for="description_inp">{{ __("Enter the description") }}</label>
+            <textarea id="kt_docs_ckeditor_classic" name="description">{{old('description', $award->description)}}</textarea>
         </div>
         <p class="invalid-feedback" id="description" ></p>
     </div><!-- end   :: Column -->

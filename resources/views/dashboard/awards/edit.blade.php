@@ -22,9 +22,10 @@
                     <h3 class="fw-bolder text-dark">{{ __("Edit An Projects")}}</h3>
                 </div><!-- end   :: Card header -->
 
-                    <!-- begin :: Inputs wrapper -->
-                    <div class="inputs-wrapper">
+                <!-- begin :: Inputs wrapper -->
+                <div class="inputs-wrapper">
                     @include('dashboard.awards.form')
+                </div>
 
                 <!-- begin :: Form footer -->
                 <div class="form-footer">
@@ -42,8 +43,22 @@
 
                     <a class="btn btn-secondary" href="{{ route('dashboard.awards.index')}}"> {{__("Cancel")}} </a>
                 </div><!-- end   :: Form footer -->
-            </form><!-- end   :: Form -->
+            </form>
+            <!-- end   :: Form -->
         </div><!-- end   :: Card body -->
     </div>
 
 @endsection
+@push('scripts')
+    <script src="{{asset('dashboard-assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#kt_docs_ckeditor_classic'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush

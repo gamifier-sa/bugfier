@@ -79,7 +79,6 @@
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
     <script src="{{ asset('dashboard-assets/datatables/bugs.js')}}"></script>
-    <script src="{{asset('dashboard-assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
 
 
 @endpush
