@@ -255,12 +255,18 @@
                             <th>#</th>
                             <th>{{ __("admin") }}</th>
                             <th>{{ __("date") }}</th>
-                            <th class="min-w-100px">{{ __("actions") }}</th>
                         </tr>
                         </thead>
 
                         <tbody class="text-gray-600 fw-bold text-center">
-
+                            @foreach ($role->admins as $admin)
+                            <tr>
+                                <td>#{{ $admin->id }}</td>
+                                <td>{{ $admin->name_ar }}</td>
+                                <td>{{ $admin->created_at->format('Y-m-d') }}</td>
+                            </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                     <!-- end   :: Datatable -->
