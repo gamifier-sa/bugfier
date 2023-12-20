@@ -63,19 +63,21 @@
 </div><!-- end   :: Row -->
 
 <div class="row mb-8 p-5">
-    @if(request()->segment(4) == 'edit')
-        <!-- begin :: Column -->
-        <div class="col-md-6 fv-row">
-            <label class="fs-5 fw-bold mb-2" for="responsible_admin">{{ __("Responsible") }} <span class="text-danger">*</span></label>
-            <select class="form-control select-2-with-image" data-control="select2" name="responsible_admin" id="responsible_admin" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
-                <option selected disabled >{{__('Choose')}}</option>
-                @foreach($admins as $row)
-                    <option @selected(old('responsible_admin', $bug->responsible_admin) == $row->id) value="{{$row->id}}">{{$row->name_en}}</option>
-                @endforeach
-            </select>
-            <p class="invalid-feedback" id="responsible_admin"></p>
-        </div><!-- begin :: Column -->
-    @endif
+    @can('responsible_admin_bugs')
+        @if(request()->segment(4) == 'edit')
+            <!-- begin :: Column -->
+            <div class="col-md-6 fv-row">
+                <label class="fs-5 fw-bold mb-2" for="responsible_admin">{{ __("Responsible") }} <span class="text-danger">*</span></label>
+                <select class="form-control select-2-with-image" data-control="select2" name="responsible_admin" id="responsible_admin" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+                    <option selected disabled >{{__('Choose')}}</option>
+                    @foreach($admins as $row)
+                        <option @selected(old('responsible_admin', $bug->responsible_admin) == $row->id) value="{{$row->id}}">{{$row->name_en}}</option>
+                    @endforeach
+                </select>
+                <p class="invalid-feedback" id="responsible_admin"></p>
+            </div><!-- begin :: Column -->
+        @endif
+    @endcan
 
 
     <!-- begin :: Column -->

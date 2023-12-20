@@ -20,4 +20,3 @@ Route::get('/', function () {
 Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
 Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');
 Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
-

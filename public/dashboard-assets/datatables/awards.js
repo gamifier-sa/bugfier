@@ -73,7 +73,7 @@ let KTDatatable = function () {
 
                                 <!--begin::Menu item-->
                                    <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Projects')}">
+                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Award')}">
                                                    <span> ${translate('Delete')} </span>
                                                     <span>  <i class="fa fa-trash text-danger"></i> </span>
                                                 </a>

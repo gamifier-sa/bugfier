@@ -51,7 +51,7 @@
                 <!--end::Tablet and mobile search toggle-->
             </div>
             <!--end::Search-->
-  
+
             <!--begin::Theme mode-->
             <div class="d-flex align-items-center ms-3 ms-lg-4">
                 <!--begin::Menu toggle-->
