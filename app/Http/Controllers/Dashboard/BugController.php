@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BugRequest;
 use App\Repositories\Classes\{BugRepository, ProjectRepository, UserRepository};
@@ -14,9 +15,9 @@ class BugController extends Controller
     protected UserRepository $userRepository;
     public function __construct(BugRepository $bugRepository, ProjectRepository $projectRepository, UserRepository $userRepository)
     {
-        $this->bugRepository = $bugRepository;
+        $this->bugRepository     = $bugRepository;
         $this->projectRepository = $projectRepository;
-        $this->userRepository = $userRepository;
+        $this->userRepository    = $userRepository;
 
     }
 
@@ -39,9 +40,9 @@ class BugController extends Controller
     public function create()
     {
         $this->authorize('create_bugs');
-        $projects = $this->projectRepository->list();
-        $users    = $this->userRepository->list();
-        return view('dashboard.bugs.create', compact('projects','users'));
+        [$projects, $users] = $this->extracted();
+        $status   = Status::cases();
+        return view('dashboard.bugs.create', compact('projects','users', 'status'));
     }
 
     /**
@@ -69,10 +70,10 @@ class BugController extends Controller
     public function edit(string $id)
     {
         $this->authorize('update_bugs');
-        $bug = $this->bugRepository->show($id);
-        $projects = $this->projectRepository->list();
-        $users    = $this->userRepository->list();
-        return view('dashboard.bugs.edit', compact('bug','projects','users'));
+        $bug      = $this->bugRepository->show($id);
+        [$projects, $users] = $this->extracted();
+        $status   = Status::cases();
+        return view('dashboard.bugs.edit', compact('bug','projects','users', 'status'));
     }
 
     /**
@@ -91,5 +92,16 @@ class BugController extends Controller
     {
         $this->authorize('delete_bugs');
         $this->bugRepository->destroy($id);
+    }
+
+
+    /**
+     * @return array
+     */
+    protected function extracted() : array
+    {
+        $projects = $this->projectRepository->list();
+        $users    = $this->userRepository->list();
+        return [$projects, $users];
     }
 }

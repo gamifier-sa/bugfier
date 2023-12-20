@@ -24,7 +24,9 @@ class RoleSeeder extends Seeder
             'awards',
         ];
 
-
+        $pointActions = [
+            'update_point'
+        ];
         $actions = [
             'view',
             'show',
@@ -48,6 +50,18 @@ class RoleSeeder extends Seeder
 
             foreach ( $exceptions[ $category]['unused_actions'] ?? [] as $index ) // remove the unused actions
                 unset( $usedActions[$index]);
+
+            if ($category == 'bugs'){
+                foreach ( $pointActions as $action)
+                {
+                    Ability::create([
+                                        'name'     => $action . '_' . str_replace(' ','_',$category),
+                                        'category' => $category,
+                                        'action'   => $action,
+                                    ]);
+                }
+            }
+
 
             foreach ( array_values($usedActions) as $action)
             {
