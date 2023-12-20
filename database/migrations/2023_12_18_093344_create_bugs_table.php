@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('point')->nullable();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('created_by')->constrained('admins')->onDelete('cascade');
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-            $table->text('logo')->nullable();
+            $table->text('images')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

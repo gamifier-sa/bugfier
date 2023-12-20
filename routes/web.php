@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login-form');
 });
 Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
 Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');

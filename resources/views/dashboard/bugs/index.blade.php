@@ -55,7 +55,7 @@
                     <th>#</th>
                     <th>{{ __("title") }}</th>
                     <th>{{ __("Project") }}</th>
-                    <th>{{ __("User") }}</th>
+                    <th>{{ __("Created By") }}</th>
                     <th>{{ __("Point") }}</th>
                     <th>{{ __("created date") }}</th>
                     <th class="min-w-100px">{{ __("Actions") }}</th>

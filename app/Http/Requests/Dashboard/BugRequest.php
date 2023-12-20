@@ -20,7 +20,6 @@ class BugRequest extends FormRequest
             'title'       => 'required|min:3|max:199|string',
             'description' => 'required|string|min:2',
             'point'       => 'required',
-            'user_id'     => 'required|numeric|exists:users,id',
             'project_id'  => 'required|numeric|exists:projects,id',
             'images'        => ['nullable'],
         ];
@@ -35,7 +34,6 @@ class BugRequest extends FormRequest
         return [
             'title'       => 'required|min:3|max:199|string',
             'description' => 'required|string|min:2',
-            'user_id'     => 'required|numeric|exists:users,id',
             'project_id'  => 'required|numeric|exists:projects,id',
             'images'        => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:1024'],
         ];

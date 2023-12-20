@@ -58,7 +58,9 @@ class BugController extends Controller
      */
     public function show(string $id)
     {
-//        $this->authorize('show_bugs');
+       $this->authorize('show_bugs');
+       $bug = $this->bugRepository->find($id);
+       return view('dashboard.bugs.show', compact('bug'));
     }
 
     /**
