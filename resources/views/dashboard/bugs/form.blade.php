@@ -6,12 +6,13 @@
         <select class="form-control select-2-with-image" data-control="select2" name="project_id" id="projectId" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
             <option selected disabled >{{__('Choose')}}</option>
             @foreach($projects as $project)
-                <option @selected(old('$this->project_id', $bug->project_id) == $project->id) value="{{$project->id}}">{{$project->title}}</option>
+                <option @selected(old('project_id', $bug->project_id) == $project->id) value="{{$project->id}}">{{$project->title}}</option>
             @endforeach
         </select>
         <p class="invalid-feedback" id="projectId" ></p>
     </div><!-- begin :: Column -->
 </div><!-- end   :: Column -->
+
 <!-- begin :: Row -->
 <div class="row mb-8 p-5">
     <!-- begin :: Column -->
@@ -61,4 +62,16 @@
 </div><!-- end   :: Row -->
 
 
-
+<div class="row mb-8 p-5">
+    <!-- begin :: Column -->
+    <div class="col-md-12 fv-row">
+        <label class="fs-5 fw-bold mb-2" for="projectId">{{ __("Status") }} <span class="text-danger">*</span></label>
+        <select class="form-control select-2-with-image" data-control="select2" name="status" id="status" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+            <option selected disabled >{{__('Choose')}}</option>
+            @foreach($status as $row)
+                <option @selected(old('status', $bug->status) == $row->value) value="{{$row->value}}">{{__($row->value)}}</option>
+            @endforeach
+        </select>
+        <p class="invalid-feedback" id="status" ></p>
+    </div><!-- begin :: Column -->
+</div><!-- end   :: Column -->

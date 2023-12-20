@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use App\Enums\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BugRequest extends FormRequest
 {
@@ -21,7 +23,8 @@ class BugRequest extends FormRequest
             'description' => 'required|string|min:2',
             'point'       => 'required',
             'project_id'  => 'required|numeric|exists:projects,id',
-            'images'        => ['nullable'],
+            'images'      => ['nullable'],
+            'status'      => ['nullable', Rule::in(Status::values())],
         ];
     }
 
@@ -34,8 +37,10 @@ class BugRequest extends FormRequest
         return [
             'title'       => 'required|min:3|max:199|string',
             'description' => 'required|string|min:2',
+            'point'       => 'required',
             'project_id'  => 'required|numeric|exists:projects,id',
-            'images'        => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:1024'],
+            'images'      => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:1024'],
+            'status'      => ['nullable', Rule::in(Status::values())],
         ];
     }
 

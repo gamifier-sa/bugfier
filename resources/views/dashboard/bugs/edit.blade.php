@@ -22,9 +22,10 @@
                     <h3 class="fw-bolder text-dark">{{ __("Edit An Bugs")}}</h3>
                 </div><!-- end   :: Card header -->
 
-                    <!-- begin :: Inputs wrapper -->
-                    <div class="inputs-wrapper">
+                <!-- begin :: Inputs wrapper -->
+                <div class="inputs-wrapper">
                     @include('dashboard.bugs.form')
+                </div>
 
                 <!-- begin :: Form footer -->
                 <div class="form-footer">
