@@ -64,6 +64,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
 
     public function list()
     {
+        return $this->all();
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Award extends Model
 {
     protected $fillable = [
-        'id', 'title','description','point'
+        'id', 'title','description','point','images'
     ];
 
     public       $timestamps         = true;

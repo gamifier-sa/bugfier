@@ -54,6 +54,14 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
      */
     public function store($data) : void
     {
+        if (isset($data['images'])) {
+            $imagesArr = [];
+            foreach($data['images'] as $image){
+                $imagesArr[] = uploadImage($image,'Bugs');
+            }
+            $data['images'] = serialize($imagesArr);
+        }
+
         $this->create($data);
     }
     public function list()

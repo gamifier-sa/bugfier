@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('point');
+            $table->text('images')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

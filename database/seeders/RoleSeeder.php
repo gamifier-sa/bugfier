@@ -24,8 +24,9 @@ class RoleSeeder extends Seeder
             'awards',
         ];
 
-        $pointActions = [
-            'update_point'
+        $bugsActions = [
+            'update_point',
+            'responsible_admin'
         ];
         $actions = [
             'view',
@@ -52,13 +53,13 @@ class RoleSeeder extends Seeder
                 unset( $usedActions[$index]);
 
             if ($category == 'bugs'){
-                foreach ( $pointActions as $action)
+                foreach ($bugsActions as $action)
                 {
                     Ability::create([
-                                        'name'     => $action . '_' . str_replace(' ','_',$category),
-                                        'category' => $category,
-                                        'action'   => $action,
-                                    ]);
+                        'name'     => $action . '_' . str_replace(' ','_',$category),
+                        'category' => $category,
+                        'action'   => $action,
+                    ]);
                 }
             }
 

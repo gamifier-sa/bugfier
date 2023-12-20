@@ -40,6 +40,7 @@
 
 <!-- begin :: Row -->
 <div class="row mb-8 p-5">
+    @can('update_point_bugs')
     <!-- begin :: Column -->
     <div class="col-md-6 fv-row">
         <label class="fs-5 fw-bold mb-2">{{ __("Point") }} <span class="text-danger">*</span></label>
@@ -47,9 +48,9 @@
             <input type="number" class="form-control" id="point_inp" name="point" value="{{old('point', $bug->point)}}" autocomplete="off" required/>
             <label for="point_inp">{{ __("Enter the point") }}</label>
         </div>
-        <p class="invalid-feedback" id="point" ></p>
+        <p class="invalid-feedback" id="point"></p>
     </div><!-- end   :: Column -->
-
+    @endcan
     <!-- begin :: Column -->
     <div class="col-md-6 fv-row">
         <label class="fs-5 fw-bold mb-2">{{ __("Images") }} <span class="text-danger">*</span></label>
@@ -57,15 +58,29 @@
             <input type="file" class="form-control" multiple id="images_inp" name="images[]" autocomplete="off"/>
             <label for="images_inp">{{ __("Enter the images") }}</label>
         </div>
-        <p class="invalid-feedback" id="point" ></p>
+        <p class="invalid-feedback" id="images_inp"></p>
     </div><!-- end   :: Column -->
 </div><!-- end   :: Row -->
 
-
 <div class="row mb-8 p-5">
+    @if(request()->segment(4) == 'edit')
+        <!-- begin :: Column -->
+        <div class="col-md-6 fv-row">
+            <label class="fs-5 fw-bold mb-2" for="responsible_admin">{{ __("Responsible") }} <span class="text-danger">*</span></label>
+            <select class="form-control select-2-with-image" data-control="select2" name="responsible_admin" id="responsible_admin" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+                <option selected disabled >{{__('Choose')}}</option>
+                @foreach($admins as $row)
+                    <option @selected(old('responsible_admin', $bug->responsible_admin) == $row->id) value="{{$row->id}}">{{$row->name_en}}</option>
+                @endforeach
+            </select>
+            <p class="invalid-feedback" id="responsible_admin"></p>
+        </div><!-- begin :: Column -->
+    @endif
+
+
     <!-- begin :: Column -->
-    <div class="col-md-12 fv-row">
-        <label class="fs-5 fw-bold mb-2" for="projectId">{{ __("Status") }} <span class="text-danger">*</span></label>
+    <div class="col-md-6 fv-row">
+        <label class="fs-5 fw-bold mb-2" for="status">{{ __("Status") }} <span class="text-danger">*</span></label>
         <select class="form-control select-2-with-image" data-control="select2" name="status" id="status" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
             <option selected disabled >{{__('Choose')}}</option>
             @foreach($status as $row)

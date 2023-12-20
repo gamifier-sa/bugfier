@@ -27,12 +27,22 @@
 <!-- begin :: Row -->
 <div class="row mb-8 p-5">
     <!-- begin :: Column -->
-    <div class="col-md-12 fv-row">
+    <div class="col-md-6 fv-row">
         <label class="fs-5 fw-bold mb-2">{{ __("Point") }} <span class="text-danger">*</span></label>
         <div class="form-floating">
             <input type="number" class="form-control" id="point_inp" name="point" value="{{old('point', $award->point)}}" autocomplete="off" required/>
             <label for="point_inp">{{ __("Enter the name in arabic") }}</label>
         </div>
         <p class="invalid-feedback" id="point" ></p>
+    </div><!-- end   :: Column -->
+
+    <!-- begin :: Column -->
+    <div class="col-md-6 fv-row">
+        <label class="fs-5 fw-bold mb-2">{{ __("Images") }} <span class="text-danger">*</span></label>
+        <div class="form-floating">
+            <input type="file" class="form-control" multiple id="images_inp" name="images[]" autocomplete="off"/>
+            <label for="images_inp">{{ __("Enter the images") }}</label>
+        </div>
+        <p class="invalid-feedback" id="images_inp"></p>
     </div><!-- end   :: Column -->
 </div><!-- end   :: Row -->

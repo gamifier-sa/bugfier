@@ -6,8 +6,8 @@
 
         <!--begin::Logo-->
         <a href="{{route('dashboard.home')}}" class="w-100">
-            <img alt="Logo" src="{{getImageSettingsPath(settings()->get('logo') ?? '' ,'Settings')}}" class="h-20px logo theme-light-show" />
-            <img alt="Logo" src="{{getImageSettingsPath(settings()->get('logo') ?? '','Settings')}}" class="h-20px logo theme-dark-show" />
+            <img alt="Logo" src="{{asset('dashboard-assets/media/logos/demo3.svg')}}" class="h-20px logo theme-light-show" />
+            <img alt="Logo" src="{{asset('dashboard-assets/media/logos/demo3-dark.svg')}}" class="h-20px logo theme-dark-show" />
         </a><!--end::Logo-->
     </div><!--end::Brand-->
 
@@ -96,44 +96,6 @@
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">{{ __("Roles") }}</span>
-                            </a><!--end:Menu link-->
-                        </div><!--end:Menu item-->
-                        @endcan
-                    </div><!--end:Menu sub-->
-                </div><!--end:Menu item-->
-
-                <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('users')}}">
-                    <!--begin:Menu link-->
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                            <span class="svg-icon svg-icon-5">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">{{__('Users')}}</span>
-                        <span class="menu-arrow"></span>
-                    </span><!--end:Menu link-->
-
-                    <!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion">
-                        @can('view_users')
-                        <!--begin:Menu item-->
-                        <div class="menu-item {{prefixShow('dashboard.users.index')}}">
-                            <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('dashboard.users.index') }}" data-bs-toggle="tooltip"
-                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">{{ __("Users") }}</span>
                             </a><!--end:Menu link-->
                         </div><!--end:Menu item-->
                         @endcan
@@ -255,47 +217,47 @@
                     </div><!--end:Menu sub-->
                 </div><!--end:Menu item-->
 
-                <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion {{prefixHoverShow('settings')}}">
-                    <!--begin:Menu link-->
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
-                            <span class="svg-icon svg-icon-5">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <span class="menu-title">{{__('Settings')}}</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <!--end:Menu link-->
+{{--                <!--begin:Menu item-->--}}
+{{--                <div data-kt-menu-trigger="click"--}}
+{{--                    class="menu-item menu-accordion {{prefixHoverShow('settings')}}">--}}
+{{--                    <!--begin:Menu link-->--}}
+{{--                    <span class="menu-link">--}}
+{{--                        <span class="menu-icon">--}}
+{{--                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->--}}
+{{--                            <span class="svg-icon svg-icon-5">--}}
+{{--                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"--}}
+{{--                                    xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"--}}
+{{--                                        fill="currentColor" />--}}
+{{--                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z"--}}
+{{--                                        fill="currentColor" />--}}
+{{--                                </svg>--}}
+{{--                            </span>--}}
+{{--                            <!--end::Svg Icon-->--}}
+{{--                        </span>--}}
+{{--                        <span class="menu-title">{{__('Settings')}}</span>--}}
+{{--                        <span class="menu-arrow"></span>--}}
+{{--                    </span>--}}
+{{--                    <!--end:Menu link-->--}}
 
-                    <!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion">
-                        <!--begin:Menu item-->
-                        <div class="menu-item {{prefixShow('dashboard.settings.index')}}">
-                            @can('view_settings')
-                            <!--begin:Menu link-->
-                            <a class="menu-link" href="{{ route('dashboard.settings.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">{{ __("General Setting") }}</span>
-                            </a>
-                            <!--end:Menu link-->
-                            @endcan
-                        </div>
-                        <!--end:Menu item-->
-                    </div><!--end:Menu sub-->
-                </div><!--end:Menu item-->
+{{--                    <!--begin:Menu sub-->--}}
+{{--                    <div class="menu-sub menu-sub-accordion">--}}
+{{--                        <!--begin:Menu item-->--}}
+{{--                        <div class="menu-item {{prefixShow('dashboard.settings.index')}}">--}}
+{{--                            @can('view_settings')--}}
+{{--                            <!--begin:Menu link-->--}}
+{{--                            <a class="menu-link" href="{{ route('dashboard.settings.index') }}" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">--}}
+{{--                                <span class="menu-bullet">--}}
+{{--                                    <span class="bullet bullet-dot"></span>--}}
+{{--                                </span>--}}
+{{--                                <span class="menu-title">{{ __("General Setting") }}</span>--}}
+{{--                            </a>--}}
+{{--                            <!--end:Menu link-->--}}
+{{--                            @endcan--}}
+{{--                        </div>--}}
+{{--                        <!--end:Menu item-->--}}
+{{--                    </div><!--end:Menu sub-->--}}
+{{--                </div><!--end:Menu item-->--}}
             </div><!--end::Menu-->
         </div><!--end::Aside Menu-->
     </div><!--end::Aside menu-->

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('point')->nullable();
             $table->foreignId('created_by')->constrained('admins')->onDelete('cascade');
+            $table->integer('responsible_admin')->nullable();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->text('images')->nullable();
             $table->enum('status',[Status::values()])->default('todo');

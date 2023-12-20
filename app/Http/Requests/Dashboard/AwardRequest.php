@@ -24,7 +24,8 @@ class AwardRequest extends FormRequest
         return [
             'title'       => 'required|min:3|max:199|string',
             'description' => 'required|string|min:2',
-            'point' => 'required|numeric'
+            'point'       => 'required|numeric',
+            'images'      => 'nullable'
         ];
     }
 }

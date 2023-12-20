@@ -23,6 +23,7 @@ class BugRequest extends FormRequest
             'description' => 'required|string|min:2',
             'point'       => 'required',
             'project_id'  => 'required|numeric|exists:projects,id',
+            'responsible_admin'  => 'nullable|numeric|exists:admins,id',
             'images'      => ['nullable'],
             'status'      => ['nullable', Rule::in(Status::values())],
         ];
@@ -39,6 +40,7 @@ class BugRequest extends FormRequest
             'description' => 'required|string|min:2',
             'point'       => 'required',
             'project_id'  => 'required|numeric|exists:projects,id',
+            'responsible_admin'  => 'nullable|numeric|exists:admins,id',
             'images'      => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:1024'],
             'status'      => ['nullable', Rule::in(Status::values())],
         ];

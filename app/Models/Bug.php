@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Bug extends Model
 {
     protected $fillable = [
-        'id', 'title', 'description', 'point', 'created_by', 'project_id',  'images','status'
+        'id', 'title', 'description', 'point', 'created_by', 'project_id',  'images','status','responsible_admin'
     ];
     public $timestamps = true;
     public array $searchRelationShip = [];

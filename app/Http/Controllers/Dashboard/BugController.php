@@ -5,20 +5,19 @@ namespace App\Http\Controllers\Dashboard;
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BugRequest;
-use App\Repositories\Classes\{BugRepository, ProjectRepository, UserRepository};
+use App\Repositories\Classes\{AdminRepository, BugRepository, ProjectRepository};
 use Illuminate\Http\Request;
 
 class BugController extends Controller
 {
     protected BugRepository $bugRepository;
     protected ProjectRepository $projectRepository;
-    protected UserRepository $userRepository;
-    public function __construct(BugRepository $bugRepository, ProjectRepository $projectRepository, UserRepository $userRepository)
+    protected AdminRepository $adminRepository;
+    public function __construct(BugRepository $bugRepository, ProjectRepository $projectRepository, AdminRepository $adminRepository)
     {
         $this->bugRepository     = $bugRepository;
         $this->projectRepository = $projectRepository;
-        $this->userRepository    = $userRepository;
-
+        $this->adminRepository    = $adminRepository;
     }
 
     /**
@@ -40,9 +39,9 @@ class BugController extends Controller
     public function create()
     {
         $this->authorize('create_bugs');
-        [$projects, $users] = $this->extracted();
+        [$projects, $admins] = $this->extracted();
         $status   = Status::cases();
-        return view('dashboard.bugs.create', compact('projects','users', 'status'));
+        return view('dashboard.bugs.create', compact('projects','admins', 'status'));
     }
 
     /**
@@ -71,9 +70,9 @@ class BugController extends Controller
     {
         $this->authorize('update_bugs');
         $bug      = $this->bugRepository->show($id);
-        [$projects, $users] = $this->extracted();
+        [$projects, $admins] = $this->extracted();
         $status   = Status::cases();
-        return view('dashboard.bugs.edit', compact('bug','projects','users', 'status'));
+        return view('dashboard.bugs.edit', compact('bug','projects','admins', 'status'));
     }
 
     /**
@@ -101,7 +100,7 @@ class BugController extends Controller
     protected function extracted() : array
     {
         $projects = $this->projectRepository->list();
-        $users    = $this->userRepository->list();
-        return [$projects, $users];
+        $admins   = $this->adminRepository->list();
+        return [$projects, $admins];
     }
 }
