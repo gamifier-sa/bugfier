@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Repositories\Classes\{AbilityRepository, RoleRepository};
 use App\Http\Requests\Dashboard\RoleRequest;
-use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -14,7 +13,7 @@ class RoleController extends Controller
     /**
      * @var string[]
      */
-    public $modules  = [
+    public array $modules = [
         'admins',
         'roles',
         'users',

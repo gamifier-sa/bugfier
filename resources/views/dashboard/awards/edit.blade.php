@@ -4,10 +4,10 @@
 
     @component('components.dashboard.breadcrumb')
         @slot('breadcrumb_title')
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><a href="{{ route('dashboard.awards.index') }}" class="text-muted text-hover-primary">{{ __("Projects") }}</a></h1><!-- end   :: Title -->
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><a href="{{ route('dashboard.awards.index') }}" class="text-muted text-hover-primary">{{ __("Awards") }}</a></h1><!-- end   :: Title -->
         @endslot
         <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{__('Edit An Projects')}}</li><!-- end   :: Item -->
+        <li class="breadcrumb-item text-muted">{{__('Edit An Awards')}}</li><!-- end   :: Item -->
     @endcomponent
 
     <div class="card  mb-5 mb-xl-10">
@@ -19,7 +19,7 @@
                 @method('PUT')
                 <!-- begin :: Card header -->
                 <div class="card-header d-flex align-items-center">
-                    <h3 class="fw-bolder text-dark">{{ __("Edit An Projects")}}</h3>
+                    <h3 class="fw-bolder text-dark">{{ __("Edit An Awards")}}</h3>
                 </div><!-- end   :: Card header -->
 
                 <!-- begin :: Inputs wrapper -->

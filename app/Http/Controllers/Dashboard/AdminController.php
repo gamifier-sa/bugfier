@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
+use App\Http\Requests\Dashboard\UpdateProfileRequest;
 use App\Repositories\Classes\AdminRepository;
 use App\Repositories\Classes\RoleRepository;
 use Illuminate\Http\Request;
@@ -93,5 +94,26 @@ class AdminController extends Controller
     {
         $this->authorize('show_admins');
         $this->roleRepository->admins($id);
+    }
+
+    /**
+     * @param UpdateProfileRequest $request
+     * @return void
+     */
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $this->adminRepository->updateProfile($request->validated());
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    public function updatePassword(Request $request){
+        $data = $request->validate([
+            'password' => ['required','string','min:6','max:255','confirmed'],
+            'password_confirmation' => ['required','same:password'],
+        ]);
+        auth()->user()->update($data);
     }
 }

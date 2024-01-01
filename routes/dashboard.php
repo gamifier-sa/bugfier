@@ -34,8 +34,8 @@ Route::group([
     Route::resource('settings', SettingController::class)->only(['index', 'store', 'changeMode']);
 
     Route::view('edit-profile', 'dashboard.admins.edit-profile')->name('edit-profile');
-    Route::put('update-profile', 'EmployeeController@updateProfile')->name('update-profile');
-    Route::put('update-password', 'EmployeeController@updatePassword')->name('update-password');
+    Route::put('update-profile', [AdminController::class,'updateProfile'])->name('update-profile');
+    Route::put('update-password', [AdminController::class,'updatePassword'])->name('update-password');
 
 
 });

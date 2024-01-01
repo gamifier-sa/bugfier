@@ -21,9 +21,9 @@ class AdminRequest extends FormRequest
         return [
             'name_ar'   => ['required', 'string', 'max:255','min:3'],
             'name_en'   => ['nullable', 'string', 'max:255','min:3'],
-            'phone'     => ['required','max:255','unique:admins','regex:/(^(00201|01|\+201)(1|2|0|5)([0-9]{8})$)/u'],
+            'phone'     => ['required','max:255','unique:admins'],
             'password'  => ['required','string','min:8','max:255','confirmed'],
-            'email'      => 'required|email|unique:admins',
+            'email'     => 'required|email|unique:admins',
             'roles'     => ['required','array','min:1'],
 
         ];

@@ -45,7 +45,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
 
     public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
     {
-        return $this->all(relations: ['project' => ['id', 'title'], 'admin' => ['id', 'name_ar']], orderBy: $request->order);
+        return $this->all(relations: ['project' => ['id', 'title'], 'admin' => ['id', 'name_ar','name_en']], orderBy: $request->order);
     }
 
     /**

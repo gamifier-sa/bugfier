@@ -53,6 +53,7 @@
                 <thead>
                 <tr class="text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                     <th>#</th>
+                    <th>ID</th>
                     <th>{{ __("title") }}</th>
                     <th>{{ __("Point") }}</th>
                     <th>{{ __("created date") }}</th>
@@ -76,6 +77,6 @@
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-    <script src="{{ asset('dashboard-assets/datatables/awards.js')}}"></script>
+    <script src="{{ asset('dashboard-assets/datatables/awards.js')}}?{{now()}}"></script>
 
 @endpush

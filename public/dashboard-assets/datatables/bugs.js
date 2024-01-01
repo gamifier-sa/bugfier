@@ -30,10 +30,19 @@ let KTDatatable = function () {
                 }
             },
             columns: [
+                {
+                    data: null,
+                    orderable: false, // Disable ordering on this column
+                    searchable: false, // Disable searching on this column
+                    render: function (data, type, row, meta) {
+                        // 'meta' contains information about the cell position, including row index
+                        return meta.row + 1; // Add 1 to start numbering from 1
+                    }
+                },
                 {data: 'id'},
                 {data: 'title'},
                 {data: 'project.title'},
-                {data: 'admin.name_ar'},
+                {data: 'admin.full_name'},
                 {data: 'point'},
                 {data: 'create_since'},
                 {data: null},

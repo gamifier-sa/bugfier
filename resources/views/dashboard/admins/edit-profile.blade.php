@@ -1,4 +1,5 @@
-@extends('partials.dashboard.master')
+@extends('dashboard.layouts.master')
+
 @section('title') {{__("Change profile data")}} @endsection
 
 @section('content')
@@ -109,7 +110,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                                 <div class="col-lg-10 form-floating">
-                                    <input type="tel" class="form-control" id="phone_inp" pattern="^(00201|\+201|01)[0-2,5]{1}[0-9]{8}$" name="phone" placeholder="example" value="{{ auth()->user()->phone }}"/>
+                                    <input type="tel" class="form-control" id="phone_inp" name="phone" placeholder="example" value="{{ auth()->user()->phone }}"/>
                                     <label style="margin-right:8px" for="phone_inp">{{ __("Enter the phone") }}</label>
                                     <p class="invalid-feedback" id="phone" ></p>
                                 </div>
@@ -144,7 +145,7 @@
                             </span>
                             <!-- end   :: Indicator -->
                         </button>
-                        <a class="btn btn-secondary m-1" href="{{ route('dashboard.index')}}" > {{__("Cancel")}} </a>
+                        <a class="btn btn-secondary m-1" href="{{ route('dashboard.home')}}" > {{__("Cancel")}} </a>
 
                     </div>
 
@@ -154,7 +155,7 @@
             <!--end::Form-->
             <!--begin::Form-->
             <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
-                <form action="{{ route('dashboard.update-password') }}" class="submitted-form" method="post" data-redirection-url="{{ route('dashboard.index') }}" data-success-message="{{ __('Password has been updated successfully') }}">
+                <form action="{{ route('dashboard.update-password') }}" class="submitted-form" method="post" data-redirection-url="{{ route('dashboard.home') }}" data-success-message="{{ __('Password has been updated successfully') }}">
                     @csrf
                     @method('PUT')
                     <!--begin::Card body-->
@@ -209,7 +210,7 @@
                             <!-- end   :: Indicator -->
                         </button>
 
-                        <a class="btn btn-secondary m-1" href="{{ route('dashboard.index')}}" > {{__("Cancel")}} </a>
+                        <a class="btn btn-secondary m-1" href="{{ route('dashboard.home')}}" > {{__("Cancel")}} </a>
 
                     </div>
                     <!--end::Actions-->

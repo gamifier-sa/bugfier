@@ -26,8 +26,8 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name_ar'     => ['required', 'string', 'max:255'],
             'name_en'     => ['required', 'string', 'max:255'],
-            'phone'       => ['required','string', 'regex:/(^00201|01|\+201)(0|1|2|5)([0-9]{8})($)/u', 'max:255','unique:employees,id,' . auth()->id()],
-            'email'       => ['required','string', "email:rfc,dns",'unique:employees,id,' . auth()->id() ],
+            'phone'       => ['required','string', 'max:255','unique:admins,id,' . auth()->id()],
+            'email'       => ['required','string', "email:rfc,dns",'unique:admins,id,' . auth()->id() ],
         ];
     }
 }

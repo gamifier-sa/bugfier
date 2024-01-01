@@ -230,7 +230,7 @@
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 
                             </button>
-                            <div class="btn btn-secondary" onclick="$('#kt_modal_add_role').modal('hide')" data-kt-roles-modal-action="close">
+                            <div class="btn btn-secondary" onclick="resetForm(); $('#kt_modal_add_role').modal('hide')" data-kt-roles-modal-action="close">
                                 {{__("Cancel")}}
                             </div>
                         </div>
@@ -383,7 +383,7 @@
                                 <span class="indicator-progress">{{ __("Please wait ...") }}
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
-                            <div class="btn btn-secondary" onclick="$('#kt_modal_update_role').modal('hide')" data-kt-roles-modal-action="close">
+                            <div class="btn btn-secondary" onclick=" $('#kt_modal_update_role').modal('hide')" data-kt-roles-modal-action="close">
                                 {{__("Cancel")}}
                             </div>
                         </div>
@@ -410,6 +410,23 @@
             $('.add-checkbox').prop('checked',false);
             removeValidationMessages();
         });// end code for resetting add new role modal
+
+
+        function resetForm() {
+
+            document.getElementById('name_ar_inp').value = '';
+            document.getElementById('name_en_inp').value = '';
+
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = false;
+            });
+
+            document.getElementById('name_ar').textContent = '';
+            document.getElementById('name_en').textContent = '';
+            document.getElementById('abilities').textContent = '';
+        }
+
     </script>
     <script src="{{ asset('js/dashboard/forms/roles/common.js') }}"></script>
 @endpush

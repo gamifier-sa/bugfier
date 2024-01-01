@@ -102,4 +102,13 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
     {
         return $this->delete($id);
     }
+
+    /**
+     * @param $data
+     * @return void
+     */
+    public function updateProfile($data) : void
+    {
+        auth()->user()->update($data);
+    }
 }
