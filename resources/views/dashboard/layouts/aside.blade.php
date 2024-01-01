@@ -452,8 +452,7 @@
                     <div class="menu-item px-5">
                         <form id="logout-form" method="post" action="{{ route('admin.logout') }}">
                             @csrf
-                            <a href="javascript:" onclick="$('#logout-form').submit()"
-                                class="menu-link px-5">{{__("Sign Out")}}</a>
+                            <button onclick="return confirm('{{__('Are you sure to delete')}}');" onclick="$('#logout-form').submit()" class="menu-link btn px-5">{{__("Sign Out")}}</button>
                         </form>
                     </div>
                     <!--end::Menu item-->
