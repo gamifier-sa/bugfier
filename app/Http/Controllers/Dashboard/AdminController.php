@@ -67,11 +67,15 @@ class AdminController extends Controller
         $this->authorize('update_admins');
         $admin = $this->adminRepository->show($id);
         $roles = $this->roleRepository->findBy();
-        return view('dashboard.admins.edit', compact('admin', 'roles'));
+        return view('dashboard.admins.edit', get_defined_vars());
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param AdminRequest $request
+     * @param string       $id
+     * @return void
      */
     public function update(AdminRequest $request, string $id)
     {
@@ -111,7 +115,7 @@ class AdminController extends Controller
      */
     public function updatePassword(Request $request){
         $data = $request->validate([
-            'password' => ['required','string','min:6','max:255','confirmed'],
+            'password'             => ['required','string','min:6','max:255','confirmed'],
             'password_confirmation' => ['required','same:password'],
         ]);
         auth()->user()->update($data);

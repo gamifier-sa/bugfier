@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BugRequest;
-use App\Repositories\Classes\{AdminRepository, BugRepository, ProjectRepository};
+use App\Repositories\Classes\{AdminRepository, BugRepository, ProjectRepository, StatusRepository};
 use Illuminate\Http\Request;
 
 class BugController extends Controller
@@ -13,11 +12,18 @@ class BugController extends Controller
     protected BugRepository $bugRepository;
     protected ProjectRepository $projectRepository;
     protected AdminRepository $adminRepository;
-    public function __construct(BugRepository $bugRepository, ProjectRepository $projectRepository, AdminRepository $adminRepository)
+    protected StatusRepository $statusRepository;
+    public function __construct(
+        BugRepository $bugRepository,
+        ProjectRepository $projectRepository,
+        AdminRepository $adminRepository,
+        StatusRepository $statusRepository,
+    )
     {
         $this->bugRepository     = $bugRepository;
         $this->projectRepository = $projectRepository;
-        $this->adminRepository    = $adminRepository;
+        $this->adminRepository   = $adminRepository;
+        $this->statusRepository  = $statusRepository;
     }
 
     /**
@@ -39,9 +45,8 @@ class BugController extends Controller
     public function create()
     {
         $this->authorize('create_bugs');
-        [$projects, $admins] = $this->extracted();
-        $status   = Status::cases();
-        return view('dashboard.bugs.create', compact('projects','admins', 'status'));
+        [$projects, $admins, $statuses] = $this->extracted();
+        return view('dashboard.bugs.create', get_defined_vars());
     }
 
     /**
@@ -60,7 +65,7 @@ class BugController extends Controller
     {
        $this->authorize('show_bugs');
        $bug = $this->bugRepository->find($id);
-       return view('dashboard.bugs.show', compact('bug'));
+       return view('dashboard.bugs.show', get_defined_vars());
     }
 
     /**
@@ -70,9 +75,8 @@ class BugController extends Controller
     {
         $this->authorize('update_bugs');
         $bug      = $this->bugRepository->show($id);
-        [$projects, $admins] = $this->extracted();
-        $status   = Status::cases();
-        return view('dashboard.bugs.edit', compact('bug','projects','admins', 'status'));
+        [$projects, $admins, $statuses] = $this->extracted();
+        return view('dashboard.bugs.edit', get_defined_vars());
     }
 
     /**
@@ -101,6 +105,7 @@ class BugController extends Controller
     {
         $projects = $this->projectRepository->list();
         $admins   = $this->adminRepository->list();
-        return [$projects, $admins];
+        $statuses = $this->statusRepository->list();
+        return [$projects, $admins, $statuses];
     }
 }

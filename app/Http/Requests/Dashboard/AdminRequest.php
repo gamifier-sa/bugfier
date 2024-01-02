@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class AdminRequest extends FormRequest
         return [
             'name_ar'   => ['required', 'string', 'max:255','min:3'],
             'name_en'   => ['nullable', 'string', 'max:255','min:3'],
-            'phone'     => ['required','max:255','unique:admins'],
+            'phone'     => ['required','unique:admins','numeric'],
             'password'  => ['required','string','min:8','max:255','confirmed'],
             'email'     => 'required|email|unique:admins',
             'roles'     => ['required','array','min:1'],
@@ -31,16 +32,16 @@ class AdminRequest extends FormRequest
 
     protected function onUpdate() : array
     {
-
         return [
             'name_ar'  => ['required', 'string', 'max:255','min:3'],
             'name_en'  => ['nullable', 'string', 'max:255','min:3'],
-            'phone'    => ['required','max:255','regex:/(^(00201|01|\+201)(1|2|0|5)([0-9]{8})$)/u'],
+            'phone'    => ['required','numeric', Rule::unique('admins')->ignore(request()->segment(3))],
             'password' => ['nullable','exclude_if:password,null','string','min:8','max:255','confirmed'],
-            'email'    => 'required|email|unique:admins',
+            'email'    => ['required', 'email', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('admins')->ignore(request()->segment(3))],
             'roles'    => ['required','array','min:1'],
         ];
     }
+
     /**
      * Get the validation rules that apply to the request.
      *

@@ -56,7 +56,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
     public function store($data) : void
     {
 
-        $data['password'] = Hash::make($data['password']);
+        $data['password'] = bcrypt($data['password']);
         $user =  $this->create($data);
         $user->roles()->sync($data['roles']);
     }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +20,7 @@ return new class extends Migration
             $table->integer('responsible_admin')->nullable();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
             $table->text('images')->nullable();
-            $table->enum('status',[Status::values()])->default('todo');
+            $table->integer('status_id')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

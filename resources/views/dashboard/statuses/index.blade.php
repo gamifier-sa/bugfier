@@ -2,15 +2,15 @@
 @push('styles')
     <link href="{{ asset('dashboard-assets/css/datatables' . ( isDarkMode() ?  '.dark' : '' ) .'.bundle.css') }}" rel="stylesheet" type="text/css"/>
 @endpush
-@section('title') {{__("Bug list")}} @endsection
+@section('title') {{__("Status list")}} @endsection
 
 @section('content')
     @component('components.dashboard.breadcrumb')
         @slot('breadcrumb_title')
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __("Bugs") }}</h1><!-- end   :: Title -->
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __("Statuses") }}</h1><!-- end   :: Title -->
         @endslot
         <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{__('Bug list')}}</li><!-- end   :: Item -->
+        <li class="breadcrumb-item text-muted">{{__('Status list')}}</li><!-- end   :: Item -->
     @endcomponent
 
     <!-- begin :: Datatable card -->
@@ -33,14 +33,14 @@
 
                 <!-- begin :: Toolbar -->
                 <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
-                    @can('create_bugs')
+                    @can('create_statuses')
                         <!-- begin :: Add Button -->
-                        <a href="{{ route('dashboard.bugs.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" title="">
+                        <a href="{{ route('dashboard.statuses.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" title="">
 
                         <span class="svg-icon svg-icon-2">
                             <i class="fa fa-plus fa-lg"></i>
                         </span>
-                            {{ __("add new bug") }}
+                            {{ __("add new Status") }}
                         </a><!-- end   :: Add Button -->
                     @endcan
                 </div><!-- end   :: Toolbar -->
@@ -55,10 +55,6 @@
                     <th>#</th>
                     <th>ID</th>
                     <th>{{ __("title") }}</th>
-                    <th>{{ __("Project") }}</th>
-                    <th>{{ __("Created By") }}</th>
-                    <th>{{ __("Point") }}</th>
-                    <th>{{ __("Status") }}</th>
                     <th>{{ __("created date") }}</th>
                     <th class="min-w-100px">{{ __("Actions") }}</th>
                 </tr>
@@ -74,13 +70,12 @@
 @endsection
 @push('scripts')
     <script>
-        let route         = "{{ route('dashboard.bugs.index') }}";
+        let route         = "{{ route('dashboard.statuses.index') }}";
         let csrfToken     = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-    <script src="{{ asset('dashboard-assets/datatables/bugs.js')}}"></script>
-
+    <script src="{{ asset('dashboard-assets/datatables/statuses.js')}}?{{now()}}"></script>
 
 @endpush

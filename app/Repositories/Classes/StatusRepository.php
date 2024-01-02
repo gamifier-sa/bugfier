@@ -2,21 +2,19 @@
 
 namespace App\Repositories\Classes;
 
-use App\Models\Bug;
+use App\Models\{Status};
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 use Illuminate\Http\Request;
 
-class BugRepository extends BasicRepository implements IAdminRepository, IMainRepository
+class StatusRepository extends BasicRepository implements IAdminRepository, IMainRepository
 {
     /**
      * @var array
      */
 
     protected array $fieldSearchable = [
-        'id', 'title', 'description'
+        'id', 'title'
     ];
 
     /**
@@ -24,7 +22,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
      **/
     public function model(): string
     {
-        return Bug::class;
+        return Status::class;
     }
     /**
      * Return searchable fields
@@ -48,25 +46,19 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
 
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(relations: ['project' => ['id', 'title'], 'admin' => ['id', 'name_ar','name_en'], 'status' => ['id', 'title']], orderBy: $request->order);
+        return $this->all(orderBy: $request->order);
     }
 
     /**
      * @param $data
      */
-    public function store($data): void
+    public function store($data) : void
     {
-        if (isset($data['images'])) {
-            $imagesArr = [];
-            foreach($data['images'] as $image){
-                $imagesArr[] = uploadImage($image,'Bugs');
-            }
-            $data['images'] = serialize($imagesArr);
-        }
         $this->create($data);
     }
     public function list()
     {
+        return $this->all();
     }
     /**
      * @param $id
@@ -81,7 +73,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
      * @param null $id
      */
 
-    public function update($request, $id = null)
+    public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         return $this->save($request, $id);
     }

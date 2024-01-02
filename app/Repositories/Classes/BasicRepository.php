@@ -164,6 +164,8 @@ abstract class BasicRepository
             $columnName = request()['columns'][(int) request()['order'][0]['column']]['data'];
             if ($columnName) {
                 $this->model->orderBy($columnName, $orderBy[0]['dir']);
+            } else {
+                $this->model->orderBy('id', 'desc');
             }
         }
 

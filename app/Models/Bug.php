@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class Bug extends Model
 {
     protected $fillable = [
-        'id', 'title', 'description', 'point', 'created_by', 'project_id',  'images','status','responsible_admin'
+        'id', 'title', 'description', 'point', 'created_by', 'project_id',  'images','status_id','responsible_admin'
     ];
     public $timestamps = true;
     public array $searchRelationShip = [];
@@ -66,6 +66,14 @@ class Bug extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function status() : BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 
 }

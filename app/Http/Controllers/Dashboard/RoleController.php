@@ -20,6 +20,7 @@ class RoleController extends Controller
         'projects',
         'bugs',
         'awards',
+        'statuses',
     ];
 
     protected RoleRepository       $roleRepository;

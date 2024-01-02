@@ -75,6 +75,8 @@
         let route         = "{{ route('dashboard.admins.index') }}";
         let csrfToken     = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
+        let authorizationUpdate = @can('update_admins') 'true' @else '' @endcan;
+        let authorizationDelete = @can('delete_admins') 'true' @else '' @endcan
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>

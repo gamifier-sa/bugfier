@@ -82,7 +82,7 @@
                             <label class="col-lg-2 required fs-5 fw-bold mb-2 d-flex align-items-center">{{ __("Name arabic") }}</label>
 
                             <div class="col-lg-10 form-floating">
-                                <input type="text" class="form-control" id="name_ar_inp" name="name_ar"  placeholder="example" value="{{ auth()->user()->name_ar }}"/>
+                                <input type="text" class="form-control" id="name_ar_inp" name="name_ar"  value="{{ auth()->user()->name_ar }}"/>
                                 <label style="margin-right:8px" for="name_ar_inp">{{ __("Enter the name in arabic") }}</label>
                                 <p class="invalid-feedback" id="name_ar" ></p>
                             </div>
@@ -96,7 +96,7 @@
                             <label class="col-lg-2 fs-5 fw-bold mb-2 d-flex align-items-center">{{ __("Name english") }}</label>
 
                             <div class="col-lg-10 form-floating">
-                                <input type="text" class="form-control" id="name_en_inp" name="name_en"  placeholder="example" value="{{ auth()->user()->name_en }}"/>
+                                <input type="text" class="form-control" id="name_en_inp" name="name_en"  value="{{ auth()->user()->name_en }}"/>
                                 <label style="margin-right:8px" for="name_en_inp">{{ __("Enter the name in arabic") }}</label>
                                 <p class="invalid-feedback" id="name_en" ></p>
                             </div>
@@ -110,7 +110,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                                 <div class="col-lg-10 form-floating">
-                                    <input type="tel" class="form-control" id="phone_inp" name="phone" placeholder="example" value="{{ auth()->user()->phone }}"/>
+                                    <input type="tel" class="form-control" id="phone_inp" maxlength="11" pattern="[0-9]{11}" title="{{__('The phone field must contain numbers')}}" name="phone" value="{{ auth()->user()->phone }}"/>
                                     <label style="margin-right:8px" for="phone_inp">{{ __("Enter the phone") }}</label>
                                     <p class="invalid-feedback" id="phone" ></p>
                                 </div>
@@ -124,7 +124,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                                 <div class="col-lg-10 form-floating">
-                                    <input type="email" class="form-control" id="email_inp" name="email" placeholder="example" value="{{ auth()->user()->email }}"/>
+                                    <input type="email" class="form-control" id="email_inp" name="email" value="{{ auth()->user()->email }}"/>
                                     <label style="margin-right:8px" for="email_inp">{{ __("Enter the email") }}</label>
                                     <p class="invalid-feedback" id="email" ></p>
                                 </div>
@@ -167,7 +167,7 @@
 
                             <div class="col-lg-10">
                                 <div class="d-flex align-items-center form-floating">
-                                    <input type="password" class="form-control" id="password_field" name="password" placeholder="example" />
+                                    <input type="password" class="form-control" id="password_field" name="password" />
                                     <a onclick="showHidePass( 'password_field' , $(this) )" style="cursor: pointer">
                                         <span class="fa fa-fw fa-eye fa-md toggle-password"  @if( isArabic() )  style="margin-right:-30px" @else style="margin-left:-30px" @endif></span>
                                     </a>

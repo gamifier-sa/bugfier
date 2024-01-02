@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AdminAuthController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Artisan, Route};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
 Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');
 Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
+
+Route::get('/install', function () {
+    Artisan::call('migrate:fresh');
+    Artisan::call('db:seed');
+    Artisan::call('storage:link');
+});

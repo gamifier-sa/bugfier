@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Dashboard;
 
-use App\Enums\Status;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class BugRequest extends FormRequest
 {
@@ -16,40 +15,43 @@ class BugRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array
+     */
     protected function store(): array
     {
         return [
-            'title'       => 'required|min:3|max:199|string',
-            'description' => 'required|string|min:2',
-            'point'       => 'required',
-            'project_id'  => 'required|numeric|exists:projects,id',
+            'title'              => 'required|min:3|max:199|string',
+            'description'        => 'required|string|min:2',
+            'point'              => 'required',
+            'project_id'         => 'required|numeric|exists:projects,id',
             'responsible_admin'  => 'nullable|numeric|exists:admins,id',
-            'images'      => ['nullable'],
-            'status'      => ['nullable', Rule::in(Status::values())],
+            'images'             => 'required',
+            'status_id'          => 'required|exists:statuses,id',
         ];
     }
 
     /**
-     * @return \string[][]
+     * @return string[][]
      * Set rules validation on updating
      */
     protected function update(): array
     {
         return [
-            'title'       => 'required|min:3|max:199|string',
-            'description' => 'required|string|min:2',
-            'point'       => 'required',
-            'project_id'  => 'required|numeric|exists:projects,id',
+            'title'              => 'required|min:3|max:199|string',
+            'description'        => 'required|string|min:2',
+            'point'              => 'required',
+            'project_id'         => 'required|numeric|exists:projects,id',
             'responsible_admin'  => 'nullable|numeric|exists:admins,id',
-            'images'      => ['nullable', 'mimes:jpeg,png,jpg,gif' . 'svg|max:1024'],
-            'status'      => ['nullable', Rule::in(Status::values())],
+            'images'             => ['nullable', 'mimes:jpeg,png,jpg,gif'.'svg|max:1024'],
+            'status_id'          => ['required', 'exists:statuses,id'],
         ];
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {

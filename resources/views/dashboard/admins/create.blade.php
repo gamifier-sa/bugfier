@@ -1,7 +1,16 @@
 @extends('dashboard.layouts.master')
 @inject('admin','App\Models\Admin')
 @section('title') {{__("add new admin")}} @endsection
-
+@push('styles')
+    <style>
+        #togglePasswordVisibility {
+            cursor: pointer;
+            color: #6c757d;
+            /* Adjust the color as needed */
+            text-decoration: none;
+        }
+    </style>
+@endpush
 @section('content')
     @component('components.dashboard.breadcrumb')
         @slot('breadcrumb_title')
@@ -26,15 +35,19 @@
                         @include('dashboard.admins.form')
 
                         <!-- begin :: Row -->
-                        <div class="row mb-8">
+                        <div class="row mb-8 p-5">
 
                             <!-- begin :: Column -->
                             <div class="col-md-6 fv-row">
 
-                                <label class="fs-5 fw-bold mb-2">{{ __("Password") }} <span class="text-danger">*</span></label>
-                                <div class="form-floating">
+                                <label class="fs-5 fw-bold mb-2 required">{{ __("Password") }}</label>
+                                <div class="form-floating position-relative">
                                     <input type="password" class="form-control" id="password_inp" name="password" required autocomplete="off" />
                                     <label for="password_inp">{{ __("Enter the password") }}</label>
+                                    <a id="togglePasswordVisibility" class="position-absolute top-50 translate-middle-y end-0 "
+                                       style="margin-right: 10px">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                 </div>
                                 <p class="invalid-feedback" id="password" ></p>
                             </div><!-- end   :: Column -->
@@ -44,7 +57,7 @@
 
                             <div class="col-md-6 fv-row">
 
-                                <label class="fs-5 fw-bold mb-2">{{ __("Password confirmation") }} <span class="text-danger">*</span></label>
+                                <label class="fs-5 fw-bold mb-2 required">{{ __("Password confirmation") }}</label>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" id="password_confirmation_inp" name="password_confirmation" required autocomplete="off" />
                                     <label for="password_confirmation_inp">{{ __("Enter the password confirmation") }}</label>
@@ -54,7 +67,7 @@
                         </div><!-- end   :: Row -->
 
                               <!-- begin :: Row -->
-                            <div class="row mb-8">
+                            <div class="row mb-8 p-5">
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
 
@@ -86,3 +99,19 @@
         </div><!-- end   :: Card body -->
     </div>
 @endsection
+
+@push('scripts')
+
+    <script>
+        document.getElementById('togglePasswordVisibility').addEventListener('click', function () {
+            togglePasswordVisibility('password_inp');
+            togglePasswordVisibility('password_confirmation_inp');
+        });
+
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+        }
+    </script>
+@endpush

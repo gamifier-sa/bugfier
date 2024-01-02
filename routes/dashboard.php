@@ -8,8 +8,8 @@ use App\Http\Controllers\Dashboard\{AdminAuthController,
     ProjectController,
     RoleController,
     SettingController,
-    UserController
-};
+    StatusController,
+    UserController};
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,6 +31,7 @@ Route::group([
     Route::resource('projects', ProjectController::class);
     Route::resource('bugs', BugController::class);
     Route::resource('awards', AwardController::class);
+    Route::resource('statuses', StatusController::class);
     Route::resource('settings', SettingController::class)->only(['index', 'store', 'changeMode']);
 
     Route::view('edit-profile', 'dashboard.admins.edit-profile')->name('edit-profile');
@@ -39,3 +40,4 @@ Route::group([
 
 
 });
+
