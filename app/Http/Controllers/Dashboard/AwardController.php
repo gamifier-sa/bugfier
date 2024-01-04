@@ -51,7 +51,9 @@ class AwardController extends Controller
      */
     public function show(string $id)
     {
-        // $this->authorize('show_awards');
+         $this->authorize('show_awards');
+        $award = $this->awardRepository->show($id);
+        return view('dashboard.awards.show', compact('award'));
     }
 
     /**

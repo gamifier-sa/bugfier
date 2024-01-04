@@ -63,6 +63,14 @@ class Bug extends Model
     /**
      * @return BelongsTo
      */
+    public function responsible(): BelongsTo
+    {
+        return $this->belongsTo(Admin::class, 'responsible_admin');
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);

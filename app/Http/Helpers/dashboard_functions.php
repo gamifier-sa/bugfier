@@ -58,12 +58,6 @@ if(!function_exists('getImagePath')){
 
     function getImagePath( $imageName , $directory = null , $defaultImage = 'default.jpg'  ): string
     {
-        if($directory == 'Nationalities'){
-            $imagePath = public_path('/dashboard-assets/media/flags/'.'/' .$imageName);
-            if ( $imageName && $directory && file_exists( $imagePath ) ){
-                return asset('/dashboard-assets/media/flags') .'/' .  $imageName;
-            }
-        }
         $imagePath = public_path('/storage/Images/'.'/' . $directory . '/' . $imageName);
 
         if ( $imageName && $directory &&  $imagePath ) // check if the directory is null or the image doesn't exist
@@ -71,7 +65,7 @@ if(!function_exists('getImagePath')){
             return asset('/storage/Images') .'/' . $directory . '/' . $imageName;
         }
         else{
-            return asset('placeholder_images/' . $defaultImage);
+            return asset('storage/Images/' . $defaultImage);
         }
 
     }

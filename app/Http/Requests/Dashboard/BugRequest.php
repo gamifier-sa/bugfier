@@ -27,7 +27,7 @@ class BugRequest extends FormRequest
             'project_id'         => 'required|numeric|exists:projects,id',
             'responsible_admin'  => 'nullable|numeric|exists:admins,id',
             'images'             => 'required',
-            'status_id'          => 'required|exists:statuses,id',
+            'status_id'          => 'nullable|exists:statuses,id',
         ];
     }
 
@@ -43,8 +43,8 @@ class BugRequest extends FormRequest
             'point'              => 'required',
             'project_id'         => 'required|numeric|exists:projects,id',
             'responsible_admin'  => 'nullable|numeric|exists:admins,id',
-            'images'             => ['nullable', 'mimes:jpeg,png,jpg,gif'.'svg|max:1024'],
-            'status_id'          => ['required', 'exists:statuses,id'],
+            'images'             => ['nullable'],
+            'status_id'          => ['nullable', 'exists:statuses,id'],
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Classes;
 
+use App\Models\Status;
 use App\Models\Bug;
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
 use Illuminate\Database\Eloquent\Builder;
@@ -56,6 +57,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
      */
     public function store($data): void
     {
+
         if (isset($data['images'])) {
             $imagesArr = [];
             foreach($data['images'] as $image){
@@ -63,7 +65,9 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
             }
             $data['images'] = serialize($imagesArr);
         }
-        $this->create($data);
+
+
+         $this->create($data);
     }
     public function list()
     {
@@ -81,8 +85,16 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
      * @param null $id
      */
 
-    public function update($request, $id = null)
+    public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
+        if (isset($request['images'])) {
+            $imagesArr = [];
+            foreach($request['images'] as $image){
+                $imagesArr[] = uploadImage($image,'Bugs');
+            }
+            $request['images'] = serialize($imagesArr);
+        }
+
         return $this->save($request, $id);
     }
 

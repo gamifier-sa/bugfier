@@ -58,7 +58,7 @@
             <input type="file" class="form-control" multiple id="images_inp" @if(!request()->segment(4) == 'edit') required @endif name="images[]" autocomplete="off"/>
             <label for="images_inp">{{ __("Enter the images") }}</label>
         </div>
-        <p class="invalid-feedback" id="images_inp"></p>
+        <p class="invalid-feedback" id="images"></p>
     </div><!-- end   :: Column -->
 </div><!-- end   :: Row -->
 

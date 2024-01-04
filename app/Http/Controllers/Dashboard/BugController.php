@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BugRequest;
 use App\Repositories\Classes\{AdminRepository, BugRepository, ProjectRepository, StatusRepository};
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class BugController extends Controller
@@ -55,7 +56,13 @@ class BugController extends Controller
     public function store(BugRequest $request)
     {
         $this->authorize('create_bugs');
-        $this->bugRepository->store($request->validated());
+        $status = $this->statusRepository->first();
+        $data   = $request->validated();
+        if (empty($data['status_id']))
+        {
+            $data['status_id'] = $status->id;
+        }
+        $this->bugRepository->store($data);
     }
 
     /**

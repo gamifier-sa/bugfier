@@ -57,7 +57,7 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
         if (isset($data['images'])) {
             $imagesArr = [];
             foreach($data['images'] as $image){
-                $imagesArr[] = uploadImage($image,'Bugs');
+                $imagesArr[] = uploadImage($image,'Awards');
             }
             $data['images'] = serialize($imagesArr);
         }
@@ -82,6 +82,13 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
 
     public function update($request, $id = null)
     {
+        if (isset($request['images'])) {
+            $imagesArr = [];
+            foreach($request['images'] as $image){
+                $imagesArr[] = uploadImage($image,'Awards');
+            }
+            $request['images'] = serialize($imagesArr);
+        }
         return $this->save($request, $id);
     }
 

@@ -1,13 +1,13 @@
 @extends('dashboard.layouts.master')
-@section('title') {{__("Edit"). ' - '. $bug->title}} @endsection
+@section('title') {{__("Edit"). ' - '. $award->title}} @endsection
 @section('content')
 
     @component('components.dashboard.breadcrumb')
         @slot('breadcrumb_title')
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><a href="{{ route('dashboard.bugs.index') }}" class="text-muted text-hover-primary">{{ __("Bugs") }}</a></h1><!-- end   :: Title -->
+            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><a href="{{ route('dashboard.awards.index') }}" class="text-muted text-hover-primary">{{ __("Awards") }}</a></h1><!-- end   :: Title -->
         @endslot
         <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{$bug->title}}</li><!-- end   :: Item -->
+        <li class="breadcrumb-item text-muted">{{$award->title}}</li><!-- end   :: Item -->
     @endcomponent
 
     <!--begin::Navbar-->
@@ -23,18 +23,17 @@
                         <div class="d-flex flex-column">
                             <!--begin::Status-->
                             <div class="d-flex align-items-center mb-1">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bold me-3">{{$bug->title}}</a>
-                                <span class="badge badge-light-success me-auto">{{$bug->status->title}}</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-2 fw-bold me-3">{{$award->title}}</a>
                             </div><!--end::Status-->
 
                             <!--begin::Description-->
-                            <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-800">{!!  $bug->description !!}</div><!--end::Description-->
+                            <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-800">{!!  $award->description !!}</div><!--end::Description-->
                         </div><!--end::Details-->
 
                         <!--begin::Actions-->
                         <div class="d-flex mb-4">
-                            <a href="{{route('dashboard.bugs.create')}}" class="btn btn-sm btn-bg-light btn-active-color-primary me-3">{{__('Create Bug')}}</a>
-                            <a href="{{route('dashboard.bugs.edit', $bug->id)}}" class="btn btn-sm btn-primary me-3" >{{__('Edit - '. $bug->title)}}</a>
+                            <a href="{{route('dashboard.awards.create')}}" class="btn btn-sm btn-bg-light btn-active-color-primary me-3">{{__('Create Award')}}</a>
+                            <a href="{{route('dashboard.awards.edit', $award->id)}}" class="btn btn-sm btn-primary me-3" >{{__('Edit - '. $award->title)}}</a>
 
                         </div><!--end::Actions-->
                     </div><!--end::Head-->
@@ -47,7 +46,7 @@
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                 <!--begin::Number-->
                                 <div class="d-flex align-items-center">
-                                    <div class="fs-4 fw-bold">{{$bug->created_at->format('Y-M-d')}}</div>
+                                    <div class="fs-4 fw-bold">{{$award->created_at->format('Y-M-d')}}</div>
                                 </div><!--end::Number-->
 
                                 <!--begin::Label-->
@@ -60,49 +59,11 @@
                             <!--begin::Number-->
                             <div class="d-flex align-items-center">
 
-                                <div class="fs-4 fw-bold" data-kt-countup="true" data-kt-countup-value="{{$bug->point}}">0</div>
+                                <div class="fs-4 fw-bold" data-kt-countup="true" data-kt-countup-value="{{$award->point}}">0</div>
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
                             <div class="fw-semibold fs-6 text-gray-400">Points</div><!--end::Label-->
-                        </div><!--end::Stat-->
-
-                        <!--begin::Stat-->
-                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                            <!--begin::Number-->
-                            <div class="d-flex align-items-center">
-
-                                <div class="fs-4 fw-bold">{{$bug->admin->fullname ?? ''}}</div>
-                            </div><!--end::Number-->
-
-                            <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Created By</div><!--end::Label-->
-                        </div><!--end::Stat-->
-
-                        @if($bug->responsible_admin)
-                        <!--begin::Stat-->
-                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                            <!--begin::Number-->
-                            <div class="d-flex align-items-center">
-
-                                <div class="fs-4 fw-bold">{{$bug->responsible->fullname ?? ''}}</div>
-                            </div><!--end::Number-->
-
-                            <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Responsible Admin</div><!--end::Label-->
-                        </div><!--end::Stat-->
-                        @endif
-
-                        <!--begin::Stat-->
-                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                            <!--begin::Number-->
-                            <div class="d-flex align-items-center">
-
-                                <div class="fs-4 fw-bold">{{$bug->project->title ?? ''}}</div>
-                            </div><!--end::Number-->
-
-                            <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Project</div><!--end::Label-->
                         </div><!--end::Stat-->
                     </div><!--end::Info-->
 
@@ -115,12 +76,12 @@
     <!--begin::Toolbar-->
     <div class="d-flex flex-wrap flex-stack my-5">
         <!--begin::Heading-->
-        <h3 class="fw-bold my-2">{{__('Bug Images')}}<!--end::Heading--></h3>
+        <h3 class="fw-bold my-2">{{__('Award Images')}}<!--end::Heading--></h3>
     </div><!--end::Toolbar-->
 
     <!--begin::Row-->
     <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
-        @foreach(unserialize($bug->images) as $image)
+        @foreach(unserialize($award->images) as $image)
         <!--begin::Col-->
         <div class="col-md-6 col-lg-4 col-xl-3">
             <!--begin::Card-->
@@ -131,7 +92,7 @@
                     <div class="text-gray-800 text-hover-primary d-flex flex-column">
                         <!--begin::Image-->
                         <div class="symbol symbol-100px mb-5">
-                            <img src="{{getImagePath($image, 'Bugs')}}" alt="{{$bug->title}}" />
+                            <img src="{{getImagePath($image, 'Awards')}}" alt="{{$award->title}}" />
                         </div>
                     </div><!--end::Name-->
                 </div><!--end::Card body-->

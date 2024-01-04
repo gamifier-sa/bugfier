@@ -10,3 +10,23 @@
         <p class="invalid-feedback" id="title" ></p>
     </div><!-- end   :: Column -->
 </div><!-- end   :: Row -->
+
+
+<!-- begin :: Row -->
+<div class="row mb-8 p-5">
+    <!-- begin :: Column -->
+    <div class="col-md-12 fv-row">
+        <div class="form-check form-switch form-check-custom form-check-success form-check-solid">
+            <input
+                class="form-check-input"
+                name="is_default"
+                type="checkbox"
+                value="1"
+                @checked(old('is_default', $status->is_default))
+                id="kt_flexSwitchCustomDefault_1_1"
+            />
+            <label class="form-check-label" for="kt_flexSwitchCustomDefault_1_1"> {{__('Is Default')}} </label>
+            <p class="invalid-feedback" id="is_default"></p>
+        </div>
+    </div><!-- end   :: Column -->
+</div><!-- end   :: Row -->

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     protected $fillable = [
-        'id', 'title',
+        'id', 'title','is_default'
     ];
     public $timestamps = true;
     public array $searchRelationShip = [];
@@ -37,5 +37,6 @@ class Status extends Model
     {
         return $this->created_at?->diffForHumans();
     }
+
 
 }

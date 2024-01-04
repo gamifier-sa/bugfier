@@ -51,7 +51,10 @@ class ProjectController extends Controller
      */
     public function show(string $id)
     {
-        // $this->authorize('show_projects');
+        $this->authorize('show_projects');
+        $project = $this->projectRepository->show($id);
+        return view('dashboard.projects.show', compact('project'));
+
     }
 
     /**

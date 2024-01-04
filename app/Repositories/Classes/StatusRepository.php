@@ -51,9 +51,14 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
 
     /**
      * @param $data
+     * @return void
      */
     public function store($data) : void
     {
+        if ($data['is_default'] == 1)
+        {
+            $this->model->query()->update(['is_default' => 0]);
+        }
         $this->create($data);
     }
     public function list()
@@ -75,6 +80,10 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
 
     public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
+        if ($request['is_default'] == 1)
+        {
+            $this->model->query()->update(['is_default' => 0]);
+        }
         return $this->save($request, $id);
     }
 
@@ -85,5 +94,13 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
     public function destroy($id): mixed
     {
         return $this->delete($id);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function first() : mixed
+    {
+       return $this->model->where('is_default', 1)->first();
     }
 }
