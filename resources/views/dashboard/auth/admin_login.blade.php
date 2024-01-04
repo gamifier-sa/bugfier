@@ -15,7 +15,7 @@
                 <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-3">{{ __('Sign In to tempelet') }}</h1>
+                        <h1 class="text-dark mb-3">{{ __('Sign In to Bugfire') }}</h1>
                         <!--end::Title-->
                     </div>
                     <!--begin::Heading-->
@@ -55,7 +55,7 @@
                     <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                         <div></div>
                         <!--begin::Link-->
-                        <a href="javascript:" class="link-primary">{{__('Forgot Password ?')}}</a>
+{{--                        <a href="javascript:" class="link-primary">{{__('Forgot Password ?')}}</a>--}}
                         <!--end::Link-->
                     </div>
                     <!--end::Input group-->

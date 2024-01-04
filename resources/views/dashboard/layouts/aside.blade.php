@@ -434,54 +434,54 @@
                     </div> --}}
                     <!--end::Menu item-->
                     <!--begin::Menu separator-->
-                    <div class="separator my-2"></div>
+{{--                    <div class="separator my-2"></div>--}}
                     <!--end::Menu separator-->
 
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                        data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
-                        <a href="#" class="menu-link px-5">
-                            <span class="menu-title position-relative">{{__('Language')}}
-                            @if(getLocale() == 'en')
-                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('English')}}
-                                    <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />
-                                </span>
-                            </span>
-                            @else
-                            <span
-                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('Arabic')}}
-                                <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />
-                            </span>
+{{--                    <!--begin::Menu item-->--}}
+{{--                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"--}}
+{{--                        data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">--}}
+{{--                        <a href="#" class="menu-link px-5">--}}
+{{--                            <span class="menu-title position-relative">{{__('Language')}}--}}
+{{--                            @if(getLocale() == 'en')--}}
+{{--                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('English')}}--}}
+{{--                                    <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />--}}
+{{--                                </span>--}}
+{{--                            </span>--}}
+{{--                            @else--}}
+{{--                            <span--}}
+{{--                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('Arabic')}}--}}
+{{--                                <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />--}}
+{{--                            </span>--}}
 
-                            @endif
-                        </a>
-                        <!--begin::Menu sub-->
-                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{route('change-language','en')}}"
-                                    class="menu-link d-flex px-5 @if(getLocale() == 'en') active @endif ">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />
-                                    </span>{{__('English')}}
-                                </a>
-                            </div>
-                            <!--end::Menu item-->
+{{--                            @endif--}}
+{{--                        </a>--}}
+{{--                        <!--begin::Menu sub-->--}}
+{{--                        <div class="menu-sub menu-sub-dropdown w-175px py-4">--}}
+{{--                            <!--begin::Menu item-->--}}
+{{--                            <div class="menu-item px-3">--}}
+{{--                                <a href="{{route('change-language','en')}}"--}}
+{{--                                    class="menu-link d-flex px-5 @if(getLocale() == 'en') active @endif ">--}}
+{{--                                    <span class="symbol symbol-20px me-4">--}}
+{{--                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />--}}
+{{--                                    </span>{{__('English')}}--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <!--end::Menu item-->--}}
 
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{route('change-language','ar')}}"
-                                    class="menu-link d-flex px-5 @if(getLocale() == 'ar') active @endif ">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />
-                                    </span>{{__('Arabic')}}
-                                </a>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu sub-->
-                    </div>
-                    <!--end::Menu item-->
+{{--                            <!--begin::Menu item-->--}}
+{{--                            <div class="menu-item px-3">--}}
+{{--                                <a href="{{route('change-language','ar')}}"--}}
+{{--                                    class="menu-link d-flex px-5 @if(getLocale() == 'ar') active @endif ">--}}
+{{--                                    <span class="symbol symbol-20px me-4">--}}
+{{--                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />--}}
+{{--                                    </span>{{__('Arabic')}}--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+{{--                            <!--end::Menu item-->--}}
+{{--                        </div>--}}
+{{--                        <!--end::Menu sub-->--}}
+{{--                    </div>--}}
+{{--                    <!--end::Menu item-->--}}
 
                     <!--begin::Menu item-->
                     <div class="menu-item px-5 my-1">
