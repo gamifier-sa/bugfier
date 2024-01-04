@@ -56,6 +56,7 @@
                     <th>ID</th>
                     <th>{{ __("title") }}</th>
                     <th>{{ __("created date") }}</th>
+                    <th>{{ __("Default") }}</th>
                     <th class="min-w-100px">{{ __("Actions") }}</th>
                 </tr>
                 </thead>

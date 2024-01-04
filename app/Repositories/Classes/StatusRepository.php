@@ -55,7 +55,7 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
      */
     public function store($data) : void
     {
-        if ($data['is_default'] == 1)
+        if (isset($data['is_default']) == 1)
         {
             $this->model->query()->update(['is_default' => 0]);
         }
@@ -80,7 +80,7 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
 
     public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
-        if ($request['is_default'] == 1)
+        if (isset($request['is_default']) == 1)
         {
             $this->model->query()->update(['is_default' => 0]);
         }

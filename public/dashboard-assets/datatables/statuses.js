@@ -15,7 +15,7 @@ let KTDatatable = function () {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[2, 'desc']], // display records number and ordering type
+            order: [[4, 'desc']], // display records number and ordering type
             stateSave: false,
             select: {
                 style: 'os',
@@ -44,13 +44,35 @@ let KTDatatable = function () {
                 {data: 'title'},
                 {data: 'create_since'},
                 {data: null},
+                {data: null},
             ],
             columnDefs: [
+                {
+                    targets: -2,
+                    data: null,
+                    render: function (data, type, row) {
+                        if(row.is_default === 1) {
+                            return `
+                                <svg class="text-success" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                                    <path d="M10.5799 15.58C10.3799 15.58 10.1899 15.5 10.0499 15.36L7.21994 12.53C6.92994 12.24 6.92994 11.76 7.21994 11.47C7.50994 11.18 7.98994 11.18 8.27994 11.47L10.5799 13.77L15.7199 8.62998C16.0099 8.33998 16.4899 8.33998 16.7799 8.62998C17.0699 8.91998 17.0699 9.39998 16.7799 9.68998L11.1099 15.36C10.9699 15.5 10.7799 15.58 10.5799 15.58Z" fill="white"/>
+                                </svg>
+                            `;
+                        }  else {
+                            return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.92 22C17.42 22 21.92 17.5 21.92 12C21.92 6.5 17.42 2 11.92 2C6.42004 2 1.92004 6.5 1.92004 12C1.92004 17.5 6.42004 22 11.92 22Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path opacity="0.34" d="M7.92004 12H15.92" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+`
+                        }
+                    }
+                },
+
                 {
                     targets: -1,
                     data: null,
                     render: function (data, type, row) {
-                        if(row.id === 1) {
+                        if(row.is_default === 1) {
                             return `
                             <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
                                 ${translate('Actions')}

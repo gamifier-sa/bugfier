@@ -44,7 +44,7 @@
 
             <label class="fs-5 fw-bold mb-2 required">{{ __("Phone") }}</label>
             <div class="form-floating">
-                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{11}" value="{{old('phone', $admin->phone)}}" required/>
+                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{10}" value="{{old('phone', $admin->phone)}}" required/>
                 <label for="phone_inp">{{ __("Enter the phone") }}</label>
             </div>
             <p class="invalid-feedback" id="phone" ></p>
