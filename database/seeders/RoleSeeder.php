@@ -26,12 +26,20 @@ class RoleSeeder extends Seeder
         ];
 
         $bugsActions = [
+            'show',
             'update_point',
-            'responsible_admin'
+            'responsible_admin',
+        ];
+
+        $projectActions = [
+            'show',
+        ];
+
+        $awardActions = [
+            'show',
         ];
         $actions = [
             'view',
-            'show',
             'create',
             'update',
             'delete',
@@ -53,25 +61,32 @@ class RoleSeeder extends Seeder
             foreach ( $exceptions[ $category]['unused_actions'] ?? [] as $index ) // remove the unused actions
                 unset( $usedActions[$index]);
 
-            if ($category == 'bugs'){
-                foreach ($bugsActions as $action)
+            foreach ( array_values($usedActions) as $action)
+            {
+                $this->createAbility($action, $category);
+            }
+
+
+            if ($category == 'awards'){
+                foreach ($awardActions as $action)
                 {
-                    Ability::create([
-                        'name'     => $action . '_' . str_replace(' ','_',$category),
-                        'category' => $category,
-                        'action'   => $action,
-                    ]);
+                    $this->createAbility($action, $category);
+                }
+            }
+
+            if ($category == 'projects'){
+                foreach ($projectActions as $action)
+                {
+                    $this->createAbility($action, $category);
                 }
             }
 
 
-            foreach ( array_values($usedActions) as $action)
-            {
-                Ability::create([
-                    'name'     => $action . '_' . str_replace(' ','_',$category),
-                    'category' => $category,
-                    'action'   => $action,
-                ]);
+            if ($category == 'bugs'){
+                foreach ($bugsActions as $action)
+                {
+                    $this->createAbility($action, $category);
+                }
             }
         }
 
@@ -113,5 +128,15 @@ class RoleSeeder extends Seeder
         Admin::find(6)->assignRole($superAdminRole);
         Admin::find(6)->assignRole($adminRole);
 
+    }
+    /**
+     * @param string $action
+     * @param string $category
+     * @return void
+     */
+    protected function createAbility(string $action, string $category) : void
+    {
+        Ability::create([
+                            'name' => $action . '_' . str_replace(' ', '_', $category), 'category' => $category, 'action' => $action,]);
     }
 }
