@@ -167,6 +167,8 @@ abstract class BasicRepository
             } else {
                 $this->model->orderBy('id', 'desc');
             }
+        }else {
+            $this->model->orderBy('id', 'desc');
         }
 
 
