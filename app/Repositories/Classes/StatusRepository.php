@@ -12,18 +12,19 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
     /**
      * @var array
      */
-
     protected array $fieldSearchable = [
         'id', 'title'
     ];
 
     /**
      * Configure the Model
-     **/
+     * @return string
+     */
     public function model(): string
     {
         return Status::class;
     }
+
     /**
      * Return searchable fields
      *
@@ -34,16 +35,26 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
         return $this->fieldSearchable;
     }
 
-    public function getFieldsRelationShipSearchable()
+    /**
+     * @return mixed
+     */
+    public function getFieldsRelationShipSearchable() : mixed
     {
         return $this->model->searchRelationShip;
     }
 
-    public function translationKey()
+    /**
+     * @return mixed
+     */
+    public function translationKey() : mixed
     {
         return $this->model->translationKey();
     }
 
+    /**
+     * @param Request $request
+     * @return Collection|array
+     */
     public function findBy(Request $request): Collection|array
     {
         return $this->all(orderBy: $request->order);
@@ -61,10 +72,15 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
         }
         $this->create($data);
     }
+
+    /**
+     * @return array|Builder[]|Collection
+     */
     public function list()
     {
         return $this->all();
     }
+
     /**
      * @param $id
      * @return Builder|Builder[]|Collection|Model|null
@@ -73,11 +89,12 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
     {
         return $this->find($id);
     }
-    /**
-     * @param      $request
-     * @param null $id
-     */
 
+    /**
+     * @param $request
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
+     */
     public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         if (isset($request['is_default']) == 1)

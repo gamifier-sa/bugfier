@@ -16,7 +16,6 @@ class RoleController extends Controller
     public array $modules = [
         'admins',
         'roles',
-        'users',
         'projects',
         'bugs',
         'awards',
