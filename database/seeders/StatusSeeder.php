@@ -14,7 +14,8 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         Status::create([
-            'title' => 'To Do'
+            'title'      => 'To Do',
+            'is_default' => 1
         ]);
     }
 }

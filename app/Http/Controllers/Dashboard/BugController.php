@@ -57,6 +57,7 @@ class BugController extends Controller
     {
         $this->authorize('create_bugs');
         $status = $this->statusRepository->first();
+
         $data   = $request->validated();
         if (empty($data['status_id']))
         {
