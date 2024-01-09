@@ -4,8 +4,8 @@
     <div class="aside-logo flex-column-auto px-9 mb-9" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="{{route('dashboard.home')}}" class="w-100">
-            <img alt="Logo" src="{{asset('dashboard-assets/media/logos/demo3.svg')}}" class="h-20px logo theme-light-show" />
-            <img alt="Logo" src="{{asset('dashboard-assets/media/logos/demo3-dark.svg')}}" class="h-20px logo theme-dark-show" />
+            <h1 class="h-20px theme-light-show text-center text-bold">Bugfier</h1>
+            <h1 class="h-20px theme-dark-show text-center text-bold">Bugfier</h1>
         </a><!--end::Logo-->
     </div><!--end::Brand-->
 
@@ -320,13 +320,10 @@
                 <!--begin::User info-->
                 <div class="ms-2">
                     <!--begin::Name-->
-                    <a href="#"
-                        class="text-gray-800 text-hover-primary fs-6 fw-bold lh-1">{{auth('admin')->user()->fullName}}</a>
-                    <!--end::Name-->
+                    <div class="text-gray-800 fs-6 fw-bold lh-1">{{auth('admin')->user()->fullName}}</div><!--end::Name-->
 
                     <!--begin::Major-->
-                    <span
-                        class="text-muted fw-semibold d-block fs-7 lh-1">{{auth('admin')->user()->roles->first()->name}}</span>
+                    <span class="text-muted fw-semibold d-block fs-7 lh-1">{{auth('admin')->user()->roles->first()->name}}</span>
                     <!--end::Major-->
                 </div>
                 <!--end::User info-->

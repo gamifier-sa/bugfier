@@ -24,48 +24,9 @@
 
                     <!-- begin :: Inputs wrapper -->
                     <div class="inputs-wrapper">
-                    @include('dashboard.admins.form')
+                        @include('dashboard.admins.form')
+                    </div><!-- end :: Inputs wrapper -->
 
-                    <!-- begin :: Row -->
-                        <div class="row mb-8">
-
-                            <!-- begin :: Column -->
-                            <div class="col-md-6 fv-row">
-
-                                <label class="fs-5 fw-bold mb-2">{{ __("Password") }} <span class="text-danger">*</span></label>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="password_inp" name="password" autocomplete="off"/>
-                                    <label for="password_inp">{{ __("Enter the password") }}</label>
-                                </div>
-                                <p class="invalid-feedback" id="password" ></p>
-                            </div><!-- end   :: Column -->
-
-                            <!-- begin :: Column -->
-                            <div class="col-md-6 fv-row">
-
-                                <label class="fs-5 fw-bold mb-2">{{ __("Password Confirmation") }} <span class="text-danger">*</span></label>
-                                <div class="form-floating">
-                                    <input type="password" class="form-control" id="password_confirmation_inp" name="password_confirmation" autocomplete="off"/>
-                                    <label for="password_confirmation_inp">{{ __("Enter the password confirmation") }}</label>
-                                </div>
-                                <p class="invalid-feedback" id="password_confirmation" ></p>
-                            </div><!-- end   :: Column -->
-                        </div><!-- end   :: Row -->
-
-                              <!-- begin :: Row -->
-                        <div class="row mb-8">
-                            <!-- begin :: Column -->
-                            <div class="col-md-6 fv-row">
-                                <label class="fs-5 fw-bold mb-2" for="roles-sp">{{ __("Roles") }} <span class="text-danger">*</span></label>
-                                <select class="form-select" data-control="select2" name="roles[]" multiple id="roles-sp" data-placeholder="{{ __("Choose the roles") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
-                                    @foreach( $roles as $role)
-                                        <option {{ old('roles') && in_array($role->id, old('roles')) ? 'selected' : (in_array($role->id, $admin->roles->pluck('id')->toArray()) ? 'selected' : '') }} value="{{ $role->id }}"> {{ $role->name }} </option>
-                                    @endforeach
-                                </select>
-                                <p class="invalid-feedback" id="roles-sp" ></p>
-                            </div><!-- end   :: Column -->
-                        </div><!-- end   :: Row -->
-                    </div><!-- end   :: Inputs wrapper -->
                 <!-- begin :: Form footer -->
                 <div class="form-footer">
 
@@ -87,3 +48,19 @@
     </div>
 
 @endsection
+
+@push('scripts')
+
+    <script>
+        document.getElementById('togglePasswordVisibility').addEventListener('click', function () {
+            togglePasswordVisibility('password_inp');
+            togglePasswordVisibility('password_confirmation_inp');
+        });
+
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+        }
+    </script>
+@endpush

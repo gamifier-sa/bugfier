@@ -110,7 +110,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                                 <div class="col-lg-10 form-floating">
-                                    <input type="tel" class="form-control" id="phone_inp" maxlength="11" pattern="[0-9]{11}" title="{{__('The phone field must contain numbers')}}" name="phone" value="{{ auth()->user()->phone }}"/>
+                                    <input type="tel" class="form-control" id="phone_inp" maxlength="10" pattern="[0-9]{10}" title="{{__('The phone field must contain numbers')}}" name="phone" value="{{ auth()->user()->phone }}"/>
                                     <label style="margin-right:8px" for="phone_inp">{{ __("Enter the phone") }}</label>
                                     <p class="invalid-feedback" id="phone" ></p>
                                 </div>

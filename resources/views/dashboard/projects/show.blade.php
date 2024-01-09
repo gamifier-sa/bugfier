@@ -28,7 +28,7 @@
                             </div><!--end::Status-->
 
                             <!--begin::Description-->
-                            <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-800">{{$project->description}}</div><!--end::Description-->
+                            <div class="d-flex flex-wrap fw-semibold mb-4 fs-5 text-gray-800">{!! $project->description !!}</div><!--end::Description-->
                         </div><!--end::Details-->
 
                         <!--begin::Actions-->

@@ -15,7 +15,7 @@
         <!-- begin :: Card body -->
         <div class="card-body">
             <!-- begin :: Form -->
-            <form action="{{ route('dashboard.projects.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.projects.index') }}" autocomplete="off">
+            <form action="{{ route('dashboard.projects.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.projects.index') }}">
                 @csrf
                 <!-- begin :: Card header -->
                 <div class="card-header d-flex align-items-center">
