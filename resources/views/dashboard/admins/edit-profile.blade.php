@@ -71,7 +71,14 @@
         <div class="tab-content" id="pills-tab-content" >
             <!--begin::Form-->
             <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <form action="{{ route('dashboard.update-profile') }}" class="submitted-form" method="post" data-redirection-url="{{ route('dashboard.edit-profile') }}" data-success-message="{{ __('Profile has been updated successfully') }}">
+                <form
+                    action="{{ route('dashboard.update-profile') }}"
+                    class="submitted-form"
+                    method="post"
+                    data-redirection-url="{{ route('dashboard.edit-profile') }}"
+                    data-success-message="{{ __('Profile has been updated successfully') }}"
+                    enctype="multipart/form-data"
+                >
                     @csrf
                     @method('PUT')
                     <!--begin::Card body-->
@@ -127,6 +134,22 @@
                                     <input type="email" class="form-control" id="email_inp" name="email" value="{{ auth()->user()->email }}"/>
                                     <label style="margin-right:8px" for="email_inp">{{ __("Enter the email") }}</label>
                                     <p class="invalid-feedback" id="email" ></p>
+                                </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+
+
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-2 col-form-label fw-bold fs-6 d-flex align-items-center">{{ __("Image") }}</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                                <div class="col-lg-10 form-floating">
+                                    <input type="file" class="form-control" id="image_inp" name="image"/>
+                                    <label style="margin-right:8px" for="email_inp">{{ __("Attach the Photo") }}</label>
+                                    <p class="invalid-feedback" id="image" ></p>
                                 </div>
                             <!--end::Col-->
                         </div>

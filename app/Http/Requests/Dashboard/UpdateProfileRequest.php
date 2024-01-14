@@ -28,6 +28,7 @@ class UpdateProfileRequest extends FormRequest
             'name_en'     => ['required', 'string', 'max:255'],
             'phone'       => ['required','numeric','unique:admins,id,' . auth()->id()],
             'email'       => ['required','string', "email:rfc,dns",'unique:admins,id,' . auth()->id() ],
+            'image'       => ['nullable', 'image'],
         ];
     }
 }

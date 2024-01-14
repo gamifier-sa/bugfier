@@ -17,5 +17,30 @@ class StatusSeeder extends Seeder
             'title'      => 'To Do',
             'is_default' => 1
         ]);
+
+        Status::create([
+            'title'      => 'In Progress',
+            'is_default' => 0
+        ]);
+
+        Status::create([
+            'title'      => 'In Review',
+            'is_default' => 0
+        ]);
+
+        Status::create([
+            'title'      => 'Closed',
+            'is_default' => 0
+        ]);
+
+        Status::create([
+            'title'      => 'Reopen',
+            'is_default' => 0
+        ]);
+
+        Status::create([
+            'title'      => 'Completed',
+            'is_default' => 0
+        ]);
     }
 }

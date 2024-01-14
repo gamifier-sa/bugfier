@@ -313,7 +313,7 @@
             <div class="d-flex align-items-center">
                 <!--begin::Avatar-->
                 <div class="symbol symbol-circle symbol-40px">
-                    <img alt="Profile picture" src="{{asset('/dashboard-assets/media/svg/avatars/034-boy-14.svg')}}" />
+                    <img alt="Profile picture" src="{{getImageUserPath(auth('admin')->user()->image, 'Admins')}}" />
                 </div>
                 <!--end::Avatar-->
 
@@ -357,7 +357,7 @@
                             <!--begin::Avatar-->
                             <div class="symbol symbol-50px me-5">
                                 <img alt="Profile picture"
-                                    src="{{asset('/dashboard-assets/media/svg/avatars/034-boy-14.svg')}}" />
+                                    src="{{getImageUserPath(auth('admin')->user()->image, 'Admins')}}" />
                             </div>
                             <!--end::Avatar-->
 

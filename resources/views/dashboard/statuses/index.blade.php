@@ -74,6 +74,9 @@
         let route         = "{{ route('dashboard.statuses.index') }}";
         let csrfToken     = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
+        let authorizationUpdate = @can('update_statuses') 'true' @else '' @endcan;
+        let authorizationDelete = @can('delete_statuses') 'true' @else '' @endcan;
+        let authorizationShow   = @can('show_statuses') 'true' @else '' @endcan
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>

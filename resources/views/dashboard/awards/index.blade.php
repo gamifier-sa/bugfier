@@ -71,9 +71,12 @@
 @endsection
 @push('scripts')
     <script>
-        let route         = "{{ route('dashboard.awards.index') }}";
-        let csrfToken     = "{{ csrf_token() }}";
-        let currentUserId = {{ auth()->id() }};
+        let route               = "{{ route('dashboard.awards.index') }}";
+        let csrfToken           = "{{ csrf_token() }}";
+        let currentUserId       = {{ auth()->id() }};
+        let authorizationUpdate = @can('update_awards') 'true' @else '' @endcan;
+        let authorizationDelete = @can('delete_awards') 'true' @else '' @endcan;
+        let authorizationShow   = @can('show_awards') 'true' @else '' @endcan
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
@@ -39,4 +40,11 @@ class Project extends Model
         return $this->created_at?->diffForHumans();
     }
 
+    /**
+     * @return HasMany
+     */
+    public function bugs() : HasMany
+    {
+        return $this->hasMany(Bug::class, 'project_id');
+    }
 }

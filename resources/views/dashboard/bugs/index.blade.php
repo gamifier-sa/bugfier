@@ -77,6 +77,9 @@
         let route         = "{{ route('dashboard.bugs.index') }}";
         let csrfToken     = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
+        let authorizationUpdate = @can('update_bugs') 'true' @else '' @endcan;
+        let authorizationDelete = @can('delete_bugs') 'true' @else '' @endcan;
+        let authorizationShow   = @can('show_bugs') 'true' @else '' @endcan
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>

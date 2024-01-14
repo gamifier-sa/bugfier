@@ -22,6 +22,8 @@ Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.lo
 Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
 
 Route::get('/install', function () {
+    Artisan::call('route:cache');
+    Artisan::call('config:cache');
     Artisan::call('migrate:fresh');
     Artisan::call('db:seed');
     Artisan::call('storage:link');

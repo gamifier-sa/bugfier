@@ -120,7 +120,7 @@
 
     <!--begin::Row-->
     <div class="row g-6 g-xl-9 mb-6 mb-xl-9">
-        @foreach(unserialize($bug->images) as $image)
+        @forelse(unserialize($bug->images) as $image)
         <!--begin::Col-->
         <div class="col-md-6 col-lg-4 col-xl-3">
             <!--begin::Card-->
@@ -137,7 +137,10 @@
                 </div><!--end::Card body-->
             </div><!--end::Card-->
         </div><!--end::Col-->
-        @endforeach
+
+        @empty
+
+        @endforelse
 
     </div><!--end:Row-->
 @endsection

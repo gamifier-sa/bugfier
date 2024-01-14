@@ -73,6 +73,9 @@
         let route         = "{{ route('dashboard.projects.index') }}";
         let csrfToken     = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
+        let authorizationUpdate = @can('update_projects') 'true' @else '' @endcan;
+        let authorizationDelete = @can('delete_projects') 'true' @else '' @endcan;
+        let authorizationShow   = @can('show_projects') 'true' @else '' @endcan
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>

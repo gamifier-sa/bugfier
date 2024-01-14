@@ -56,7 +56,25 @@ if(!function_exists('deleteImage')){
 
 if(!function_exists('getImagePath')){
 
-    function getImagePath( $imageName , $directory = null , $defaultImage = 'default.jpg'  ): string
+    function getImagePath( $imageName , $directory = null , $defaultImage = 'boy.svg'  ): string
+    {
+        $imagePath = public_path('/storage/Images/'.'/' . $directory . '/' . $imageName);
+
+        if ( $imageName && $directory &&  $imagePath ) // check if the directory is null or the image doesn't exist
+        {
+            return asset('/storage/Images') .'/' . $directory . '/' . $imageName;
+        }
+        else{
+            return asset('storage/Images/' . $defaultImage);
+        }
+
+    }
+
+}
+
+if(!function_exists('getImageUserPath')){
+
+    function getImageUserPath( $imageName , $directory = null , $defaultImage = 'boy.svg'  ): string
     {
         $imagePath = public_path('/storage/Images/'.'/' . $directory . '/' . $imageName);
 

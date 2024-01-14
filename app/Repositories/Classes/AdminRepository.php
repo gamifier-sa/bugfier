@@ -109,6 +109,10 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
      */
     public function updateProfile($data) : void
     {
+        if (isset($data['image'])) {
+            $data['image'] = uploadImage($data['image'],'Admins');
+        }
+
         auth()->user()->update($data);
     }
 }

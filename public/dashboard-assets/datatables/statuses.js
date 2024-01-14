@@ -83,70 +83,75 @@ let KTDatatable = function () {
                     data: null,
                     render: function (data, type, row) {
                         if(row.is_default === 1) {
-                            return `
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                ${translate('Actions')}
-                                <span class="svg-icon svg-icon-5 m-0">
-                                    <i class="fa fa-angle-down mx-1"></i>
-                                </span>
-                            </a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-
+                            if (authorizationUpdate) {
+                                return `
                                 <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/statuses/${row.id}/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
+                                <div class="btn btn-light btn-active-light-primary btn-sm">
+                                    <a href="/dashboard/statuses/${ row.id }/edit" class="menu-link px-3 d-flex edit-row" >
                                        <span> ${translate('Edit')} </span>
-                                       <span>  <i class="fa fa-edit text-primary"></i> </span>
                                     </a>
+                                </div><!--end::Menu-->
+                            `;
+                            }
 
-                                </div>
-                                <!--end::Menu item-->
+                            return `
+                            <div class="text-center px-3">
+                                <span> ${translate('There are no permissions')} </span>
                             </div>
-                            <!--end::Menu-->
                         `;
                         } else {
-                            return `
-                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                ${translate('Actions')}
-                                <span class="svg-icon svg-icon-5 m-0">
-                                    <i class="fa fa-angle-down mx-1"></i>
-                                </span>
-                            </a>
-                            <!--begin::Menu-->
-                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-
-                                <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/statuses/${row.id}/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
-                                       <span> ${translate('Edit')} </span>
-                                       <span>  <i class="fa fa-edit text-primary"></i> </span>
-                                    </a>
-
-                                </div>
-                                <!--end::Menu item-->
-
-                                <!--begin::Menu item
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/statuses/${row.id}" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate('Show')} </span>
-                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
-                                    </a>
-
-                                </div>
-                                end::Menu item-->
-
-                                <!--begin::Menu item-->
-                                   <div class="menu-item px-3">
-                                        <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Status')}">
-                                           <span> ${translate('Delete')} </span>
-                                            <span>  <i class="fa fa-trash text-danger"></i> </span>
+                            if (authorizationUpdate && authorizationDelete) {
+                                return `
+                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+                                    ${translate('Actions')}
+                                    <span class="svg-icon svg-icon-5 m-0">
+                                        <i class="fa fa-angle-down mx-1"></i>
+                                    </span>
+                                </a>
+                                <!--begin::Menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="/dashboard/statuses/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
+                                           <span> ${translate('Edit')} </span>
+                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
                                         </a>
-                                    </div>
-                                <!--end::Menu item-->
 
+                                    </div><!--end::Menu-->
+
+                                    <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Status')}">
+                                        <span> ${translate('Delete')} </span>
+                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
+                                    </a>
+                                </div><!--end::Menu item-->
+                            `;
+                            }
+
+                            if (authorizationUpdate) {
+                                return `
+                                <!--begin::Menu item-->
+                                <div class="btn btn-light btn-active-light-primary btn-sm">
+                                    <a href="/dashboard/statuses/${ row.id }/edit" class="menu-link px-3 d-flex edit-row" >
+                                       <span> ${translate('Edit')} </span>
+                                    </a>
+                                </div><!--end::Menu-->
+                            `;
+                            }
+                            if (authorizationDelete) {
+                                return `
+                                <div class="btn btn-light-danger btn-active-light-danger btn-sm">
+                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Status')}">
+                                        <span class="text-danger"> ${translate('Delete')} </span>
+                                    </a>
+                                </div><!--end::Menu item-->
+                            `;
+                            }
+
+                            return `
+                            <div class="text-center px-3">
+                                <span> ${translate('There are no permissions')} </span>
                             </div>
-                            <!--end::Menu-->
                         `;
                         }
                     },

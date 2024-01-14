@@ -96,39 +96,15 @@ class RoleSeeder extends Seeder
             'name_en' => 'Super Admin',
         ]);
 
-
-        $adminRole  = Role::create([
-            'name_ar'    => 'صلاحيات المستخدم',
-            'name_en'    => 'user roles',
-        ]);
-
         $superAdminAbilitiesIds = Ability::pluck('id');
-
-        $adminAbilitiesIds   = Ability::whereIn('category',[ 'projects' , 'bugs' , 'awards'  ] )->whereIn('action' , ['view' , 'show'])->get();
-
         $superAdminRole->abilities()->attach( $superAdminAbilitiesIds );
-        $adminRole->abilities()->attach( $adminAbilitiesIds );
-
-
 
         Admin::find(1)->assignRole($superAdminRole);
-        Admin::find(1)->assignRole($adminRole);
-
         Admin::find(2)->assignRole($superAdminRole);
-        Admin::find(2)->assignRole($adminRole);
-
         Admin::find(3)->assignRole($superAdminRole);
-        Admin::find(3)->assignRole($adminRole);
-
         Admin::find(4)->assignRole($superAdminRole);
-        Admin::find(4)->assignRole($adminRole);
-
         Admin::find(5)->assignRole($superAdminRole);
-        Admin::find(5)->assignRole($adminRole);
-
         Admin::find(6)->assignRole($superAdminRole);
-        Admin::find(6)->assignRole($adminRole);
-
     }
     /**
      * @param string $action
