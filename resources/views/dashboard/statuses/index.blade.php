@@ -80,6 +80,6 @@
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-    <script src="{{ asset('dashboard-assets/datatables/statuses.js')}}?{{now()}}"></script>
+    <script src="{{ asset('dashboard-assets/datatables/statuses.js')}}"></script>
 
 @endpush
