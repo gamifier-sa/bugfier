@@ -82,8 +82,8 @@ abstract class BasicRepository
 
     function all($orsFilters = [], $andsFilters = [], $relations = [], $searchingColumns = null, $withTrashed = false, $orderBy = [], $group = null, $Between = [], $subRelation = [])
     {
-        $columns               =  $searchingColumns ?? $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
-        $relationsWithColumns  =  $this->getRelationWithColumns($relations); // this fn takes [ brand => [ id , name ] ] then returns : brand:id,name to use it in with clause
+        $columns = $searchingColumns ?? $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
+        $relationsWithColumns = $this->getRelationWithColumns($relations); // this fn takes [ brand => [ id , name ] ] then returns : brand:id,name to use it in with clause
 
         /** Get the request parameters **/
         $params = request()->all();
@@ -95,21 +95,25 @@ abstract class BasicRepository
 
         // set passed filters from controller if exist
         if (!$withTrashed)
-            $this->model   = $this->model->query()->with($relationsWithColumns);
+            $this->model = $this->model->query()->with($relationsWithColumns);
         else
-            $this->model   = $this->model->query()->onlyTrashed()->with($relationsWithColumns);
+            $this->model = $this->model->query()->onlyTrashed()->with($relationsWithColumns);
 
 
         /** Get the count before search **/
         $itemsBeforeSearch = $this->model->count();
-
-//        if ($relations){
-//            foreach ($relations as $key => $relation) {
-//                $this->model->orWhereHas($key, function ($q) use ($column, $relation) {
-//                    $q->where($relation[1], $column);
-//                });
-//            }
-//        }
+        // $paramSearchValue = $params['search']['value'];
+        // if ($relations) {
+        //     foreach ($relations as $key => $relation) {
+        //         foreach ($relation as $column) {
+        //             // dd($key);
+        //             $this->model->orWhereHas($key, function ($q) use ($paramSearchValue, $column) {
+        //                 $q->orWhere($column, $paramSearchValue);
+        //             });
+        //         }
+        //     }
+        // }
+        //    dd($this->model->toSql());
         // general search
         if (isset($params['search']['value'])) {
             if (str_starts_with($params['search']['value'], '0'))
@@ -121,7 +125,7 @@ abstract class BasicRepository
         }
 
         // filter search
-        if ($itemsBeforeSearch == $this->model->count() && $params ) {
+        if ($itemsBeforeSearch == $this->model->count() && $params) {
 
             $searchingKeys = collect($params['columns'])->transform(function ($entry) {
                 return $entry['search']['value'] != null && $entry['search']['value'] != 'all' ? Arr::only($entry, ['data', 'name', 'search']) : null; // return just columns which have search values
@@ -131,8 +135,8 @@ abstract class BasicRepository
             if ($searchingKeys->count() > 0) {
                 /** search in the original table **/
                 foreach ($searchingKeys as $column) {
-                    if (!($column['name'] == 'created_at' or  $column['name'] == 'date'))
-                        array_push($andsFilters, [$column['name'], '=',  $column['search']['value']]);
+                    if (!($column['name'] == 'created_at' or $column['name'] == 'date'))
+                        array_push($andsFilters, [$column['name'], '=', $column['search']['value']]);
                     else {
                         if (!str_contains($column['search']['value'], ' - ')) // if date isn't range ( single date )
                             $this->model->orWhereDate($column['name'], $column['search']['value']);
@@ -143,13 +147,12 @@ abstract class BasicRepository
 
 
             }
-        }else{
-           return $this->model->get();
+        } else {
+            return $this->model->get();
         }
 
-        $this->model   = $this->model->where(function ($query) use ($orsFilters) {
-            foreach ($orsFilters as  $filter)
-                $query->orWhere([$filter]);
+        $this->model = $this->model->where(function ($query) use ($orsFilters) {
+            foreach ($orsFilters as $filter) $query->orWhere([$filter]);
         });
         if ($andsFilters)
             $this->model->where($andsFilters);
@@ -176,13 +179,13 @@ abstract class BasicRepository
             } else {
                 $this->model->orderBy('id', 'desc');
             }
-        }else {
+        } else {
             $this->model->orderBy('id', 'desc');
         }
 
 
         $response = [
-            "recordsTotal"    => $this->model->count(),
+            "recordsTotal" => $this->model->count(),
             "recordsFiltered" => $this->model->count(),
             'data' => $this->model->skip(($page - 1) * $perPage)->take($perPage)->get()
         ];
@@ -215,7 +218,7 @@ abstract class BasicRepository
         $query = $this->model->newQuery();
         if (!empty($withRelations)) {
             $query->with($withRelations);
-//            $query = $this->with($query, $withRelations);
+            //            $query = $this->with($query, $withRelations);
         }
         return $query->find($id, $column);
     }
