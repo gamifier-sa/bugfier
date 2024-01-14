@@ -16,7 +16,7 @@ let KTDatatable = function () {
             processing: true,
             serverSide: true,
             order: [[6, 'desc']], // display records number and ordering type
-            stateSave: false,
+            stateSave: true,
             select: {
                 style: 'os',
                 selector: 'td:first-child',
@@ -240,20 +240,55 @@ let KTDatatable = function () {
 
     }
 
-    // Filter Datatable
     let handleFilterDatatable = () => {
+        // Select filter options
+        const filterForm = document.querySelector('[data-kt-docs-table-filter="form"]');
+        const filterButton = filterForm.querySelector('[data-kt-docs-table-filter="filter"]');
+        const selectOptions = filterForm.querySelectorAll('select');
 
-        $('.filter-datatable-inp').each( (index , element) =>  {
+        // Filter datatable on submit
+        filterButton.addEventListener('click', function () {
+            let filterString = '';
 
-            $(element).change( function () {
+            // Get filter values
+            selectOptions.forEach((item, index) => {
+                if (item.value && item.value !== '') {
+                    if (index !== 0) {
+                        filterString += ' ';
+                    }
 
-                let columnIndex = $(this).data('filter-index'); // index of the searching column
-
-                datatable.column(columnIndex).search( $(this).val()).draw();
+                    // Build filter value options
+                    filterString += item.value;
+                }
             });
 
-        })
+
+            datatable.search(filterString).draw();
+        });
     }
+
+    // Reset Filter
+    let handleResetForm = () => {
+        // Select reset button
+        const resetButton = document.querySelector('[data-kt-docs-table-filter="reset"]');
+
+        // Reset datatable
+        resetButton.addEventListener('click', function () {
+            // Select filter options
+            const filterForm = document.querySelector('[data-kt-docs-table-filter="form"]');
+            const selectOptions = filterForm.querySelectorAll('select');
+
+            // Reset select2 values -- more info: https://select2.org/programmatic-control/add-select-clear-items
+            selectOptions.forEach(select => {
+                $(select).val('').trigger('change');
+            });
+
+            // Reset datatable --- official docs reference: https://datatables.net/reference/api/search()
+            datatable.search('').draw();
+        });
+    }
+
+
 
     // Delete record
     let handleDeleteRows = () => {
@@ -308,16 +343,13 @@ let KTDatatable = function () {
     }
 
 
-
-
     // Public methods
     return {
         init: function () {
             initDatatable();
             handleSearchDatatable();
-            // handleFilterDatatable();
-
-
+            handleFilterDatatable();
+            handleResetForm();
         }
     }
 }();

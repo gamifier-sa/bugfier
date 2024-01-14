@@ -27,7 +27,8 @@ class Bug extends Model
     public array $searchConfig = [
         'description' => 'like',
         'title' => 'like',
-
+        'status_id' => 'like',
+        'project_id' => 'like',
     ];
 
     protected $appends = ['create_since'];

@@ -37,7 +37,8 @@ class BugController extends Controller
             $bugs = $this->bugRepository->findBy($request);
             return response()->json($bugs);
         }
-        return view('dashboard.bugs.index');
+        $statuses = Status::get();
+        return view('dashboard.bugs.index', compact('statuses'));
     }
 
     /**

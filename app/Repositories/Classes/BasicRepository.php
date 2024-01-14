@@ -11,6 +11,7 @@ use App\Traits\MediaTrait;
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -102,9 +103,15 @@ abstract class BasicRepository
         /** Get the count before search **/
         $itemsBeforeSearch = $this->model->count();
 
+//        if ($relations){
+//            foreach ($relations as $key => $relation) {
+//                $this->model->orWhereHas($key, function ($q) use ($column, $relation) {
+//                    $q->where($relation[1], $column);
+//                });
+//            }
+//        }
         // general search
         if (isset($params['search']['value'])) {
-
             if (str_starts_with($params['search']['value'], '0'))
                 $params['search']['value'] = substr($params['search']['value'], 1);
 
@@ -133,6 +140,8 @@ abstract class BasicRepository
                             $this->model->orWhereBetween($column['name'], $this->getDateRangeArray($column['search']['value']));
                     }
                 }
+
+
             }
         }else{
            return $this->model->get();
