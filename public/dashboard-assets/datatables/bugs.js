@@ -235,7 +235,7 @@ let KTDatatable = function () {
     let handleSearchDatatable = () => {
 
         $('#general-search-inp').keyup( function () {
-            datatable.search( $(this).val() ).draw();
+            datatable.search('search='+$(this).val() ).draw();
         });
 
     }
@@ -254,11 +254,11 @@ let KTDatatable = function () {
             selectOptions.forEach((item, index) => {
                 if (item.value && item.value !== '') {
                     if (index !== 0) {
-                        filterString += ' ';
+                        filterString += ',';
                     }
 
                     // Build filter value options
-                    filterString += item.value;
+                    filterString += item.name + '=' + item.value;
                 }
             });
 

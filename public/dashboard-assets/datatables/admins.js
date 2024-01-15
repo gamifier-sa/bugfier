@@ -121,7 +121,7 @@ let KTDatatable = function () {
     let handleSearchDatatable = () => {
 
         $('#general-search-inp').keyup( function () {
-            datatable.search( $(this).val() ).draw();
+            datatable.search('search='+$(this).val() ).draw();
         });
 
     }

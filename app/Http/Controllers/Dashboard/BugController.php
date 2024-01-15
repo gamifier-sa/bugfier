@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\BugRequest;
 use App\Repositories\Classes\{AdminRepository, BugRepository, ProjectRepository, StatusRepository};
 use App\Models\Status;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class BugController extends Controller
@@ -38,7 +39,8 @@ class BugController extends Controller
             return response()->json($bugs);
         }
         $statuses = Status::get();
-        return view('dashboard.bugs.index', compact('statuses'));
+        $admins = Admin::get();
+        return view('dashboard.bugs.index', get_defined_vars());
     }
 
     /**

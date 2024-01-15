@@ -102,26 +102,25 @@ abstract class BasicRepository
 
         /** Get the count before search **/
         $itemsBeforeSearch = $this->model->count();
-        // $paramSearchValue = $params['search']['value'];
-        // if ($relations) {
-        //     foreach ($relations as $key => $relation) {
-        //         foreach ($relation as $column) {
-        //             // dd($key);
-        //             $this->model->orWhereHas($key, function ($q) use ($paramSearchValue, $column) {
-        //                 $q->orWhere($column, $paramSearchValue);
-        //             });
-        //         }
-        //     }
-        // }
-        //    dd($this->model->toSql());
+
         // general search
         if (isset($params['search']['value'])) {
+
+            $filterArrays = $this->seperateSearch($params['search']['value']);
+            if (!is_array($filterArrays)) {
+                $params['search']['value'] = $filterArrays;
+            } else {
+                $params['search']['value'] = '';
+            }
+
             if (str_starts_with($params['search']['value'], '0'))
                 $params['search']['value'] = substr($params['search']['value'], 1);
 
             /** search in the original table **/
             foreach ($columns as $column)
                 array_push($orsFilters, [$column, 'LIKE', "%" . $params['search']['value'] . "%"]);
+
+
         }
 
         // filter search
@@ -154,6 +153,14 @@ abstract class BasicRepository
         $this->model = $this->model->where(function ($query) use ($orsFilters) {
             foreach ($orsFilters as $filter) $query->orWhere([$filter]);
         });
+
+        if (isset($filterArrays) && is_array($filterArrays)) {
+            $this->model = $this->model->where(function ($query) use ($filterArrays) {
+                return $query->where($filterArrays);
+            });
+
+        }
+
         if ($andsFilters)
             $this->model->where($andsFilters);
         if ($Between && $Between[1] != null && $Between[2] != null) {
@@ -205,6 +212,28 @@ abstract class BasicRepository
     {
         $dateRange = explode(' - ', $dateRange);
         return [$dateRange[0] . ' 00:00:00', $dateRange[1] . ' 23:59:59'];
+    }
+    /**
+     * @param string          $searchValue
+     */
+    public function seperateSearch($searchValue)
+    {
+        $filters = [];
+        $pairs = explode(',', $searchValue);
+        foreach ($pairs as $pair) {
+            $parts = explode('=', $pair);
+            $key = trim($parts[0]);
+            $value = isset($parts[1]) ? trim($parts[1]) : null;
+            if ($key == 'search') {
+                return $parts[1];
+            }
+
+            if (!empty($key) && !empty($value)) {
+                $filters[] = [$key, '=', $value];
+            }
+        }
+
+        return $filters;
     }
 
     /**

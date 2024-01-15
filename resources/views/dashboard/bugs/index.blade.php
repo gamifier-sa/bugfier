@@ -57,11 +57,21 @@
                         <div class="px-7 py-5" data-kt-docs-table-filter="form">
                             <!--begin::Input group-->
                             <div class="mb-10">
-                                <label class="form-label fs-6 fw-semibold">Team:</label>
-                                <select class="form-select form-select-solid fw-bold" name="status" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-docs-table-filter="search" data-hide-search="true">
+                                <label class="form-label fs-6 fw-semibold">Status:</label>
+                                <select class="form-select form-select-solid fw-bold" name="status_id" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-docs-table-filter="search" data-hide-search="true">
                                     <option></option>
                                     @foreach($statuses as $status)
-                                        <option @selected(old('status') == $status->title) value="{{ $status->title}}">{{ __($status->title) }}</option>
+                                        <option @selected(old('status') == $status->id) value="{{ $status->id}}">{{ __($status->title) }}</option>
+                                    @endforeach
+                                </select>
+                            </div><!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="mb-10">
+                                <label class="form-label fs-6 fw-semibold">Created By:</label>
+                                <select class="form-select form-select-solid fw-bold" name="created_by" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-docs-table-filter="search" data-hide-search="true">
+                                    <option></option>
+                                    @foreach($admins as $admin)
+                                        <option @selected(old('created_by') == $admin->id) value="{{ $admin->id}}">{{ __($admin->name_en) }}</option>
                                     @endforeach
                                 </select>
                             </div><!--end::Input group-->
