@@ -30,8 +30,8 @@
 <div class="row mb-8 p-5">
     <!-- begin :: Column -->
     <div class="col-md-12 fv-row">
-        <div class="py-5" data-bs-theme="light">
-            <label class="fs-5 fw-bold mb-2 required" for="kt_docs_ckeditor_classic">{{ __("Description") }}</label>
+        <label class="fs-5 fw-bold required" for="kt_docs_ckeditor_classic">{{ __("Description") }}</label>
+        <div class="py-5" data-bs-theme="light" style="color: #000">
             <textarea name="description" id="kt_docs_ckeditor_classic">{{old('description', $bug->description)}}</textarea>
             <p class="invalid-feedback" id="description"></p>
         </div><!-- end   :: Column -->
