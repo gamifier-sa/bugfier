@@ -17,8 +17,10 @@
     <div class="col-md-12 fv-row">
 
         <label class="fs-5 fw-bold mb-2 required" for="kt_docs_ckeditor_classic">{{ __("Description") }}</label>
-        <textarea class="form-control" name="description" id="kt_docs_ckeditor_classic">{{old('description', $project->description)}}</textarea>
-        <p class="invalid-feedback" id="description" ></p>
+        <div class="py-5" data-bs-theme="light" style="color: #000">
+            <textarea class="form-control" name="description" id="kt_docs_ckeditor_classic">{{old('description', $project->description)}}</textarea>
+            <p class="invalid-feedback" id="description" ></p>
+        </div>
     </div><!-- end   :: Column -->
 </div><!-- end   :: Row -->
 

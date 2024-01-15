@@ -83,7 +83,7 @@
     <!-- begin :: Column -->
     <div class="col-md-6 fv-row">
         <label class="fs-5 fw-bold mb-2" for="status_id">{{ __("Status") }}</label>
-        <select class="form-control select-2-with-image" data-control="select2" name="status_id_inp" id="status_id" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+        <select class="form-control select-2-with-image" data-control="select2" name="status_id" id="status_id" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
             <option selected disabled >{{__('Please Choose')}}</option>
             @foreach($statuses as $status)
                 <option @selected(old('status_id', $bug->status_id) == $status->id) value="{{$status->id}}">{{__($status->title)}}</option>
