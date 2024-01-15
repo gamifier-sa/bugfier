@@ -18,6 +18,8 @@ Route::get('/', function () {
     return redirect()->route('login-form');
 });
 Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
+Route::get('admin/register', [AdminAuthController::class,'registerForm'])->name('register-form');
+
 Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');
 Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
 

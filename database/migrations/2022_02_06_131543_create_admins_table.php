@@ -22,6 +22,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->string('image')->nullable();
+            $table->enum('status', ['active', 'pending']);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
