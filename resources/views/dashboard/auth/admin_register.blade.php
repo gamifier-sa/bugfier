@@ -10,55 +10,78 @@
             <!--begin::Content-->
             <div class="w-md-400px">
                 <!--begin::Form-->
-                <form class="form w-100" data-success-message="{{ __("Successfully Registered") }}" data-redirection-url="{{ str_contains('/dashboard', URL::previous()) ? URL::previous() : '/dashboard' }}" id="submitted-form" action="{{ route('') }}" method="POST">
+                <form class="form w-100" data-success-message="{{ __("Successfully Registered") }}" data-redirection-url="{{route('pending.register')}}" id="submitted-form" action="{{route('admin.register')}}" method="POST">
                     @csrf
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-3">{{ __('Sign In to Bugfire') }}</h1>
+                        <h1 class="text-dark mb-3">{{ __('Sign Up to Bugfire') }}</h1>
                         <!--end::Title-->
                     </div>
                     <!--begin::Heading-->
+
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
-                        <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">{{ __('Email') }}</label>
-                        <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="email" name="email" autocomplete="off" />
-                        <p class="invalid-feedback" id="email"></p>
-                        <!--end::Input-->
+                        <input class="form-control bg-transparent" type="text" name="name_ar" placeholder="{{__('Enter Name Arabic')}}" autocomplete="off" />
+                        <p class="invalid-feedback" id="name_ar"></p><!--end::Input-->
+                    </div>
+                    <!--end::Input group-->
+
+
+                    <!--begin::Input group-->
+                    <div class="fv-row mb-10">
+                        <!--begin::Input-->
+                        <input class="form-control bg-transparent" type="text" name="name_en" placeholder="{{__('Enter Name English')}}" autocomplete="off" />
+                        <p class="invalid-feedback" id="name_en"></p><!--end::Input-->
+                    </div>
+
+
+                    <!--end::Input group-->
+
+                    <!--begin::Input group-->
+                    <div class="fv-row mb-10">
+                        <!--begin::Input-->
+                        <input class="form-control bg-transparent" type="email" name="email" placeholder="{{__('Enter Email Address')}}" autocomplete="off" />
+                        <p class="invalid-feedback" id="email"></p><!--end::Input-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row mb-10">
+                    <div class="fv-row mb-8" data-kt-password-meter="true">
                         <!--begin::Wrapper-->
-                        <div class="d-flex flex-stack mb-2">
-                            <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</label>
-                            <!--end::Label-->
+                        <div class="mb-1">
+                            <!--begin::Input wrapper-->
+                            <div class="position-relative mb-3">
+                                <input class="form-control bg-transparent" type="password" placeholder="Password" name="password" autocomplete="off" />
+                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+                                    <i class="bi bi-eye-slash fs-2"></i>
+                                    <i class="bi bi-eye fs-2 d-none"></i>
+                                </span>
+                                <p class="invalid-feedback" id="email"></p>
+                            </div>
+                            <!--end::Input wrapper-->
+                            <!--begin::Meter-->
+                            <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
+                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
+                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                            </div>
+                            <!--end::Meter-->
                         </div>
                         <!--end::Wrapper-->
-                        <!--begin::Input-->
-                        <div class="d-flex align-items-center" >
-                            <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" id="password-field" />
-                            <a onclick="showHidePass( 'password-field' , $(this) )" style="cursor: pointer">
-                                <span class="fa fa-fw fa-eye fa-md toggle-password"  @if( isArabic() )  style="margin-right:-30px" @else style="margin-left:-30px" @endif></span>
-                            </a>
-                        </div>
-                        <p class="invalid-feedback" id="password"></p>
-                        <!--end::Input-->
+                        <!--begin::Hint-->
+                        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                        <!--end::Hint-->
                     </div>
-                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                        <input class="form-check-input" type="checkbox" name="remember" value="1">{{__('Remember me')}}
+                    <!--end::Input group=-->
+                    <!--end::Input group=-->
+                    <div class="fv-row mb-8">
+                        <!--begin::Repeat Password-->
+                        <input placeholder="Repeat Password" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent" />
+                        <!--end::Repeat Password-->
                     </div>
-                    <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-                        <div></div>
-                        <!--begin::Link-->
-                        {{--                        <a href="javascript:" class="link-primary">{{__('Forgot Password ?')}}</a>--}}
-                        <!--end::Link-->
-                    </div>
-                    <!--end::Input group-->
+                    <!--end::Input group=-->
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->
@@ -74,6 +97,12 @@
 
                         </button>
                         <!--end::Submit button-->
+
+                        <!--begin::Sign up-->
+                        <div class="text-gray-500 text-center fw-semibold fs-6">{{__('Already have an Account?')}}
+                            <a href="{{route('login-form')}}" class="link-primary">{{__('Sign in')}}</a>
+                        </div>
+                        <!--end::Sign up-->
                     </div>
                     <!--end::Actions-->
                 </form>
@@ -85,3 +114,6 @@
     </div>
     <!--end::Body-->
 @endsection
+@push('scripts')
+    <script src="{{asset('dashboard-assets/js/custom/authentication/sign-up/general.js')}}"></script>
+@endpush

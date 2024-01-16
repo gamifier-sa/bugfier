@@ -15,7 +15,7 @@ class Admin extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone','image','password','status'
+        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status'
     ];
     public       $timestamps         = true;
     public array $searchRelationShip = [];
@@ -69,7 +69,7 @@ class Admin extends Authenticatable
      */
     public function roles() : BelongsToMany
     {
-        return $this->belongsToMany(Role::class)->where('id','!=',2)->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     /**

@@ -42,10 +42,32 @@ let KTDatatable = function () {
                 {data: 'full_name'},
                 {data: 'phone'},
                 {data: 'email'},
+                {data: null},
                 {data: 'create_since'},
                 {data: null},
             ],
             columnDefs: [
+                {
+                    targets: -3,
+                    data: null,
+                    render: function (data, type, row) {
+                        if (row.status === 'active')
+                            return `
+                                <span class="badge badge-light-success">${translate(row.status)}</span>
+                            `;
+
+                        if (row.status === 'pending')
+                            return `
+                                <span class="badge badge-light-warning">${translate(row.status)}</span>
+                            `;
+
+                        if (row.status === 'block')
+                            return `
+                                <span class="badge badge-light-danger">${translate(row.status)}</span>
+                            `;
+                    },
+                },
+
                 {
                     targets: -1,
                     data: null,
@@ -126,20 +148,55 @@ let KTDatatable = function () {
 
     }
 
-    // Filter Datatable
     let handleFilterDatatable = () => {
+        // Select filter options
+        const filterForm = document.querySelector('[data-kt-docs-table-filter="form"]');
+        const filterButton = filterForm.querySelector('[data-kt-docs-table-filter="filter"]');
+        const selectOptions = filterForm.querySelectorAll('select');
 
-        $('.filter-datatable-inp').each( (index , element) =>  {
+        // Filter datatable on submit
+        filterButton.addEventListener('click', function () {
+            let filterString = '';
 
-            $(element).change( function () {
+            // Get filter values
+            selectOptions.forEach((item, index) => {
+                if (item.value && item.value !== '') {
+                    if (index !== 0) {
+                        filterString += ',';
+                    }
 
-                let columnIndex = $(this).data('filter-index'); // index of the searching column
-
-                datatable.column(columnIndex).search( $(this).val()).draw();
+                    // Build filter value options
+                    filterString += item.name + '=' + item.value;
+                }
             });
 
-        })
+
+            datatable.search(filterString).draw();
+        });
     }
+
+    // Reset Filter
+    let handleResetForm = () => {
+        // Select reset button
+        const resetButton = document.querySelector('[data-kt-docs-table-filter="reset"]');
+
+        // Reset datatable
+        resetButton.addEventListener('click', function () {
+            // Select filter options
+            const filterForm = document.querySelector('[data-kt-docs-table-filter="form"]');
+            const selectOptions = filterForm.querySelectorAll('select');
+
+            // Reset select2 values -- more info: https://select2.org/programmatic-control/add-select-clear-items
+            selectOptions.forEach(select => {
+                $(select).val('').trigger('change');
+            });
+
+            // Reset datatable --- official docs reference: https://datatables.net/reference/api/search()
+            datatable.search('').draw();
+        });
+    }
+
+
 
     // Delete record
     let handleDeleteRows = () => {
@@ -201,7 +258,8 @@ let KTDatatable = function () {
         init: function () {
             initDatatable();
             handleSearchDatatable();
-            // handleFilterDatatable();
+            handleFilterDatatable();
+            handleResetForm();
 
 
         }

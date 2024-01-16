@@ -25,6 +25,7 @@ class AdminRequest extends FormRequest
             'phone'     => ['required','unique:admins','numeric'],
             'password'  => ['required','string','min:8','max:255','confirmed'],
             'email'     => 'required|email|unique:admins',
+            'status'    => 'nullable|in:active,pending,block',
             'roles'     => ['required','array','min:1'],
 
         ];
@@ -35,10 +36,11 @@ class AdminRequest extends FormRequest
         return [
             'name_ar'  => ['required', 'string', 'max:255','min:3'],
             'name_en'  => ['nullable', 'string', 'max:255','min:3'],
-            'phone'    => ['required','numeric', Rule::unique('admins')->ignore(request()->segment(3))],
+            'phone'    => ['nullable','numeric', Rule::unique('admins')->ignore(request()->segment(3))],
             'password' => ['nullable','exclude_if:password,null','string','min:8','max:255','confirmed'],
             'email'    => ['required', 'email', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('admins')->ignore(request()->segment(3))],
             'roles'    => ['required','array','min:1'],
+            'status'   => 'nullable|in:active,pending,block',
         ];
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
 use App\Http\Requests\Dashboard\UpdateProfileRequest;
@@ -29,7 +30,8 @@ class AdminController extends Controller
             $admins = $this->adminRepository->findBy($request);
             return response()->json($admins);
         }
-        return view('dashboard.admins.index');
+        $statuses = Status::cases();
+        return view('dashboard.admins.index', get_defined_vars());
     }
 
     /**
@@ -38,8 +40,9 @@ class AdminController extends Controller
     public function create()
     {
         $this->authorize('create_admins');
-        $roles = $this->roleRepository->findBy();
-        return view('dashboard.admins.create',compact('roles'));
+        $roles    = $this->roleRepository->findBy();
+        $statuses = Status::cases();
+        return view('dashboard.admins.create', get_defined_vars());
     }
 
     /**
@@ -65,8 +68,9 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $this->authorize('update_admins');
-        $admin = $this->adminRepository->show($id);
-        $roles = $this->roleRepository->findBy();
+        $admin    = $this->adminRepository->show($id);
+        $roles    = $this->roleRepository->findBy();
+        $statuses = Status::cases();
         return view('dashboard.admins.edit', get_defined_vars());
     }
 

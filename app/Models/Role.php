@@ -62,13 +62,13 @@ class Role extends Model
         return Carbon::createFromTimeStamp(strtotime($this->attributes['created_at']) )->diffForHumans();
     }
 
-    /**
-     * @return void
-     */
-    protected static function booted() : void
-    {
-        static::addGlobalScope(new WithoutDefaultRole());
-    }
+//    /**
+//     * @return void
+//     */
+//    protected static function booted() : void
+//    {
+//        static::addGlobalScope(new WithoutDefaultRole());
+//    }
 
     /**
      * @return mixed

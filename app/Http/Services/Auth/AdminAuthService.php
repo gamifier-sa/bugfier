@@ -36,6 +36,17 @@ class AdminAuthService {
         }
     }
 
+    /**
+     * @param $data
+     * @return RedirectResponse
+     */
+    public function register($data) : RedirectResponse
+    {
+
+        Admin::create($data);
+        return redirect()->intended('/pending-register');
+    }
+
 
     public function logout() : void
     {

@@ -20,6 +20,7 @@ class AdminSeeder extends Seeder
             'email' => 'admin@app.com',
             'password' => 123123,
             'phone' => '1234567891',
+            'status' => 'active'
         ]);
 
         Admin::create([
@@ -28,6 +29,7 @@ class AdminSeeder extends Seeder
             'email' => 'baraa@app.com',
             'password' => 123123,
             'phone' => '1234567890',
+            'status' => 'active'
         ]);
 
         Admin::create([
@@ -36,6 +38,7 @@ class AdminSeeder extends Seeder
             'email' => 'aya@app.com',
             'password' => 123123,
             'phone' => '1234567893',
+            'status' => 'active'
         ]);
 
         Admin::create([
@@ -44,6 +47,7 @@ class AdminSeeder extends Seeder
             'email' => 'ahmed@app.com',
             'password' => 123123,
             'phone' => '1234567894',
+            'status' => 'active'
         ]);
 
         Admin::create([
@@ -52,6 +56,7 @@ class AdminSeeder extends Seeder
             'email' => 'mohamed@app.com',
             'password' => 123123,
             'phone' => '1234567895',
+            'status' => 'active'
         ]);
 
         Admin::create([
@@ -60,6 +65,7 @@ class AdminSeeder extends Seeder
             'email' => 'hossam@app.com',
             'password' => 123123,
             'phone' => '1234567896',
+            'status' => 'active'
         ]);
 
     }

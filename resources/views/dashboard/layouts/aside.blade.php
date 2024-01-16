@@ -323,7 +323,7 @@
                     <div class="text-gray-800 fs-6 fw-bold lh-1">{{auth('admin')->user()->fullName}}</div><!--end::Name-->
 
                     <!--begin::Major-->
-                    <span class="text-muted fw-semibold d-block fs-7 lh-1">{{auth('admin')->user()->roles->first()->name}}</span>
+                    <span class="text-muted fw-semibold d-block fs-7 lh-1">{{auth('admin')->user()->roles->first()->name ?? ''}}</span>
                     <!--end::Major-->
                 </div>
                 <!--end::User info-->
@@ -365,7 +365,7 @@
                             <div class="d-flex flex-column">
                                 <div class="fw-bold d-flex align-items-center fs-5">{{auth('admin')->user()->fullName}}
                                     <span
-                                        class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{auth('admin')->user()->roles->first()->name}}</span>
+                                        class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">{{auth('admin')->user()->roles->first()->name ?? ''}}</span>
                                 </div>
                                 <a href="#"
                                     class="fw-semibold text-muted text-hover-primary fs-7">{{auth('admin')->user()->email}}</a>

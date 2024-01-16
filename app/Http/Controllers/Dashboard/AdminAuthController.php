@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRegisterRequest;
 use App\Http\Requests\Auth\AdminAuthRequest;
 use App\Http\Services\Auth\AdminAuthService;
 use Illuminate\Contracts\Foundation\Application;
@@ -46,6 +47,12 @@ class AdminAuthController extends Controller
     {
         $data = $request->validated();
         $this->adminAuthService->login($data);
+    }
+
+    public function register(AdminRegisterRequest $request)
+    {
+        $data = $request->validated();
+        $this->adminAuthService->register($data);
     }
 
     /**

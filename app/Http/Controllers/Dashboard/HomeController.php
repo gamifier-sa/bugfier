@@ -41,7 +41,17 @@ class HomeController extends Controller
         $countAwards   = Number::format(Award::count());
         $countStatuses = Number::format(Status::count());
 
-
+        $countAdminsActive    = $this->getAdminCountByStatus('active');
+        $countAdminsPending   = $this->getAdminCountByStatus('pending');
+        $countAdminsBlock     = $this->getAdminCountByStatus('block');
         return view('dashboard.home', get_defined_vars());
+    }
+
+    /**
+     * @param $status
+     * @return false|string
+     */
+    public function getAdminCountByStatus($status) {
+        return Number::format(Admin::where('status', $status)->count());
     }
 }

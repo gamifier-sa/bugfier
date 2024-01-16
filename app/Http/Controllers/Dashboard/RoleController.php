@@ -68,7 +68,7 @@ class RoleController extends Controller
         $abilities   = $this->abilityRepository->findBy(request());
         $modules     = $this->modules;
         if (!$request->ajax())
-            return view('dashboard.roles.show', compact('role', 'abilities', 'modules'));
+            return view('dashboard.roles.show', get_defined_vars());
         else
             return response()->json([
                 'name_ar'        => $role['name_ar'],

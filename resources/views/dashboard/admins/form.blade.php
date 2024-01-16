@@ -40,9 +40,9 @@
 
         <!-- begin :: Column -->
         <div class="col-md-6 fv-row">
-            <label class="fs-5 fw-bold mb-2 required">{{ __("Phone") }}</label>
+            <label class="fs-5 fw-bold mb-2  @if(!request()->segment(4) == 'edit') required @endif">{{ __("Phone") }}</label>
             <div class="form-floating">
-                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{10}" value="{{old('phone', $admin->phone)}}" required/>
+                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{10}" value="{{old('phone', $admin->phone)}}"  @if(!request()->segment(4) == 'edit') required @endif/>
                 <label for="phone_inp">{{ __("Enter the phone") }}</label>
             </div>
             <p class="invalid-feedback" id="phone" ></p>
@@ -81,12 +81,26 @@
     <div class="row mb-8 p-5">
         <!-- begin :: Column -->
         <div class="col-md-6 fv-row">
+            <label class="fs-5 fw-bold mb-2" for="roles-sp">{{ __("Status") }}</label>
+            <select class="form-select" data-control="select2" name="status" id="status-sp" data-placeholder="{{ __("Choose the status") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+                <option></option>
+                @foreach($statuses as $status)
+                    <option @selected(old('status', $admin->status) == $status->value) value="{{ $status->value}}">{{ __($status->name) }}</option>
+                @endforeach
+            </select>
+            <p class="invalid-feedback" id="status" ></p>
+        </div><!-- end   :: Column -->
+
+
+
+        <!-- begin :: Column -->
+        <div class="col-md-6 fv-row">
             <label class="fs-5 fw-bold mb-2 @if(!request()->segment(4) == 'edit') required @endif" for="roles-sp">{{ __("Roles") }}</label>
             <select class="form-select" data-control="select2" name="roles[]" @if(!request()->segment(4) == 'edit') required @endif multiple id="roles-sp" data-placeholder="{{ __("Choose the roles") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
                 @foreach( $roles as $role)
                     <option {{ old('roles') && in_array($role->id, old('roles')) ? 'selected' : (in_array($role->id, $admin->roles->pluck('id')->toArray()) ? 'selected' : '') }} value="{{ $role->id }}"> {{ $role->name }} </option>
                 @endforeach
             </select>
-            <p class="invalid-feedback" id="roles-sp" ></p>
+            <p class="invalid-feedback" id="roles" ></p>
         </div><!-- end   :: Column -->
     </div><!-- end   :: Row -->
