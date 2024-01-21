@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 class Award extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
-        'id', 'title','description','point','images'
+        'id', 'title_ar', 'title_en', 'description_ar', 'description_en', 'point','images'
     ];
 
     public       $timestamps         = true;
@@ -22,7 +22,7 @@ class Award extends Model
     protected $with = [];
 
 
-    protected $appends = ['create_since'];
+    protected $appends = ['create_since', 'title', 'description'];
 
     /**
      * @return null
@@ -31,4 +31,21 @@ class Award extends Model
     {
         return $this->created_at?->diffForHumans();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleAttribute() : mixed
+    {
+        return (getLocale() == 'ar'? $this->title_ar : $this->title_en);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescriptionAttribute() : mixed
+    {
+        return (getLocale() == 'ar'? $this->description_ar : $this->description_en);
+    }
+
 }

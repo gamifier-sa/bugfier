@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->string('title_ar');
+            $table->string('title_en');
+            $table->text('description_ar')->nullable();
+            $table->text('description_en')->nullable();
             $table->integer('point');
             $table->text('images')->nullable();
             $table->timestamps();

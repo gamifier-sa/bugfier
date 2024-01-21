@@ -23,24 +23,3 @@ function alertUploadFileHtml(){
             </div>
         ";
 }
-
-
-
-
-if(!function_exists('abilities')){
-    function abilities()
-    {
-        if(is_null( cache()->get('abilities') ))
-        {
-            $abilities = Cache::remember('abilities', 60, function() {
-                return auth('employee')->user()->abilities();
-            });
-        }else
-        {
-            $abilities = cache()->get('abilities');
-        }
-
-
-        return $abilities;
-    }
-}

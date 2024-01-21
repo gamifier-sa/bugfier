@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title_ar');
+            $table->string('title_en');
             $table->boolean('is_default')->default(false);
             $table->timestamps();
             $table->softDeletes();

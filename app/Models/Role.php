@@ -2,19 +2,14 @@
 
 namespace App\Models;
 
-use App\Http\Scopes\WithoutDefaultRole;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes, Relations\BelongsToMany};
 
 
 class Role extends Model
 {
-
     use SoftDeletes;
+
     /**
      * @var string[]
      */

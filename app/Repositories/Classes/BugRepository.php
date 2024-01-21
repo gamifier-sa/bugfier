@@ -49,7 +49,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
 
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(relations: ['project' => ['id', 'title'], 'admin' => ['id', 'name_ar','name_en'], 'status' => ['id', 'title']], orderBy: $request->order);
+        return $this->all(relations: ['project' => ['id', 'title_ar','title_en'], 'admin' => ['id', 'name_ar','name_en'], 'status' => ['id', 'title_ar', 'title_en']], orderBy: $request->order);
     }
 
     /**
@@ -105,5 +105,16 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
     public function destroy($id): mixed
     {
         return $this->delete($id);
+    }
+
+    /**
+     * @param $id
+     * @param $key
+     * @param $value
+     * @return Collection|mixed
+     */
+    public function updateExp($id, $key, $value) : mixed
+    {
+        return $this->updateValue($id, $key, $value);
     }
 }

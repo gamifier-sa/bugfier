@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -63,9 +64,14 @@ class SettingController extends Controller
         //
     }
 
-    public function changeMode($mode)
+    /**
+     * @param $language
+     * @return RedirectResponse
+     */
+    public function changeLang($language)
     {
-        session()->put('theme_mode', $mode);
+        session()->put('theme_lang', $language);
+
         return redirect()->back();
     }
 }

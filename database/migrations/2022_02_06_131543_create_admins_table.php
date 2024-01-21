@@ -21,6 +21,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->unique()->nullable();
             $table->string('password');
             $table->string('image')->nullable();
+            $table->integer('level_id')->nullable();
             $table->enum('status', ['active', 'pending', 'block'])->default('pending');
             $table->rememberToken();
             $table->timestamps();

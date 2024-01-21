@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\{AdminAuthController,
     AwardController,
     BugController,
     HomeController,
+    LevelController,
     ProjectController,
     RoleController,
     SettingController,
@@ -13,7 +14,7 @@ use App\Http\Controllers\Dashboard\{AdminAuthController,
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/change-theme-mode/{mode}',[SettingController::class,'changeMode'])->name('change-language');
+Route::get('/change-theme-lang/{lang}',[SettingController::class,'changeLang'])->name('change-language');
 Route::group([
     'prefix'      => 'dashboard',
     'as'         => 'dashboard.',
@@ -30,8 +31,12 @@ Route::group([
     Route::resource('users', UserController::class);
     Route::resource('projects', ProjectController::class);
     Route::resource('bugs', BugController::class);
+    Route::get('bugs-update-exp/{id}/edit', [BugController::class, 'updateExpForm'])->name('bug.update-exp-form');
+    Route::put('bug-update-exp/{id}', [BugController::class, 'updateExp'])->name('bug.exp-update');
+
     Route::resource('awards', AwardController::class);
     Route::resource('statuses', StatusController::class);
+    Route::resource('levels', LevelController::class);
     Route::resource('settings', SettingController::class)->only(['index', 'store', 'changeMode']);
 
     Route::view('edit-profile', 'dashboard.admins.edit-profile')->name('edit-profile');

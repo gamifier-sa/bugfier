@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany};
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 
 class Admin extends Authenticatable
 {
-    use Notifiable;
+    use SoftDeletes;
 
     protected $fillable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status'
+        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status', 'level_id'
     ];
     public       $timestamps         = true;
     public array $searchRelationShip = [];
@@ -86,6 +83,14 @@ class Admin extends Authenticatable
     public function bugs() : HasMany
     {
         return $this->hasMany(Bug::class, 'created_by');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function level() : BelongsTo
+    {
+        return $this->belongsTo(Level::class);
     }
 
     /**

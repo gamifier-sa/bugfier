@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title') {{__("Edit"). ' - '. $project->title}} @endsection
+@section('title') {{__("Show"). ' - '. $project->title}} @endsection
 @section('content')
 
     @component('components.dashboard.breadcrumb')

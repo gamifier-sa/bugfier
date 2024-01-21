@@ -56,7 +56,7 @@
         <label class="fs-5 fw-bold mb-2 @if(!request()->segment(4) == 'edit') required @endif">{{ __("Images") }}</label>
         <div class="form-floating">
             <input type="file" class="form-control" multiple id="images_inp" @if(!request()->segment(4) == 'edit') required @endif name="images[]" autocomplete="off"/>
-            <label for="images_inp">{{ __("Enter the images") }}</label>
+            <label for="images_inp">{{ __("Attach the Photos") }}</label>
         </div>
         <p class="invalid-feedback" id="images"></p>
     </div><!-- end   :: Column -->
@@ -69,7 +69,7 @@
             <div class="col-md-6 fv-row">
                 <label class="fs-5 fw-bold mb-2" for="responsible_admin">{{ __("Responsible") }}</label>
                 <select class="form-control select-2-with-image" data-control="select2" name="responsible_admin" id="responsible_admin_inp" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
-                    <option selected disabled >{{__('Choose')}}</option>
+                    <option selected disabled >{{__('Please Choose')}}</option>
                     @foreach($admins as $row)
                         <option @selected(old('responsible_admin', $bug->responsible_admin) == $row->id) value="{{$row->id}}">{{$row->name_en}}</option>
                     @endforeach
@@ -92,3 +92,4 @@
         <p class="invalid-feedback" id="status_id" ></p>
     </div><!-- begin :: Column -->
 </div><!-- end   :: Column -->
+

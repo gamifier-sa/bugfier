@@ -14,7 +14,7 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
      */
 
     protected array $fieldSearchable = [
-        'id', 'title', 'description', 'point'
+        'id', 'title_ar', 'title_en', 'description_ar', 'description_en', 'point'
     ];
 
     /**

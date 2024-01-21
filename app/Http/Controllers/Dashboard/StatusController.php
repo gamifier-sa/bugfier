@@ -9,7 +9,14 @@ use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
+    /**
+     * @var StatusRepository
+     */
     protected StatusRepository $statusRepository;
+
+    /**
+     * @param StatusRepository $statusRepository
+     */
     public function __construct(StatusRepository $statusRepository)
     {
         $this->statusRepository = $statusRepository;
@@ -53,7 +60,7 @@ class StatusController extends Controller
     {
         $this->authorize('update_statuses');
         $status = $this->statusRepository->show($id);
-        return view('dashboard.statuses.edit', compact('status'));
+        return view('dashboard.statuses.edit', get_defined_vars());
     }
 
     /**

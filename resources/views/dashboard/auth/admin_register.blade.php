@@ -23,7 +23,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Input-->
-                        <input class="form-control bg-transparent" type="text" name="name_ar" placeholder="{{__('Enter Name Arabic')}}" autocomplete="off" />
+                        <input class="form-control bg-transparent" type="text" name="name_ar" placeholder="{{__('Enter the name in arabic')}}" required autocomplete="off" />
                         <p class="invalid-feedback" id="name_ar"></p><!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -32,7 +32,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Input-->
-                        <input class="form-control bg-transparent" type="text" name="name_en" placeholder="{{__('Enter Name English')}}" autocomplete="off" />
+                        <input class="form-control bg-transparent" type="text" name="name_en" placeholder="{{__('Enter the name in english')}}" required autocomplete="off" />
                         <p class="invalid-feedback" id="name_en"></p><!--end::Input-->
                     </div>
 
@@ -42,7 +42,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Input-->
-                        <input class="form-control bg-transparent" type="email" name="email" placeholder="{{__('Enter Email Address')}}" autocomplete="off" />
+                        <input class="form-control bg-transparent" type="email" name="email" placeholder="{{__('Enter the email')}}" autocomplete="off" />
                         <p class="invalid-feedback" id="email"></p><!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -52,7 +52,7 @@
                         <div class="mb-1">
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
-                                <input class="form-control bg-transparent" type="password" placeholder="Password" name="password" autocomplete="off" />
+                                <input class="form-control bg-transparent" type="password" placeholder="{{__('Password')}}" name="password" autocomplete="off" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                     <i class="bi bi-eye-slash fs-2"></i>
                                     <i class="bi bi-eye fs-2 d-none"></i>
@@ -71,14 +71,14 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Hint-->
-                        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers & symbols.</div>
+                        <div class="text-muted">{{__('Use 8 or more characters with a mix of letters, numbers & symbols.')}}</div>
                         <!--end::Hint-->
                     </div>
                     <!--end::Input group=-->
                     <!--end::Input group=-->
                     <div class="fv-row mb-8">
                         <!--begin::Repeat Password-->
-                        <input placeholder="Repeat Password" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent" />
+                        <input placeholder="{{__('Password confirmation')}}" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent" />
                         <!--end::Repeat Password-->
                     </div>
                     <!--end::Input group=-->
@@ -88,7 +88,7 @@
 
                         <button type="submit" id="submit-btn" class="btn btn-lg btn-primary w-100 mb-5" data-kt-indicator="">
                                 <span class="indicator-label">
-                                    {{ __('Sign In') }}
+                                    {{ __('Sign up') }}
                                 </span>
 
                             <span class="indicator-progress">
@@ -100,7 +100,7 @@
 
                         <!--begin::Sign up-->
                         <div class="text-gray-500 text-center fw-semibold fs-6">{{__('Already have an Account?')}}
-                            <a href="{{route('login-form')}}" class="link-primary">{{__('Sign in')}}</a>
+                            <a href="{{route('login-form')}}" class="link-primary">{{__('Login')}}</a>
                         </div>
                         <!--end::Sign up-->
                     </div>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->integer('point')->nullable();
+            $table->integer('exp')->nullable();
             $table->foreignId('created_by')->constrained('admins')->onDelete('cascade');
             $table->integer('responsible_admin')->nullable();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');

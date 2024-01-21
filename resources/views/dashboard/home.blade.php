@@ -103,7 +103,7 @@
                 <!--begin::Info-->
                 <div class="text-center">
                     <!--begin::Value-->
-                    <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
+                    <div class="fs-lg-2hx fs-2x fw-bold text-gray-500 d-flex flex-center">
                         <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="{{$countAdminsActive}}">0</div>
                     </div><!--end::Value-->
 
@@ -131,7 +131,7 @@
                 <!--begin::Info-->
                 <div class="text-center">
                     <!--begin::Value-->
-                    <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
+                    <div class="fs-lg-2hx fs-2x fw-bold text-gray-500 d-flex flex-center">
                         <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="{{$countAdminsPending}}">0</div>
                     </div><!--end::Value-->
 
@@ -160,7 +160,7 @@
                 <!--begin::Info-->
                 <div class="text-center">
                     <!--begin::Value-->
-                    <div class="fs-lg-2hx fs-2x fw-bold text-white d-flex flex-center">
+                    <div class="fs-lg-2hx fs-2x fw-bold text-gray-500 d-flex flex-center">
                         <div class="min-w-70px" data-kt-countup="true" data-kt-countup-value="{{$countAdminsBlock}}">0</div>
                     </div><!--end::Value-->
 
@@ -314,7 +314,7 @@
                     </span>
                         <!--end::Svg Icon-->
                         <div class="text-white fw-bold fs-2 mb-2 mt-5">{{$countStatuses}}</div>
-                        <div class="fw-semibold text-white">{{__('Status')}}</div>
+                        <div class="fw-semibold text-white">{{__('Statuses')}}</div>
                     </div>
                     <!--end::Body-->
                 </a>

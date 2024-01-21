@@ -108,6 +108,18 @@ class BugController extends Controller
         $this->bugRepository->destroy($id);
     }
 
+    public function updateExpForm($id)
+    {
+        $bug = $this->bugRepository->show($id);
+        return view('dashboard.bugs.update-exp', get_defined_vars());
+
+    }
+
+    public function updateExp($id)
+    {
+        $this->bugRepository->updateExp($id, 'exp', request('exp'));
+    }
+
 
     /**
      * @return array

@@ -13,7 +13,6 @@ class ProjectController extends Controller
     public function __construct(ProjectRepository $projectRepository)
     {
         $this->projectRepository = $projectRepository;
-
     }
     /**
      * Display a listing of the resource.
@@ -53,7 +52,7 @@ class ProjectController extends Controller
     {
         $this->authorize('show_projects');
         $project = $this->projectRepository->show($id);
-        return view('dashboard.projects.show', compact('project'));
+        return view('dashboard.projects.show', get_defined_vars());
 
     }
 
@@ -64,7 +63,7 @@ class ProjectController extends Controller
     {
         $this->authorize('update_projects');
         $project = $this->projectRepository->show($id);
-        return view('dashboard.projects.edit', compact('project'));
+        return view('dashboard.projects.edit', get_defined_vars());
     }
 
     /**

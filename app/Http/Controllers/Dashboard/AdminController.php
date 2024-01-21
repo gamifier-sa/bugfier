@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AdminRequest;
 use App\Http\Requests\Dashboard\UpdateProfileRequest;
 use App\Repositories\Classes\AdminRepository;
+use App\Repositories\Classes\LevelRepository;
 use App\Repositories\Classes\RoleRepository;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,12 @@ class AdminController extends Controller
 {
     protected AdminRepository $adminRepository;
     protected RoleRepository $roleRepository;
-    public function __construct(AdminRepository $adminRepository, RoleRepository $roleRepository)
+    protected LevelRepository $levelRepository;
+    public function __construct(AdminRepository $adminRepository, RoleRepository $roleRepository, LevelRepository $levelRepository)
     {
         $this->adminRepository = $adminRepository;
         $this->roleRepository  = $roleRepository;
+        $this->levelRepository = $levelRepository;
     }
 
     /**
@@ -31,6 +34,7 @@ class AdminController extends Controller
             return response()->json($admins);
         }
         $statuses = Status::cases();
+        $levels   = $this->levelRepository->list();
         return view('dashboard.admins.index', get_defined_vars());
     }
 
@@ -42,6 +46,7 @@ class AdminController extends Controller
         $this->authorize('create_admins');
         $roles    = $this->roleRepository->findBy();
         $statuses = Status::cases();
+        $levels   = $this->levelRepository->list();
         return view('dashboard.admins.create', get_defined_vars());
     }
 
@@ -71,6 +76,7 @@ class AdminController extends Controller
         $admin    = $this->adminRepository->show($id);
         $roles    = $this->roleRepository->findBy();
         $statuses = Status::cases();
+        $levels   = $this->levelRepository->list();
         return view('dashboard.admins.edit', get_defined_vars());
     }
 

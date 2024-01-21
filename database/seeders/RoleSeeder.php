@@ -23,12 +23,14 @@ class RoleSeeder extends Seeder
             'bugs',
             'awards',
             'statuses',
+            'levels',
         ];
 
         $bugsActions = [
             'show',
             'update_point',
             'responsible_admin',
+            'update_exp'
         ];
 
         $projectActions = [

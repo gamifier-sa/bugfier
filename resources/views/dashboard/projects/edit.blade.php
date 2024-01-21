@@ -17,14 +17,23 @@
             <form action="{{ route('dashboard.projects.update', $project->id) }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.projects.index') }}">
                 @csrf
                 @method('PUT')
-                <!-- begin :: Card header -->
-                <div class="card-header d-flex align-items-center">
-                    <h3 class="fw-bolder text-dark">{{ __("Edit An Projects")}}</h3>
-                </div><!-- end   :: Card header -->
+                <div class="card">
+                    <div class="card-header card-header-stretch">
+                        <h3 class="card-title">{{__('Add New Project')}}</h3>
+                        <div class="card-toolbar">
+                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                                <li class="nav-item">
+                                    <a class="nav-link @if(getLocale() == 'ar') active @endif" data-bs-toggle="tab" href="#arabic">{{__('Arabic')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @if(getLocale() == 'en') active @endif" data-bs-toggle="tab" href="#english">{{__('English')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    <!-- begin :: Inputs wrapper -->
-                    <div class="inputs-wrapper">
                     @include('dashboard.projects.form')
+                </div>
 
                 <!-- begin :: Form footer -->
                 <div class="form-footer">
@@ -53,6 +62,15 @@
     <script>
         ClassicEditor
             .create(document.querySelector('#kt_docs_ckeditor_classic'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#kt_docs_ckeditor_classic2'))
             .then(editor => {
                 console.log(editor);
             })

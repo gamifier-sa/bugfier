@@ -2,15 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\{Model, Relations\HasMany, SoftDeletes};
 
 class Status extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * @var string[]
+     */
     protected $fillable = [
-        'id', 'title','is_default'
+        'id', 'title_ar', 'title_en', 'is_default'
     ];
+
+    /**
+     * @var bool
+     */
     public $timestamps = true;
+
+    /**
+     * @var array
+     */
     public array $searchRelationShip = [];
 
     /**
@@ -26,10 +38,11 @@ class Status extends Model
      * @var string[]
      */
     public array $searchConfig = [
-        'title' => 'like',
+        'title_ar' => 'like',
+        'title_en' => 'like',
     ];
 
-    protected $appends = ['create_since'];
+    protected $appends = ['create_since', 'title'];
 
     /**
      * @return null
@@ -47,4 +60,12 @@ class Status extends Model
         return $this->hasMany(Bug::class, 'status_id');
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getTitleAttribute() : mixed
+    {
+        return (getLocale() == 'ar'? $this->title_ar : $this->title_en);
+    }
 }

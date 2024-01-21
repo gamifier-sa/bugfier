@@ -14,12 +14,8 @@ class RoleController extends Controller
      * @var string[]
      */
     public array $modules = [
-        'admins',
-        'roles',
-        'projects',
-        'bugs',
-        'awards',
-        'statuses',
+        'admins', 'roles', 'projects', 'bugs',
+        'awards', 'statuses', 'levels',
     ];
 
     protected RoleRepository       $roleRepository;
@@ -38,7 +34,8 @@ class RoleController extends Controller
         $this->authorize('view_roles');
         $roles     = $this->roleRepository->findBy(['abilities' => ['id','category','action'] ,'admins' => ['id']]);
         $abilities = $this->abilityRepository->findBy($request);
-        return view('dashboard.roles.index',compact('roles','abilities'),['modules' => $this->modules]);
+        $modules   = $this->modules;
+        return view('dashboard.roles.index', get_defined_vars());
     }
 
     /**

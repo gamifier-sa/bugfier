@@ -1,7 +1,6 @@
 <script>
     let imagesBasePath  = "{{ asset('/storage/Images') }}";
     let locale          = "{{ getLocale() }}";
-    let ordersStatuses  = @json( settings()->get('orders_statuses') );
 </script>
 <script src="{{asset('dashboard-assets/plugins/global/plugins.bundle.js')}}"></script>
 <script src="{{asset('dashboard-assets/js/scripts.bundle.js')}}"></script>

@@ -53,7 +53,7 @@ class AwardController extends Controller
     {
          $this->authorize('show_awards');
         $award = $this->awardRepository->show($id);
-        return view('dashboard.awards.show', compact('award'));
+        return view('dashboard.awards.show', get_defined_vars());
     }
 
     /**
@@ -63,7 +63,7 @@ class AwardController extends Controller
     {
         $this->authorize('update_awards');
         $award = $this->awardRepository->show($id);
-        return view('dashboard.awards.edit', compact('award'));
+        return view('dashboard.awards.edit', get_defined_vars());
     }
 
     /**

@@ -109,14 +109,14 @@
 
                                             <!-- begin :: Column -->
                                             <div class="col-md-6 fv-row">
-                                                <label class="fs-5 fw-bold mb-2">{{ __("Name in arabic") }}</label>
+                                                <label class="fs-5 fw-bold mb-2">{{ __("Name In Arabic") }}</label>
                                                 <input type="text" class="form-control gui-input" id="name_ar_inp_edit" name="name_ar" value="{{ $role['name_ar'] }}" />
                                                 <p class="invalid-feedback" id="name_ar_edit" ></p>
                                             </div><!-- end   :: Column -->
 
                                             <!-- begin :: Column -->
                                             <div class="col-md-6 fv-row">
-                                                <label class="fs-5 fw-bold mb-2">{{ __("Name in english") }}</label>
+                                                <label class="fs-5 fw-bold mb-2">{{ __("Name In English") }}</label>
                                                 <input type="text" class="form-control en-input" id="name_en_inp_edit" name="name_en" value="{{ $role['name_en'] }}" />
                                                 <p class="invalid-feedback" id="name_en_edit" ></p>
                                             </div><!-- end   :: Column -->
@@ -253,8 +253,8 @@
                         <thead>
                         <tr class="text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th>#</th>
-                            <th>{{ __("admin") }}</th>
-                            <th>{{ __("date") }}</th>
+                            <th>{{ __("Admin") }}</th>
+                            <th>{{ __("Date") }}</th>
                         </tr>
                         </thead>
 
@@ -266,7 +266,7 @@
                                 <td>{{ $admin->created_at->format('Y-m-d') }}</td>
                             </tr>
                             @endforeach
-                            
+
                         </tbody>
                     </table>
                     <!-- end   :: Datatable -->

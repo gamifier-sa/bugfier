@@ -13,7 +13,7 @@ class StatusRepository extends BasicRepository implements IAdminRepository, IMai
      * @var array
      */
     protected array $fieldSearchable = [
-        'id', 'title'
+        'id', 'title_ar', 'title_en'
     ];
 
     /**

@@ -4,18 +4,22 @@ namespace App\Http\Classes;
 
 class AppSetting
 {
-   private $settingsFile;
-   private $settings;
+   private string|false $settingsFile;
+   private mixed  $settings;
 
-   function __construct() // initialize settingsFile ( string ) && initialize settings array variables
+
+   function __construct()
    {
        $this->settingsFile = $this->getFile();
        $this->settings     = json_decode($this->settingsFile,true);
    }
 
-   public function get( $key = null ) // get setting with specific key or get all settings if the key is null
+    /**
+     * @param string|null $key
+     * @return mixed|null
+     */
+   public function get(?string $key = null ) : mixed
    {
-
        if ( $key )
            return $this->settings[$key] ?? null;
        else
@@ -23,34 +27,45 @@ class AppSetting
 
    }
 
-    public function set($key,$value) // set a new key with the given value
+    /**
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
+    public function set($key, $value) : mixed // set a new key with the given value
     {
-
         $this->settings[$key] = $value;
         $this->saveFile();
         return $this->settings;
-
     }
 
-    public function remove($key) // remove the entry with the given key ( return null if the key not exist else return the entire array)
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
+    public function remove(string $key) : mixed // remove the entry with the given key ( return null if the key not exist else return the entire array)
     {
         if (array_key_exists($key , $this->settings)) {
             unset($this->settings[$key]);
             $this->saveFile();
             return $this->settings;
         }
-
         return null;
-
     }
 
-    private function getFile() : string // get the file content ( string )
+    /**
+     * @return false|string
+     */
+    private function getFile() : bool|string // get the file content ( string )
     {
         $filePath = public_path('settings.json');
         return file_get_contents( $filePath );
     }
 
-    private function saveFile() // decode the file content and overwrite the old content
+    /**
+     * @return void
+     */
+    private function saveFile() : void // decode the file content and overwrite the old content
     {
         $filePath    = public_path('settings.json');
         $fileContent = json_encode( $this->settings );

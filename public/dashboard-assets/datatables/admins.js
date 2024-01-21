@@ -43,12 +43,13 @@ let KTDatatable = function () {
                 {data: 'phone'},
                 {data: 'email'},
                 {data: null},
+                {data: 'level.name'},
                 {data: 'create_since'},
                 {data: null},
             ],
             columnDefs: [
                 {
-                    targets: -3,
+                    targets: -4,
                     data: null,
                     render: function (data, type, row) {
                         if (row.status === 'active')

@@ -142,14 +142,14 @@
                             <div class="row mb-8">
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp">{{ __("Name in arabic") }}</label>
+                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp">{{ __("Name In Arabic") }}</label>
                                     <input type="text" class="form-control gui-input" name="name_ar" id="name_ar_inp"/>
                                     <p class="invalid-feedback" id="name_ar" ></p>
                                 </div><!-- end   :: Column -->
 
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp">{{ __("Name in english") }}</label>
+                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp">{{ __("Name In English") }}</label>
                                     <input type="text" class="form-control en-input" name="name_en" id="name_en_inp" />
                                     <p class="invalid-feedback" id="name_en" ></p>
                                 </div><!-- end   :: Column -->
@@ -287,7 +287,7 @@
 
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp_edit">{{ __("Name in arabic") }}</label>
+                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp_edit">{{ __("Name In Arabic") }}</label>
                                     <input type="text" class="form-control gui-input" id="name_ar_inp_edit" name="name_ar" />
                                     <p class="invalid-feedback" id="name_ar_edit" ></p>
                                 </div>
@@ -295,7 +295,7 @@
 
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp_edit">{{ __("Name in english") }}</label>
+                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp_edit">{{ __("Name In English") }}</label>
                                     <input type="text" class="form-control en-input" id="name_en_inp_edit" name="name_en" />
                                     <p class="invalid-feedback" id="name_en_edit" ></p>
                                 </div>

@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title') {{__("Edit"). ' - '. $award->title}} @endsection
+@section('title') {{__("Show"). ' - '. $award->title}} @endsection
 @section('content')
 
     @component('components.dashboard.breadcrumb')
@@ -63,7 +63,7 @@
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Points</div><!--end::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Points')}}</div><!--end::Label-->
                         </div><!--end::Stat-->
                     </div><!--end::Info-->
 

@@ -4,6 +4,7 @@
 namespace App\Repositories\Classes;
 
 use Illuminate\Container\Container as Application;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ChangeTrait;
 use App\Traits\LanguageTrait;
@@ -240,7 +241,7 @@ abstract class BasicRepository
      * @param          $id
      * @param string[] $column
      * @param array    $withRelations
-     * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
     public function find($id, $column = ['*'], $withRelations = [])
     {
@@ -264,7 +265,7 @@ abstract class BasicRepository
     /**
      * @param      $request
      * @param null $id
-     * @return Builder|Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
     public function save($request, $id = null)
     {
@@ -276,11 +277,12 @@ abstract class BasicRepository
     /**
      * @param $id
      * @param $key
-     * @return \Illuminate\Database\Eloquent\Collection|mixed
+     * @param $value
+     * @return Collection|mixed
      */
-    public function updateValue($id, $key)
+    public function updateValue($id, $key, $value) : mixed
     {
-        return $this->change($this->find($id), $key);
+        return $this->change($this->find($id), $key, $value);
     }
 
     /**

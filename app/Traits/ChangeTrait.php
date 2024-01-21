@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait ChangeTrait
 {
-    public function change($datas,$key = 'status')
+
+    /**
+     * @param $dataset
+     * @param $key
+     * @param $value
+     * @return Collection|mixed
+     */
+    public function change($dataset, $key, $value) : mixed
     {
-        if ($datas instanceof Collection) {
-            foreach ($datas as $data) {
-                $data[$key] = ($data[$key] == 1 ? 0 : 1);
+        if ($dataset instanceof Collection) {
+            foreach ($dataset as $data) {
+                $data[$key] = $value;
                 $data->update();
             }
         } else {
-            $datas[$key] = ($datas[$key] == 1 ? 0 : 1);
-            $datas->update();
+            $dataset[$key] = $value;
+            $dataset->update();
         }
-        return $datas;
+        return $dataset;
     }
 }

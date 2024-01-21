@@ -86,7 +86,7 @@
                         <!--begin::Input group-->
 
                         <div class="row mb-6">
-                            <label class="col-lg-2 required fs-5 fw-bold mb-2 d-flex align-items-center">{{ __("Name arabic") }}</label>
+                                <label class="col-lg-2 required fs-5 fw-bold mb-2 d-flex align-items-center">{{ __("Name arabic") }}</label>
 
                             <div class="col-lg-10 form-floating">
                                 <input type="text" class="form-control" id="name_ar_inp" name="name_ar"  value="{{ auth()->user()->name_ar }}"/>

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo};
+use Illuminate\Database\Eloquent\{Model, Relations\BelongsTo, SoftDeletes};
 use Illuminate\Support\Facades\Auth;
 
 class Bug extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
-        'id', 'title', 'description', 'point', 'created_by', 'project_id',  'images','status_id','responsible_admin'
+        'id', 'title', 'description', 'point', 'exp', 'created_by', 'project_id',  'images','status_id','responsible_admin'
     ];
     public $timestamps = true;
     public array $searchRelationShip = [];
@@ -26,9 +27,10 @@ class Bug extends Model
      */
     public array $searchConfig = [
         'description' => 'like',
-        'title' => 'like',
-        'status_id' => 'like',
-        'project_id' => 'like',
+        'title'       => 'like',
+        'status_id'   => 'like',
+        'project_id'  => 'like',
+        'exp'         => 'like'
     ];
 
     protected $appends = ['create_since'];
@@ -85,4 +87,5 @@ class Bug extends Model
         return $this->belongsTo(Status::class);
     }
 
+    
 }

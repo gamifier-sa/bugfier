@@ -4,7 +4,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted fw-bold me-1">{{date("Y")}}©</span>
-            <a href="https://gamifiersa.com/" target="_blank" class="text-gray-800 text-hover-primary">By Gamifiersa</a>
+            {{__('By')}}<a href="https://gamifiersa.com/" target="_blank" class="text-gray-800 text-hover-primary"> Gamifiersa</a>
         </div>
         <!--end::Copyright-->
     </div>

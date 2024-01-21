@@ -1,6 +1,6 @@
 @extends('dashboard.auth.layouts.master')
 @section('title')
-    {{__('Admin login')}}
+    {{__('Login')}}
 @endsection
 @section('content')
     <!--begin::Body-->

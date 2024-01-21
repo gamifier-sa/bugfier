@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 @inject('status','App\Models\Status')
-@section('title') {{__("add new status")}} @endsection
+@section('title') {{__("Add New Status")}} @endsection
 
 @section('content')
     @component('components.dashboard.breadcrumb')
@@ -8,21 +8,29 @@
             <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1"><a href="{{ route('dashboard.statuses.index') }}" class="text-muted text-hover-primary">{{ __("Statuses") }}</a></h1><!-- end   :: Title -->
         @endslot
         <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{__('Add New Status')}}</li><!-- end   :: Item -->
+            <li class="breadcrumb-item text-muted">{{__('Add New Status')}}</li><!-- end   :: Item -->
     @endcomponent
 
     <div class="card mb-5 mb-xl-10">
         <!-- begin :: Card body -->
         <div class="card-body">
             <!-- begin :: Form -->
-            <form action="{{ route('dashboard.statuses.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.statuses.index') }}" autocomplete="off">
+            <form action="{{ route('dashboard.statuses.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.statuses.index') }}">
                 @csrf
-                <!-- begin :: Card header -->
-                <div class="card-header d-flex align-items-center">
-                    <h3 class="fw-bolder text-dark">{{ __("Add new Status") }}</h3>
-                </div><!-- end   :: Card header -->
-                      <!-- begin :: Inputs wrapper -->
-                <div class="inputs-wrapper">
+                <div class="card">
+                    <div class="card-header card-header-stretch">
+                        <h3 class="card-title">{{__('Add New Status')}}</h3>
+                        <div class="card-toolbar">
+                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
+                                <li class="nav-item">
+                                    <a class="nav-link @if(getLocale() == 'ar') active @endif" data-bs-toggle="tab" href="#arabic">{{__('Arabic')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @if(getLocale() == 'en') active @endif" data-bs-toggle="tab" href="#english">{{__('English')}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     @include('dashboard.statuses.form')
                 </div><!-- end   :: Inputs wrapper -->
 

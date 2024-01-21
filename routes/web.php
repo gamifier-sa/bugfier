@@ -14,21 +14,27 @@ use Illuminate\Support\Facades\{Artisan, Route};
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login-form');
-});
-Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
-Route::get('admin/register', [AdminAuthController::class,'registerForm'])->name('register-form');
+Route::group(['middleware' => [
+    'set_locale'
+]], function () {
+    Route::get('/', function () {
+        return redirect()->route('login-form');
+    });
+    Route::get('admin/login', [AdminAuthController::class,'loginForm'])->name('login-form');
+    Route::get('admin/register', [AdminAuthController::class,'registerForm'])->name('register-form');
 
-Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');
-Route::post('admin/register', [AdminAuthController::class,'register'])->name('admin.register');
-Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
+    Route::post('admin/login', [AdminAuthController::class,'login'])->name('admin.login');
+    Route::post('admin/register', [AdminAuthController::class,'register'])->name('admin.register');
+    Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
 
-Route::view('pending-register','dashboard.auth.pending_register')->name('pending.register');
-Route::get('/install', function () {
-    Artisan::call('route:cache');
-    Artisan::call('config:cache');
-    Artisan::call('migrate:fresh');
-    Artisan::call('db:seed');
-    Artisan::call('storage:link');
+    Route::view('pending-register','dashboard.auth.pending_register')->name('pending.register');
+    Route::get('/install', function () {
+        Artisan::call('route:cache');
+        Artisan::call('config:cache');
+        Artisan::call('migrate:fresh');
+        Artisan::call('db:seed');
+        Artisan::call('storage:link');
+
+        return redirect()->back();
+    });
 });

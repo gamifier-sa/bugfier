@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Status;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StatusSeeder extends Seeder
@@ -14,32 +13,38 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         Status::create([
-            'title'      => 'To Do',
+            'title_ar'      => 'تو دو',
+            'title_en'      => 'To Do',
             'is_default' => 1
         ]);
 
         Status::create([
-            'title'      => 'In Progress',
+            'title_ar'      => 'تحت العمل',
+            'title_en'      => 'In Progress',
             'is_default' => 0
         ]);
 
         Status::create([
-            'title'      => 'In Review',
+            'title_ar'      => 'تحت المراجعة',
+            'title_en'      => 'In Review',
             'is_default' => 0
         ]);
 
         Status::create([
-            'title'      => 'Closed',
+            'title_ar'      => 'مغلق',
+            'title_en'      => 'Closed',
             'is_default' => 0
         ]);
 
         Status::create([
-            'title'      => 'Reopen',
+            'title_ar'      => 'عاد فتحة',
+            'title_en'      => 'Reopen',
             'is_default' => 0
         ]);
 
         Status::create([
-            'title'      => 'Completed',
+            'title_ar'      => 'اكتمل',
+            'title_en'      => 'Completed',
             'is_default' => 0
         ]);
     }

@@ -14,7 +14,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
      * @var array
      */
     protected array $fieldSearchable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone'
+        'id', 'name_ar', 'name_en', 'email', 'phone', 'level_id'
     ];
 
     /**
@@ -47,7 +47,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
 
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(orderBy:$request->order);
+        return $this->all(relations: ['level' => ['id', 'name_ar', 'name_en', 'exp']], orderBy: $request->order);
     }
 
     /**
@@ -55,7 +55,6 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
      */
     public function store($data) : void
     {
-
         $data['password'] = bcrypt($data['password']);
         $user =  $this->create($data);
         $user->roles()->sync($data['roles']);

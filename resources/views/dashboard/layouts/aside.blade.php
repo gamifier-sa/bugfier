@@ -142,6 +142,45 @@
                 </div><!--end:Menu item-->
                 @endcan
 
+                @can('view_levels')
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('levels')}}">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+                        <span class="menu-icon">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+                            <span class="svg-icon svg-icon-5">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z"
+                                        fill="currentColor" />
+                                    <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <span class="menu-title">{{__('Levels')}}</span>
+                        <span class="menu-arrow"></span>
+                    </span><!--end:Menu link-->
+
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion">
+                        @can('view_levels')
+                        <!--begin:Menu item-->
+                        <div class="menu-item {{prefixShow('dashboard.levels.index')}}">
+                            <!--begin:Menu link-->
+                            <a class="menu-link" href="{{ route('dashboard.levels.index') }}" data-bs-toggle="tooltip"
+                                data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">{{ __("Levels") }}</span>
+                            </a><!--end:Menu link-->
+                        </div><!--end:Menu item-->
+                        @endcan
+                    </div><!--end:Menu sub-->
+                </div><!--end:Menu item-->
+                @endcan
+
                 @can('view_bugs')
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{prefixHoverShow('bugs')}}">
                     <!--begin:Menu link-->
@@ -434,51 +473,51 @@
 {{--                    <div class="separator my-2"></div>--}}
                     <!--end::Menu separator-->
 
-{{--                    <!--begin::Menu item-->--}}
-{{--                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"--}}
-{{--                        data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">--}}
-{{--                        <a href="#" class="menu-link px-5">--}}
-{{--                            <span class="menu-title position-relative">{{__('Language')}}--}}
-{{--                            @if(getLocale() == 'en')--}}
-{{--                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('English')}}--}}
-{{--                                    <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />--}}
-{{--                                </span>--}}
-{{--                            </span>--}}
-{{--                            @else--}}
-{{--                            <span--}}
-{{--                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('Arabic')}}--}}
-{{--                                <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />--}}
-{{--                            </span>--}}
+                    <!--begin::Menu item-->
+                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                        data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
+                        <a href="#" class="menu-link px-5">
+                            <span class="menu-title position-relative">{{__('Language')}}
+                            @if(getLocale() == 'en')
+                                <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('English')}}
+                                    <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />
+                                </span>
+                            </span>
+                            @else
+                            <span
+                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{__('Arabic')}}
+                                <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />
+                            </span>
 
-{{--                            @endif--}}
-{{--                        </a>--}}
-{{--                        <!--begin::Menu sub-->--}}
-{{--                        <div class="menu-sub menu-sub-dropdown w-175px py-4">--}}
-{{--                            <!--begin::Menu item-->--}}
-{{--                            <div class="menu-item px-3">--}}
-{{--                                <a href="{{route('change-language','en')}}"--}}
-{{--                                    class="menu-link d-flex px-5 @if(getLocale() == 'en') active @endif ">--}}
-{{--                                    <span class="symbol symbol-20px me-4">--}}
-{{--                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />--}}
-{{--                                    </span>{{__('English')}}--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                            <!--end::Menu item-->--}}
+                            @endif
+                        </a>
+                        <!--begin::Menu sub-->
+                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="{{route('change-language','en')}}"
+                                    class="menu-link d-flex px-5 @if(getLocale() == 'en') active @endif ">
+                                    <span class="symbol symbol-20px me-4">
+                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/united-states.svg')}}" alt="" />
+                                    </span>{{__('English')}}
+                                </a>
+                            </div>
+                            <!--end::Menu item-->
 
-{{--                            <!--begin::Menu item-->--}}
-{{--                            <div class="menu-item px-3">--}}
-{{--                                <a href="{{route('change-language','ar')}}"--}}
-{{--                                    class="menu-link d-flex px-5 @if(getLocale() == 'ar') active @endif ">--}}
-{{--                                    <span class="symbol symbol-20px me-4">--}}
-{{--                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />--}}
-{{--                                    </span>{{__('Arabic')}}--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                            <!--end::Menu item-->--}}
-{{--                        </div>--}}
-{{--                        <!--end::Menu sub-->--}}
-{{--                    </div>--}}
-{{--                    <!--end::Menu item-->--}}
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="{{route('change-language','ar')}}"
+                                    class="menu-link d-flex px-5 @if(getLocale() == 'ar') active @endif ">
+                                    <span class="symbol symbol-20px me-4">
+                                        <img class="rounded-1" src="{{asset('dashboard-assets/media/flags/egypt.svg')}}" alt="" />
+                                    </span>{{__('Arabic')}}
+                                </a>
+                            </div>
+                            <!--end::Menu item-->
+                        </div>
+                        <!--end::Menu sub-->
+                    </div>
+                    <!--end::Menu item-->
 
                     <!--begin::Menu item-->
                     <div class="menu-item px-5 my-1">

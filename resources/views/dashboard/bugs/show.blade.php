@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title') {{__("Edit"). ' - '. $bug->title}} @endsection
+@section('title') {{__("Show"). ' - '. $bug->title}} @endsection
 @section('content')
 
     @component('components.dashboard.breadcrumb')
@@ -64,7 +64,19 @@
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Points</div><!--end::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Points')}}</div><!--end::Label-->
+                        </div><!--end::Stat-->
+
+                        <!--begin::Stat-->
+                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                            <!--begin::Number-->
+                            <div class="d-flex align-items-center">
+
+                                <div class="fs-4 fw-bold" data-kt-countup="true" data-kt-countup-value="{{$bug->exp}}">0</div>
+                            </div><!--end::Number-->
+
+                            <!--begin::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Experience')}}</div><!--end::Label-->
                         </div><!--end::Stat-->
 
                         <!--begin::Stat-->
@@ -76,7 +88,7 @@
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Created By</div><!--end::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Created By')}}</div><!--end::Label-->
                         </div><!--end::Stat-->
 
                         @if($bug->responsible_admin)
@@ -89,7 +101,7 @@
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Responsible Admin</div><!--end::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Responsible Admin')}}</div><!--end::Label-->
                         </div><!--end::Stat-->
                         @endif
 
@@ -102,7 +114,7 @@
                             </div><!--end::Number-->
 
                             <!--begin::Label-->
-                            <div class="fw-semibold fs-6 text-gray-400">Project</div><!--end::Label-->
+                            <div class="fw-semibold fs-6 text-gray-400">{{__('Project')}}</div><!--end::Label-->
                         </div><!--end::Stat-->
                     </div><!--end::Info-->
 

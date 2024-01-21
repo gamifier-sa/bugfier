@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RoleRequest extends FormRequest
 {
@@ -15,12 +16,11 @@ class RoleRequest extends FormRequest
     }
 
     /**
-     * Set ruels validation on stonring
+     * Set rules validation on storing
      * @return array
      */
     protected function onCreate(): array
     {
-
         return [
             "name_ar"   => ['required', 'string', 'max:255', 'unique:roles'],
             "name_en"   => ['required', 'string', 'max:255', 'unique:roles'],
@@ -29,12 +29,11 @@ class RoleRequest extends FormRequest
     }
 
     /**
-     * Set ruels validation on updating
+     * Set rules validation on updating
      * @return array
      */
     protected function onUpdate(): array
     {
-
         return [
             "name_ar"      => ['required', 'string', 'max:255'],
             "name_en"      => ['required', 'string', 'max:255'],
@@ -45,7 +44,7 @@ class RoleRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, Rule|array|string>
      */
     public function rules(): array
     {

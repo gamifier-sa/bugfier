@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AwardRequest extends FormRequest
@@ -17,15 +18,17 @@ class AwardRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'title'       => 'required|min:3|max:199|string',
-            'description' => 'required|string|min:2',
-            'point'       => 'required|numeric',
-            'images'      => 'nullable'
+            'title_ar'       => 'required|min:3|max:199|string',
+            'title_en'       => 'required|min:3|max:199|string',
+            'description_en' => 'required|string|min:2',
+            'description_ar' => 'required|string|min:2',
+            'point'          => 'required|numeric',
+            'images'         => 'nullable'
         ];
     }
 }
