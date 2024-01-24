@@ -4,6 +4,7 @@ namespace App\Repositories\Classes;
 
 use App\Models\Ability;
 use App\Repositories\Interfaces\IMainRepository;
+use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 
 class AbilityRepository extends BasicRepository implements IMainRepository
 {
@@ -16,8 +17,10 @@ class AbilityRepository extends BasicRepository implements IMainRepository
 
     /**
      * Configure the Model
-     **/
-    public function model()
+     *
+     * @return string
+     */
+    public function model() : string
     {
         return Ability::class;
     }
@@ -25,32 +28,43 @@ class AbilityRepository extends BasicRepository implements IMainRepository
     /**
      * Return searchable fields
      *
-     * @return array
+     * @return array|string[]
      */
-    public function getFieldsSearchable()
+    public function getFieldsSearchable() : array
     {
         return $this->fieldSearchable;
     }
 
-    public function getFieldsRelationShipSearchable()
+    /**
+     * @return mixed
+     */
+    public function getFieldsRelationShipSearchable() : mixed
     {
         return $this->model->searchRelationShip;
     }
 
-    public function translationKey()
+    /**
+     * @return mixed
+     */
+    public function translationKey() : mixed
     {
         return $this->model->translationKey();
     }
 
-    public function findBy($request)
+    /**
+     * @param $request
+     * @return array|Builder[]|Collection
+     */
+    public function findBy($request) : Collection|array
     {
         return $this->all();
     }
 
     /**
      * @param $data
+     * @return void
      */
-    public function store($data)
+    public function store($data) : void
     {
         $role = $this->create(['name' => $data['name']]);
         $role->permissions()->attach($data['permissions']);
@@ -63,18 +77,19 @@ class AbilityRepository extends BasicRepository implements IMainRepository
 
     /**
      * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
-    public function show($id)
+    public function show($id) : Model|Collection|Builder|array|null
     {
         return $this->find($id);
     }
 
     /**
-     * @param      $request
-     * @param null $id
+     * @param $request
+     * @param $id
+     * @return void
      */
-    public function update($request, $id = null)
+    public function update($request, $id = null) : void
     {
         $role = $this->save(['name' => $request['name']], $id);
         $role->permissions()->sync($request['permissions']);
@@ -84,7 +99,8 @@ class AbilityRepository extends BasicRepository implements IMainRepository
      * @param $id
      * @return bool|mixed|null
      */
-    public function destroy($id){
+    public function destroy($id) : mixed
+    {
         return $this->delete($id);
     }
 }

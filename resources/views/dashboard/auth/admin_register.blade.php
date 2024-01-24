@@ -1,6 +1,6 @@
 @extends('dashboard.auth.layouts.master')
 @section('title')
-    {{__('Admin login')}}
+    {{__('Sign up')}}
 @endsection
 @section('content')
     <!--begin::Body-->
@@ -57,7 +57,7 @@
                                     <i class="bi bi-eye-slash fs-2"></i>
                                     <i class="bi bi-eye fs-2 d-none"></i>
                                 </span>
-                                <p class="invalid-feedback" id="email"></p>
+                                <p class="invalid-feedback" id="password"></p>
                             </div>
                             <!--end::Input wrapper-->
                             <!--begin::Meter-->
@@ -75,13 +75,7 @@
                         <!--end::Hint-->
                     </div>
                     <!--end::Input group=-->
-                    <!--end::Input group=-->
-                    <div class="fv-row mb-8">
-                        <!--begin::Repeat Password-->
-                        <input placeholder="{{__('Password confirmation')}}" name="password_confirmation" type="password" autocomplete="off" class="form-control bg-transparent" />
-                        <!--end::Repeat Password-->
-                    </div>
-                    <!--end::Input group=-->
+
                     <!--begin::Actions-->
                     <div class="text-center">
                         <!--begin::Submit button-->

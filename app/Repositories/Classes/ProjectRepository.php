@@ -4,6 +4,9 @@ namespace App\Repositories\Classes;
 
 use App\Models\Project;
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class ProjectRepository extends BasicRepository implements IAdminRepository, IMainRepository
@@ -43,7 +46,7 @@ class ProjectRepository extends BasicRepository implements IAdminRepository, IMa
         return $this->model->translationKey();
     }
 
-    public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
+    public function findBy(Request $request): Collection|array
     {
         return $this->all(orderBy:$request->order);
     }
@@ -61,18 +64,18 @@ class ProjectRepository extends BasicRepository implements IAdminRepository, IMa
     }
     /**
      * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
     public function show($id)
     {
         return $this->find($id);
     }
     /**
-     * @param      $request
-     * @param null $id
+     * @param $request
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
      */
-
-    public function update($request, $id = null)
+    public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         return $this->save($request, $id);
     }

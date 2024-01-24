@@ -13,10 +13,36 @@
 
     <!-- begin :: Row -->
     <div class="row">
+        <!-- begin :: Filter -->
+        <div class="m-8 d-flex flex-stack flex-wrap mb-15">
 
+            <!-- begin :: General Search -->
+            <form action="" method="get" class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
+                <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                       <i class="fa fa-search fa-lg" ></i>
+                </span>
+                <input type="text" class="form-control form-control-solid w-250px ps-15 border-gray-300 border-1" id="general-search-inp" placeholder="{{ __("Search ...") }}">
+            </form><!-- end   :: General Search -->
+
+
+            <!-- begin :: Toolbar -->
+            <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                @can('create_roles')
+                    <!-- begin :: Add Button -->
+                    <a href="{{ route('dashboard.roles.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" title="">
+
+                        <span class="svg-icon svg-icon-2">
+                            <i class="fa fa-plus fa-lg"></i>
+                        </span>
+                        {{ __("Add New Role") }}
+                    </a><!-- end   :: Add Button -->
+                @endcan
+            </div><!-- end   :: Toolbar -->
+
+        </div><!-- end   :: Filter -->
         <!-- begin :: Roles -->
 
-        @foreach( $roles as $role)
+        @foreach($roles as $role)
             <div class="col-md-4 my-10">
                 <!--begin::Card-->
                 <div class="card card-flush h-md-100">

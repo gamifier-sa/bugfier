@@ -22,9 +22,9 @@ class AdminRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar'              => 'required|string',
-            'name_en'              => 'required|string',
-            'email'                => 'required|email',
+            'name_ar'              => 'required|string|min:3|max:199',
+            'name_en'              => 'required|string|min:3|max:199',
+            'email'                => 'required|email:rfc,dns|unique:admins,email|max:255|min:9',
             'password'             => 'required|min:8',
 //            'password_confirmation' => 'required|min:8|confirmed:password'
         ];

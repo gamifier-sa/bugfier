@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -26,8 +27,8 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name_ar'     => ['required', 'string', 'max:255'],
             'name_en'     => ['required', 'string', 'max:255'],
-            'phone'       => ['required','numeric','unique:admins,id,' . auth()->id()],
-            'email'       => ['required','string', "email:rfc,dns",'unique:admins,id,' . auth()->id() ],
+            'phone'       => ['nullable','numeric', Rule::unique('admins')->ignore(auth()->id())],
+            'email'    => ['required', 'email', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('admins')->ignore(auth()->id())],
             'image'       => ['nullable', 'image'],
         ];
     }

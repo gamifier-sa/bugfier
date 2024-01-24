@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Repositories\Classes\{AbilityRepository, RoleRepository};
 use App\Http\Requests\Dashboard\RoleRequest;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{JsonResponse, RedirectResponse, Request};
 
 class RoleController extends Controller
 {
@@ -18,8 +20,20 @@ class RoleController extends Controller
         'awards', 'statuses', 'levels',
     ];
 
+    /**
+     * @var RoleRepository
+     */
     protected RoleRepository       $roleRepository;
+
+    /**
+     * @var AbilityRepository
+     */
     protected AbilityRepository $abilityRepository;
+
+    /**
+     * @param RoleRepository    $roleRepository
+     * @param AbilityRepository $abilityRepository
+     */
     public function __construct(RoleRepository $roleRepository, AbilityRepository $abilityRepository)
     {
         $this->roleRepository       = $roleRepository;
@@ -28,6 +42,9 @@ class RoleController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|View
      */
     public function index(Request $request)
     {
@@ -39,15 +56,10 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
+     *
+     * @param RoleRequest $request
+     * @return RedirectResponse
      */
     public function store(RoleRequest $request)
     {
@@ -58,6 +70,10 @@ class RoleController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param Request $request
+     * @param string  $id
+     * @return Application|Factory|View|JsonResponse
      */
     public function show(Request $request, string $id)
     {
@@ -75,17 +91,13 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-
-    }
-
-    /**
      * Update the specified resource in storage.
+     *
+     * @param RoleRequest $request
+     * @param string|null $id
+     * @return void
      */
-    public function update(RoleRequest $request, string $id)
+    public function update(RoleRequest $request, ?string $id)
     {
         $this->authorize('update_roles');
         $this->roleRepository->update($request->validated(), $id);
@@ -93,16 +105,11 @@ class RoleController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function admins($id)
+    public function admins(string $id)
     {
         $this->roleRepository->admins($id);
     }

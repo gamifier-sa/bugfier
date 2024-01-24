@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Dashboard\{AdminAuthController,
-    AdminController,
+use App\Http\Controllers\Dashboard\{AdminController,
     AwardController,
     BugController,
     HomeController,

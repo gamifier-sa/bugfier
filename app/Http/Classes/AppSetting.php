@@ -5,47 +5,50 @@ namespace App\Http\Classes;
 class AppSetting
 {
    private string|false $settingsFile;
+
+    /**
+     * @var mixed
+     */
    private mixed  $settings;
 
 
    function __construct()
    {
        $this->settingsFile = $this->getFile();
-       $this->settings     = json_decode($this->settingsFile,true);
+       $this->settings = is_string($this->settingsFile) ? json_decode($this->settingsFile, true) : [];
    }
 
     /**
      * @param string|null $key
-     * @return mixed|null
+     * @return array|mixed|null
      */
    public function get(?string $key = null ) : mixed
    {
-       if ( $key )
-           return $this->settings[$key] ?? null;
-       else
-           return $this->settings;
-
+       return is_array($this->settings) && $key ? $this->settings[$key] ?? null : $this->settings;
    }
 
     /**
-     * @param $key
-     * @param $value
-     * @return mixed
+     * @param string $key
+     * @param mixed $value
+     * @return array|mixed
      */
-    public function set($key, $value) : mixed // set a new key with the given value
+    public function set(string $key, mixed $value): mixed
     {
-        $this->settings[$key] = $value;
-        $this->saveFile();
+        if (is_array($this->settings)) {
+            $this->settings[$key] = $value;
+            $this->saveFile();
+        }
         return $this->settings;
     }
+
 
     /**
      * @param string $key
      * @return mixed|null
      */
-    public function remove(string $key) : mixed // remove the entry with the given key ( return null if the key not exist else return the entire array)
+    public function remove(string $key) : mixed
     {
-        if (array_key_exists($key , $this->settings)) {
+        if (is_array($this->settings) && array_key_exists($key, $this->settings)) {
             unset($this->settings[$key]);
             $this->saveFile();
             return $this->settings;

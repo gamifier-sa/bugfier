@@ -43,11 +43,28 @@ let KTDatatable = function () {
                 {data: 'phone'},
                 {data: 'email'},
                 {data: null},
-                {data: 'level.name'},
+                {data: null},
                 {data: 'create_since'},
                 {data: null},
             ],
             columnDefs: [
+                {
+                    targets: -3,
+                    data: null,
+                    render: function (data, type, row) {
+                        if (row.level)
+                            return `
+                                ${row.level.name}
+                            `;
+
+                        else
+                            return `
+                                <div class="text-center px-3">
+                                    <span> ${translate('There are no Level')} </span>
+                                </div>
+                            `;
+                    },
+                },
                 {
                     targets: -4,
                     data: null,

@@ -7,6 +7,9 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Repositories\Interfaces\IAdminRepository;
 use App\Repositories\Interfaces\IMainRepository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -49,7 +52,7 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
         return $this->model->translationKey();
     }
 
-    public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
+    public function findBy(Request $request): Collection|array
     {
         return $this->all(orderBy:$request->order);
     }
@@ -70,18 +73,19 @@ class UserRepository extends BasicRepository implements IAdminRepository, IMainR
     }
     /**
      * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
-    public function show($id)
+    public function show($id) : Model|Collection|Builder|array|null
     {
         return $this->find($id);
     }
-    /**
-     * @param      $request
-     * @param null $id
-     */
 
-    public function update($request, $id = null)
+    /**
+     * @param $request
+     * @param $id
+     * @return Model|Collection|Builder|array|null
+     */
+    public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         return $this->save($request, $id);
     }

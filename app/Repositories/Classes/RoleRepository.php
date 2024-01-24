@@ -11,14 +11,16 @@ class RoleRepository extends BasicRepository implements IMainRepository
     /**
      * @var array
      */
-    protected $fieldSearchable = [
+    protected array $fieldSearchable = [
         'id', 'name_ar', 'name_en'
     ];
 
     /**
      * Configure the Model
-     **/
-    public function model()
+     *
+     * @return string
+     */
+    public function model() : string
     {
         return Role::class;
     }
@@ -28,7 +30,7 @@ class RoleRepository extends BasicRepository implements IMainRepository
      *
      * @return array
      */
-    public function getFieldsSearchable()
+    public function getFieldsSearchable() : array
     {
         return $this->fieldSearchable;
     }
@@ -75,14 +77,16 @@ class RoleRepository extends BasicRepository implements IMainRepository
     }
 
     /**
-     * @param      $request
-     * @param null $id
+     * @param $request
+     * @param $id
+     * @return void
      */
-    public function update($request, $id = null)
+    public function update($request, $id = null) : void
     {
         $role = $this->save([
             'name_ar' => $request['name_ar'],
-            'name_en' => $request['name_en']], $id);
+            'name_en' => $request['name_en']],
+        $id);
         $role->abilities()->sync($request['abilities']);
     }
 
@@ -90,7 +94,7 @@ class RoleRepository extends BasicRepository implements IMainRepository
      * @param $id
      * @return bool|mixed|null
      */
-    public function destroy($id)
+    public function destroy($id) : mixed
     {
         return $this->delete($id);
     }

@@ -11,12 +11,23 @@ use Illuminate\Http\{JsonResponse, Request};
 
 class UserController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
     protected UserRepository $userRepository;
+
+    /**
+     * @param UserRepository $userRepository
+     */
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * @param Request $request
+     * @return Factory|View|Application|JsonResponse
+     */
     public function index(Request $request)
     {
         $this->authorize('view_users');
@@ -28,15 +39,17 @@ class UserController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     * @return Factory|View|Application
      */
     public function create()
     {
         $this->authorize('create_users');
         return view('dashboard.users.create');
     }
+
     /**
      * @param UserRequest $request
+     * @return void
      */
     public function store(UserRequest $request)
     {
@@ -44,7 +57,11 @@ class UserController extends Controller
         $this->userRepository->store($request->validated());
     }
 
-    public function edit($id)
+    /**
+     * @param string $id
+     * @return Factory|View|Application
+     */
+    public function edit(string $id)
     {
         $this->authorize('update_users');
         $user = $this->userRepository->show($id);
@@ -53,9 +70,10 @@ class UserController extends Controller
 
     /**
      * @param UserRequest $request
-     * @param              $id
+     * @param string      $id
+     * @return void
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, string $id)
     {
         $this->authorize('update_users');
         $this->userRepository->update($request->validated(), $id);
@@ -63,8 +81,11 @@ class UserController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $this->authorize('delete_users');
         $this->userRepository->destroy($id);

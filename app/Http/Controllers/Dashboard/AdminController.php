@@ -4,18 +4,35 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Enums\Status;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\AdminRequest;
-use App\Http\Requests\Dashboard\UpdateProfileRequest;
-use App\Repositories\Classes\AdminRepository;
-use App\Repositories\Classes\LevelRepository;
-use App\Repositories\Classes\RoleRepository;
-use Illuminate\Http\Request;
+use App\Http\Requests\Dashboard\{AdminRequest, UpdateProfileRequest};
+use App\Repositories\Classes\{AdminRepository, LevelRepository, RoleRepository};
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Foundation\Application as ApplicationAlias;
+use Illuminate\Http\{JsonResponse, Request};
 
 class AdminController extends Controller
 {
+    /**
+     * @var AdminRepository
+     */
     protected AdminRepository $adminRepository;
+
+    /**
+     * @var RoleRepository
+     */
     protected RoleRepository $roleRepository;
+
+    /**
+     * @var LevelRepository
+     */
     protected LevelRepository $levelRepository;
+
+    /**
+     * @param AdminRepository $adminRepository
+     * @param RoleRepository  $roleRepository
+     * @param LevelRepository $levelRepository
+     */
     public function __construct(AdminRepository $adminRepository, RoleRepository $roleRepository, LevelRepository $levelRepository)
     {
         $this->adminRepository = $adminRepository;
@@ -24,7 +41,8 @@ class AdminController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * @param Request $request
+     * @return Application|Factory|View|ApplicationAlias|JsonResponse
      */
     public function index(Request  $request)
     {
@@ -40,6 +58,8 @@ class AdminController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return Application|Factory|View|ApplicationAlias
      */
     public function create()
     {
@@ -52,6 +72,9 @@ class AdminController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param AdminRequest $request
+     * @return void
      */
     public function store(AdminRequest $request)
     {
@@ -61,6 +84,9 @@ class AdminController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param string $id
+     * @return void
      */
     public function show(string $id)
     {
@@ -69,6 +95,9 @@ class AdminController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|ApplicationAlias
      */
     public function edit(string $id)
     {
@@ -84,10 +113,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param AdminRequest $request
-     * @param string       $id
+     * @param int|null     $id
      * @return void
      */
-    public function update(AdminRequest $request, string $id)
+    public function update(AdminRequest $request, ?int $id)
     {
         $this->authorize('update_admins');
         $this->adminRepository->update($request->validated(), $id);
@@ -95,6 +124,9 @@ class AdminController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
     public function destroy(string $id)
     {
@@ -103,6 +135,9 @@ class AdminController extends Controller
     }
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
     public function admins(string $id)
     {
@@ -128,6 +163,12 @@ class AdminController extends Controller
             'password'             => ['required','string','min:6','max:255','confirmed'],
             'password_confirmation' => ['required','same:password'],
         ]);
-        auth()->user()->update($data);
+        $user = auth('admin')->user();
+
+        if ($user) {
+            $user->update($data);
+        } else {
+            abort(403, 'Unauthorized');
+        }
     }
 }

@@ -5,11 +5,20 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AwardRequest;
 use App\Repositories\Classes\AwardRepository;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{JsonResponse, Request};
 
 class AwardController extends Controller
 {
+    /**
+     * @var AwardRepository
+     */
     protected AwardRepository $awardRepository;
+
+    /**
+     * @param AwardRepository $awardRepository
+     */
     public function __construct(AwardRepository $awardRepository)
     {
         $this->awardRepository = $awardRepository;
@@ -17,6 +26,9 @@ class AwardController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|View|JsonResponse
      */
     public function index(Request $request)
     {
@@ -30,6 +42,8 @@ class AwardController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function create()
     {
@@ -39,6 +53,9 @@ class AwardController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param AwardRequest $request
+     * @return void
      */
     public function store(AwardRequest $request)
     {
@@ -48,6 +65,9 @@ class AwardController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function show(string $id)
     {
@@ -58,6 +78,9 @@ class AwardController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function edit(string $id)
     {
@@ -67,9 +90,11 @@ class AwardController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param AwardRequest $request
+     * @param int|null     $id
+     * @return void
      */
-    public function update(AwardRequest $request, string $id)
+    public function update(AwardRequest $request, ?int $id)
     {
         $this->authorize('update_awards');
         $this->awardRepository->update($request->validated(), $id);
@@ -77,6 +102,9 @@ class AwardController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
     public function destroy(string $id)
     {

@@ -10,11 +10,11 @@ class Ability extends Model
     protected $casts   = ['created_at', 'updated_at' => 'date:Y-m-d'];
 
     protected $appends = ['create_since'];
-
+    public array $searchRelationShip = [];
     /**
      * @return null
      */
-    public function getCreateSinceAttribute()
+    public function getCreateSinceAttribute() : null
     {
         return $this->created_at?->diffForHumans();
     }

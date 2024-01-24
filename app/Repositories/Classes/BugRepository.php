@@ -2,12 +2,9 @@
 
 namespace App\Repositories\Classes;
 
-use App\Models\Status;
-use App\Models\Bug;
+use App\Models\{Admin, Level, Bug};
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 use Illuminate\Http\Request;
 
 class BugRepository extends BasicRepository implements IAdminRepository, IMainRepository
@@ -15,7 +12,6 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
     /**
      * @var array
      */
-
     protected array $fieldSearchable = [
         'id', 'title', 'description'
     ];
@@ -27,6 +23,7 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
     {
         return Bug::class;
     }
+
     /**
      * Return searchable fields
      *
@@ -37,27 +34,45 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
         return $this->fieldSearchable;
     }
 
-    public function getFieldsRelationShipSearchable()
+    /**
+     * @return mixed
+     */
+    public function getFieldsRelationShipSearchable() : mixed
     {
         return $this->model->searchRelationShip;
     }
 
-    public function translationKey()
+    /**
+     * @return mixed
+     */
+    public function translationKey() : mixed
     {
         return $this->model->translationKey();
     }
 
+    /**
+     * @param Request $request
+     * @return Collection|array
+     */
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(relations: ['project' => ['id', 'title_ar','title_en'], 'admin' => ['id', 'name_ar','name_en'], 'status' => ['id', 'title_ar', 'title_en']], orderBy: $request->order);
+        return $this->all(
+            relations: [
+                'project' => ['id', 'title_ar','title_en'],
+                'admin'   => ['id', 'name_ar','name_en'],
+                'status'  => ['id', 'title_ar', 'title_en']
+            ],
+
+            orderBy: $request->order
+        );
     }
 
     /**
      * @param $data
+     * @return void
      */
-    public function store($data): void
+    public function store($data) : void
     {
-
         if (isset($data['images'])) {
             $imagesArr = [];
             foreach($data['images'] as $image){
@@ -66,12 +81,13 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
             $data['images'] = serialize($imagesArr);
         }
 
-
-         $this->create($data);
+        $this->create($data);
     }
+
     public function list()
     {
     }
+
     /**
      * @param $id
      * @return Builder|Builder[]|Collection|Model|null
@@ -80,11 +96,12 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
     {
         return $this->find($id);
     }
-    /**
-     * @param      $request
-     * @param null $id
-     */
 
+    /**
+     * @param $request
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
+     */
     public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         if (isset($request['images'])) {
@@ -108,13 +125,24 @@ class BugRepository extends BasicRepository implements IAdminRepository, IMainRe
     }
 
     /**
-     * @param $id
-     * @param $key
-     * @param $value
+     * @param string $id
+     * @param string $key
+     * @param int    $value
      * @return Collection|mixed
      */
-    public function updateExp($id, $key, $value) : mixed
+    public function updateExp(string $id, string $key, int $value) : mixed
     {
+        $bugs        = $this->show($id);
+        $sumBug      = $this->model->where('created_by', $bugs->created_by)->sum('exp');
+        $sumBugValue = $sumBug + $value;
+
+        $level = Level::orderByRaw('ABS(exp - ?)', [$sumBugValue])->first();
+        if ($level) {
+            $user = Admin::find($bugs->created_by);
+            $user->level_id = $level->id ?? 1;
+            $user->save();
+        }
+
         return $this->updateValue($id, $key, $value);
     }
 }

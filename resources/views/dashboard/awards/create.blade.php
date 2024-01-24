@@ -17,22 +17,8 @@
             <!-- begin :: Form -->
             <form action="{{ route('dashboard.awards.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.awards.index') }}" autocomplete="off">
                 @csrf
-                <div class="card">
-                    <div class="card-header card-header-stretch">
-                        <h3 class="card-title">{{__('Add New Award')}}</h3>
-                        <div class="card-toolbar">
-                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
-                                <li class="nav-item">
-                                    <a class="nav-link @if(getLocale() == 'ar') active @endif" data-bs-toggle="tab" href="#arabic">{{__('Arabic')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link @if(getLocale() == 'en') active @endif" data-bs-toggle="tab" href="#english">{{__('English')}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    @include('dashboard.awards.form')
-                </div><!-- end   :: Inputs wrapper -->
+
+                @include('dashboard.awards.form')
 
                       <!-- begin :: Form footer -->
                 <div class="form-footer">

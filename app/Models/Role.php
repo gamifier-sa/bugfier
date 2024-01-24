@@ -17,9 +17,7 @@ class Role extends Model
         'id', 'name_ar', 'name_en'
     ];
 
-    /**
-     * @var string[]
-     */
+
     protected $appends = ['create_since', 'name'];
 
     /**

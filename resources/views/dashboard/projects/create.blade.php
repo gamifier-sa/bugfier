@@ -17,24 +17,9 @@
             <!-- begin :: Form -->
             <form action="{{ route('dashboard.projects.store') }}" class="form" method="post" id="submitted-form" data-redirection-url="{{ route('dashboard.projects.index') }}">
                 @csrf
-                <div class="card">
-                    <div class="card-header card-header-stretch">
-                        <h3 class="card-title">{{__('Add New Project')}}</h3>
-                        <div class="card-toolbar">
-                            <ul class="nav nav-tabs nav-line-tabs nav-stretch fs-6 border-0">
-                                <li class="nav-item">
-                                    <a class="nav-link @if(getLocale() == 'ar') active @endif" data-bs-toggle="tab" href="#arabic">{{__('Arabic')}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link @if(getLocale() == 'en') active @endif" data-bs-toggle="tab" href="#english">{{__('English')}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    @include('dashboard.projects.form')
-                </div><!-- end   :: Inputs wrapper -->
+                @include('dashboard.projects.form')
 
-                      <!-- begin :: Form footer -->
+                <!-- begin :: Form footer -->
                 <div class="form-footer">
                     <!-- begin :: Submit btn -->
                     <button type="submit" class="btn btn-primary" id="submit-btn" onClick="reload">

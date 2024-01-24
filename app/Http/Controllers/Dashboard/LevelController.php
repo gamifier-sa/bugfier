@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\LevelRequest;
 use App\Repositories\Classes\LevelRepository;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{JsonResponse, Request};
 
 class LevelController extends Controller
 {
@@ -22,9 +24,11 @@ class LevelController extends Controller
         $this->levelRepository = $levelRepository;
     }
 
-
     /**
      * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|JsonResponse|View
      */
     public function index(Request $request)
     {
@@ -38,6 +42,8 @@ class LevelController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function create()
     {
@@ -47,6 +53,9 @@ class LevelController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param LevelRequest $request
+     * @return void
      */
     public function store(LevelRequest $request)
     {
@@ -55,19 +64,20 @@ class LevelController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @return never
+     * @return void
      */
     public function show()
     {
-        return abort(403);
+
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
-    public function edit($id)
+    public function edit(string $id)
     {
         $this->authorize('update_levels');
         $level = $this->levelRepository->show($id);
@@ -76,8 +86,12 @@ class LevelController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param LevelRequest $request
+     * @param string       $id
+     * @return void
      */
-    public function update(LevelRequest $request, $id)
+    public function update(LevelRequest $request, string $id)
     {
         $this->authorize('update_levels');
         $this->levelRepository->update($request->validated(), $id);
@@ -85,8 +99,11 @@ class LevelController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $this->authorize('delete_levels');
         $this->levelRepository->destroy($id);

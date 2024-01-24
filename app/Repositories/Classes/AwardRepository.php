@@ -5,6 +5,9 @@ namespace App\Repositories\Classes;
 use App\Models\Award;
 use App\Models\Bug;
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class AwardRepository extends BasicRepository implements IAdminRepository, IMainRepository
@@ -44,7 +47,7 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
         return $this->model->translationKey();
     }
 
-    public function findBy(Request $request): \Illuminate\Database\Eloquent\Collection|array
+    public function findBy(Request $request): Collection|array
     {
         return $this->all(orderBy: $request->order);
     }
@@ -69,7 +72,7 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
     }
     /**
      * @param $id
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     * @return Builder|Builder[]|Collection|Model|null
      */
     public function show($id)
     {
@@ -80,7 +83,12 @@ class AwardRepository extends BasicRepository implements IAdminRepository, IMain
      * @param null $id
      */
 
-    public function update($request, $id = null)
+    /**
+     * @param $request
+     * @param $id
+     * @return Builder|Builder[]|Collection|Model|null
+     */
+    public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
         if (isset($request['images'])) {
             $imagesArr = [];

@@ -192,12 +192,11 @@ abstract class BasicRepository
         }
 
 
-        $response = [
+        return [
             "recordsTotal" => $this->model->count(),
             "recordsFiltered" => $this->model->count(),
             'data' => $this->model->skip(($page - 1) * $perPage)->take($perPage)->get()
         ];
-        return $response;
     }
 
     function getRelationWithColumns($relations): array
@@ -267,7 +266,7 @@ abstract class BasicRepository
      * @param null $id
      * @return Builder|Builder[]|Collection|Model|null
      */
-    public function save($request, $id = null)
+    public function save($request, $id = null) : Model|Collection|Builder|array|null
     {
         $data = $this->find($id);
         $data->update($request);
@@ -289,7 +288,7 @@ abstract class BasicRepository
      * @param $id
      * @return bool|mixed|null
      */
-    public function delete($id)
+    public function delete($id) : mixed
     {
         $data = $this->find($id, ['*'], [], true);
         return $data ? $data->delete() : false;

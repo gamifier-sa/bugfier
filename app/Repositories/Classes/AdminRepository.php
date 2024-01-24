@@ -17,6 +17,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         'id', 'name_ar', 'name_en', 'email', 'phone', 'level_id'
     ];
 
+
     /**
      * Configure the Model
      **/
@@ -35,7 +36,10 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         return $this->fieldSearchable;
     }
 
-    public function getFieldsRelationShipSearchable()
+    /**
+     * @return mixed
+     */
+    public function getFieldsRelationShipSearchable() : mixed
     {
         return $this->model->searchRelationShip;
     }
@@ -76,8 +80,8 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
     }
 
     /**
-     * @param      $request
-     * @param null $id
+     * @param $request
+     * @param $id
      * @return Builder|Builder[]|Collection|Model|null
      */
     public function update($request, $id = null) : Model|Collection|Builder|array|null

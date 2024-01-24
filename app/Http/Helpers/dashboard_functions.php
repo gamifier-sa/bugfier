@@ -1,13 +1,9 @@
 <?php
 
 use App\Http\Classes\AppSetting;
-use App\Models\Employee;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
-use App\Models\Invoice;
+
 
 if ( !function_exists('isArabic') ) {
 

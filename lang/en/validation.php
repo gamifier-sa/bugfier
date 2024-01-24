@@ -180,7 +180,30 @@ return [
     */
 
     'attributes' => [
-        'exp' => 'Experience'
+        'exp'               => 'Experience',
+        'title_ar'          => 'Title Arabic',
+        'title_en'          => 'Title English',
+        'name_ar'           => 'Name Arabic',
+        'name_en'           => 'Name English',
+        'description_ar'    => 'Description Arabic',
+        'description_en'    => 'Description English',
+        'phone'             => 'Phone',
+        'email'             => 'Email',
+        'image'             => 'Image',
+        'images'            => 'Images',
+        'level_id'          => 'Level',
+        'status'            => 'Status',
+        'point'             => 'Point',
+        'created_by'        => 'Created By',
+        'responsible_admin' => 'Responsible Admin',
+        'project_id'        => 'Project',
+        'status_id'         => 'Status',
+        'is_default'        => 'Is Default',
+        'name'              => 'Name',
+        'role_id'           => 'role',
+        'ability_id'        => 'Ability',
+        'admin_id'          => 'Admin',
+        'roles'             => 'Roles',
     ],
 
 ];

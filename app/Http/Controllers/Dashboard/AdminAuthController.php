@@ -14,10 +14,12 @@ use Illuminate\Http\RedirectResponse;
 
 class AdminAuthController extends Controller
 {
+    /**
+     * @var AdminAuthService
+     */
     public AdminAuthService $adminAuthService;
 
     /**
-     * AdminAuthController constructor.
      * @param AdminAuthService $adminAuthService
      */
     public function __construct(AdminAuthService $adminAuthService)
@@ -28,7 +30,7 @@ class AdminAuthController extends Controller
     }
 
     /**
-     * @return Application|Factory|View
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function loginForm()
     {
@@ -38,17 +40,25 @@ class AdminAuthController extends Controller
     /**
      * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
-    public function  registerForm()
+    public function registerForm()
     {
         return view('dashboard.auth.admin_register');
     }
 
+    /**
+     * @param AdminAuthRequest $request
+     * @return void
+     */
     public function login(AdminAuthRequest $request)
     {
         $data = $request->validated();
         $this->adminAuthService->login($data);
     }
 
+    /**
+     * @param AdminRegisterRequest $request
+     * @return void
+     */
     public function register(AdminRegisterRequest $request)
     {
         $data = $request->validated();

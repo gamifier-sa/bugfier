@@ -29,7 +29,7 @@ class StatusRequest extends FormRequest
     }
 
     /**
-     * @return string[]
+     * @return array
      */
     protected function update(): array
     {

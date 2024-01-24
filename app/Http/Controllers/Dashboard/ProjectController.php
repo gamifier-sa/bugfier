@@ -5,17 +5,30 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\ProjectRequest;
 use App\Repositories\Classes\ProjectRepository;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\{Factory, View};
+use Illuminate\Http\{JsonResponse, Request};
 
 class ProjectController extends Controller
 {
+    /**
+     * @var ProjectRepository
+     */
     protected ProjectRepository $projectRepository;
+
+    /**
+     * @param ProjectRepository $projectRepository
+     */
     public function __construct(ProjectRepository $projectRepository)
     {
         $this->projectRepository = $projectRepository;
     }
+
     /**
      * Display a listing of the resource.
+     *
+     * @param Request $request
+     * @return Application|Factory|View|JsonResponse
      */
     public function index(Request $request)
     {
@@ -29,6 +42,8 @@ class ProjectController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function create()
     {
@@ -38,6 +53,9 @@ class ProjectController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @return void
      */
     public function store(ProjectRequest $request)
     {
@@ -47,6 +65,9 @@ class ProjectController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function show(string $id)
     {
@@ -58,6 +79,9 @@ class ProjectController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param string $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
      */
     public function edit(string $id)
     {
@@ -68,8 +92,12 @@ class ProjectController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param ProjectRequest $request
+     * @param string|null    $id
+     * @return void
      */
-    public function update(ProjectRequest $request, string $id)
+    public function update(ProjectRequest $request, ?string $id)
     {
         $this->authorize('update_projects');
         $this->projectRepository->update($request->validated(), $id);
@@ -77,6 +105,9 @@ class ProjectController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return void
      */
     public function destroy(string $id)
     {

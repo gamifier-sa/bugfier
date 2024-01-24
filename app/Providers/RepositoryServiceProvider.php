@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Repositories\Classes\PackageRepository;
 use App\Repositories\Interfaces\IAdminRepository;
 use App\Services\Classes\AdminService;
 use App\Services\Interfaces\IAdminService;
@@ -16,11 +15,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
 
-        // Bind Services
-        $this->app->bind(IAdminService::class, AdminService::class);
-
-         // Bind Reposetories
-         $this->app->bind(IAdminRepository::class, PackageRepository::class);
 
     }
 
