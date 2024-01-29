@@ -101,7 +101,7 @@ class RoleRepository extends BasicRepository implements IMainRepository
 
     public function admins($id)
     {
-        $role  = Role::findOrFail($id)->load('admins:id,name_ar,email,phone,image,created_at');
+        $role  = $this->model->findOrFail($id)->load('admins:id,name_ar,email,phone,image,created_at');
         $adminsCount = $role->admins()->count();
         $page    = $request['page']     ?? 1;
         $perPage = $request['per_page'] ?? 10;

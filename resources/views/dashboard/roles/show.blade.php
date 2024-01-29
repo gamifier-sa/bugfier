@@ -26,50 +26,41 @@
                     <!--begin::Card title-->
                     <div class="card-title">
                         <h2> {{ $role->name }}</h2>
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
+                    </div><!--end::Card title-->
+                </div><!--end::Card header-->
+
                 <!--begin::Card body-->
                 <div class="card-body pb-2" style="height:500px !important;overflow-y: auto">
                     <!--begin::Permissions-->
                     <div class="d-flex flex-column text-gray-600">
-
                         @foreach( $role->abilities as $ability)
-
                             <div class="d-flex align-items-center py-3">
                                 <span class="bullet bg-primary me-3"></span> {{ __( $ability->action ) . ' ' . __( str_replace("_", " " , $ability->category) ) }}
                             </div>
-
                         @endforeach
-
-                    </div>
-                    <!--end::Permissions-->
-                </div>
-                <!--end::Card body-->
+                    </div><!--end::Permissions-->
+                </div><!--end::Card body-->
 
                 <!--begin::Card footer-->
                 <div class="card-footer pt-4 text-center mt-1" style="border-top:solid 1px #D7D7D7">
                     <button type="button" class="btn btn-light btn-active-light-primary my-1 edit-role-btn" data-role-id="{{$role->id}}" >
-
                         <span class="indicator-label">{{ __("Edit Role") }}</span>
-
                         <!-- begin :: Indicator -->
                         <span class="indicator-progress">{{ __("Please wait ...") }}
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                            </span>
-                        <!-- end   :: Indicator -->
-
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span><!-- end   :: Indicator -->
                     </button>
-                </div>
-                <!--end::Card footer-->
-
-            </div>
-            <!-- end   :: Card -->
+                    @if($role->id != 1)
+                        <form action="{{ route('dashboard.roles.destroy', $role->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-light-danger my-1 me-2"  onclick="return confirm('{{__('Are you sure to delete?')}}');"    >{{ __("Delete Role") }}</button>
+                        </form>
+                    @endif
+                </div><!--end::Card footer-->
+            </div><!-- end   :: Card -->
 
             <!-- begin :: Modals -->
-
-
             <!-- begin :: Update role modal -->
             <div class="modal fade" id="kt_modal_update_role" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
@@ -253,6 +244,7 @@
                         <thead>
                         <tr class="text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th>#</th>
+                            <th>ID</th>
                             <th>{{ __("Admin") }}</th>
                             <th>{{ __("Date") }}</th>
                         </tr>
@@ -261,8 +253,9 @@
                         <tbody class="text-gray-600 fw-bold text-center">
                             @foreach ($role->admins as $admin)
                             <tr>
+                                <td>{{$loop->iteration}}</td>
                                 <td>#{{ $admin->id }}</td>
-                                <td>{{ $admin->name_ar }}</td>
+                                <td>{{ $admin->full_name }}</td>
                                 <td>{{ $admin->created_at->format('Y-m-d') }}</td>
                             </tr>
                             @endforeach

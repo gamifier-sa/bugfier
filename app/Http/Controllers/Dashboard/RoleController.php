@@ -113,4 +113,18 @@ class RoleController extends Controller
     {
         $this->roleRepository->admins($id);
     }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return RedirectResponse
+     */
+    public function destroy(string $id)
+    {
+        $this->authorize('delete_roles');
+        $this->roleRepository->destroy($id);
+        return to_route('dashboard.roles.index');
+    }
 }
