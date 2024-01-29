@@ -12,9 +12,11 @@ class Bug extends Model
         'id', 'title', 'description', 'point', 'exp', 'created_by', 'project_id',  'images','status_id','responsible_admin'
     ];
     public $timestamps = true;
-    public array $searchRelationShip = ['project' => ['id', 'title_ar','title_en'],
-                                        'admin'   => ['id', 'name_ar','name_en'],
-                                        'status'  => ['id', 'title_ar', 'title_en']];
+    public array $searchRelationShip = [
+        'project' => ['id', 'title_ar','title_en'],
+        'admin'   => ['id', 'name_ar','name_en'],
+        'status'  => ['id', 'title_ar', 'title_en']
+    ];
 
     /**
      * The relations to eager load on every query.
@@ -29,8 +31,8 @@ class Bug extends Model
      */
     public array $searchConfig = [
         'description' => 'like',
-        'project' => 'like',
-        'level' => 'like',
+        'project'     => 'like',
+        'level'       => 'like',
         'title'       => 'like',
         'exp'         => 'like'
     ];
