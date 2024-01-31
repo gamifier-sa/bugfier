@@ -33768,10 +33768,9 @@ html:not([data-theme=dark]) .theme-light-bg-body {
 }
 
 .separator.separator-content {
-    display: flex;
-    align-items: center;
+
     border-bottom: 0;
-    text-align: center
+    text-align: start;
 }
 
 .separator.separator-content::after,
@@ -33781,13 +33780,14 @@ html:not([data-theme=dark]) .theme-light-bg-body {
     border-bottom: 1px solid var(--kt-border-color)
 }
 
+/*
 .separator.separator-content::before {
     margin-right: 1.25rem
 }
 
 .separator.separator-content::after {
     margin-left: 1.25rem
-}
+} */
 
 .separator.separator-content.separator-dotted::after,
 .separator.separator-content.separator-dotted::before {
@@ -57337,7 +57337,7 @@ body {
 
     .wrapper {
         padding-top: 50px;
-        padding-left: 350px
+        padding-left: 300px
     }
 
     .header-fixed[data-kt-sticky-header=on] .wrapper {
