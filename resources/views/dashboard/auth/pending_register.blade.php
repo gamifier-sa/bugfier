@@ -3,7 +3,7 @@
     {{__('Pending Register')}}
 @endsection
 
-@section('titleAndText')
+@section('imageAndText')
     <!--begin::Image-->
     <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{asset('dashboard-assets/media/auth/agency.png')}}" alt="" />
     <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{asset('dashboard-assets/media/auth/agency-dark.png')}}" alt="" />
