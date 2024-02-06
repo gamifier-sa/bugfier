@@ -1,25 +1,25 @@
 @extends('dashboard.layouts.master')
 @push('styles')
     <link href="{{ asset('dashboard-assets/css/datatables' . ( isDarkMode() ?  '.dark' : '' ) .'.bundle.css') }}" rel="stylesheet" type="text/css"/>
-@endpush
+
+  <link href="{{ asset('dashboard-assets/css/Tabels.css') }}" rel="stylesheet" type="text/css"/>
+    @endpush
 @section('title') {{__("Project list")}} @endsection
 
 @section('content')
-    @component('components.dashboard.breadcrumb')
+  @component('components.dashboard.breadcrumb')
+
         @slot('breadcrumb_title')
             <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __("Projects") }}</h1><!-- end   :: Title -->
         @endslot
         <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{__('Project list')}}</li><!-- end   :: Item -->
+        <li class="breadcrumb-item text-muted">{{__('Project list ')}}</li><!-- end   :: Item -->
     @endcomponent
 
-    <!-- begin :: Datatable card -->
-    <div class="card mb-2">
-        <!-- begin :: Card Body -->
-        <div class="card-body fs-6 py-15 px-10 py-lg-15 px-lg-15 text-gray-700">
+<p class="breadcrumb-item mb-10 container-fluid text-muted">{{__('Here you can find more details about your projects. ')}}</p><!-- end   :: Item -->
 
-            <!-- begin :: Filter -->
-            <div class="d-flex flex-stack flex-wrap mb-15">
+        <!-- begin :: Filter -->
+            <div class="d-flex flex-stack flex-wrap mt-10 mb-15">
 
                 <!-- begin :: General Search -->
                 <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
@@ -35,7 +35,7 @@
                 <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
                     @can('create_projects')
                         <!-- begin :: Add Button -->
-                        <a href="{{ route('dashboard.projects.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" title="">
+                        <a href="{{ route('dashboard.projects.create') }}" class="btn my-purple" data-bs-toggle="tooltip" title="">
 
                         <span class="svg-icon svg-icon-2">
                             <i class="fa fa-plus fa-lg"></i>
@@ -47,16 +47,29 @@
 
             </div><!-- end   :: Filter -->
 
+
+
+
+
+    <!-- begin :: Datatable card -->
+    <div class="card mb-2">
+        <!-- begin :: Card Body -->
+        <div class="card-body fs-6 py-15 px-10 py-lg-15 px-lg-15 text-gray-700">
+
+
+
             <!-- begin :: Datatable -->
             <table data-ordering="false" id="kt_datatable" class="table text-center table-row-dashed fs-6 gy-5">
 
                 <thead>
                 <tr class="text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                    <th>#</th>
-                    <th>ID</th>
-                    <th>{{ __("Title") }}</th>
-                    <th>{{ __("Created Date") }}</th>
-                    <th class="min-w-100px">{{ __("Actions") }}</th>
+
+   <th></th>
+   <th></th>
+
+                    <th></th>
+                    <th></th>
+                    <th class="min-w-100px"></th>
                 </tr>
                 </thead>
 
