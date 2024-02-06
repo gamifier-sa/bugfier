@@ -9,7 +9,7 @@
     --bs-orange: #fd7e14;
     --bs-yellow: #ffc107;
     --bs-green: #198754;
-    --bs-green-100: #198753;
+    --bs-green: #198753;
     --bs-teal: #20c997;
     --bs-cyan: #0dcaf0;
     --bs-black: #000000;
@@ -70,12 +70,6 @@
     --bs-link-hover-color: #0095e8;
     --bs-code-color: #b93993;
     --bs-highlight-bg: #fff3cd
-}
-
-*,
-::after,
-::before {
-    box-sizing: border-box
 }
 
 *,

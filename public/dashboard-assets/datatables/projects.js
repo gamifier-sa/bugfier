@@ -1,8 +1,7 @@
 "use strict";
 
 // Class definition
-let KTDatatable = function () {
-
+let KTDatatable = (function () {
     // Shared variables
     let table;
     let datatable;
@@ -15,296 +14,198 @@ let KTDatatable = function () {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[3, 'desc']], // display records number and ordering type
+            order: [[3, "desc"]], // display records number and ordering type
             stateSave: false,
             select: {
-                style: 'os',
-                selector: 'td:first-child',
-                className: 'row-selected'
+                style: "os",
+                selector: "td:first-child",
+                className: "row-selected",
             },
             ajax: {
                 data: function () {
-                    let datatable = $('#kt_datatable');
+                    let datatable = $("#kt_datatable");
                     let info = datatable.DataTable().page.info();
-                    datatable.DataTable().ajax.url(`/dashboard/projects?page=${info.page + 1}&per_page=${info.length}`);
-                }
+                    datatable
+                        .DataTable()
+                        .ajax.url(
+                            `/dashboard/projects?page=${
+                                info.page + 1
+                            }&per_page=${info.length}`
+                        );
+                },
             },
             columns: [
-                {
-                    data: null,
-                    orderable: false, // Disable ordering on this column
-                    searchable: false, // Disable searching on this column
-                    render: function (data, type, row, meta) {
-                        // 'meta' contains information about the cell position, including row index
-                        return meta.row + 1; // Add 1 to start numbering from 1
-                    }
-                },
-                {data: 'id'},
-                {data: 'title'},
-                {data: 'create_since'},
-                {data: null},
+                // {
+                //     data: null,
+                //     orderable: false, // Disable ordering on this column
+                //     searchable: false, // Disable searching on this column
+                //     render: function (data, type, row, meta) {
+                //         // 'meta' contains information about the cell position, including row index
+                //         return meta.row + 1; // Add 1 to start numbering from 1
+                //     },
+                // },
+                { data: null },
+                { data: null },
+                { data: null },
+                { data: null },
+                { data: null },
             ],
+
             columnDefs: [
+                { targets: [-3, -4, -5], searchable: false },
+                {
+                    render: function (data, type, row, meta) {
+                        return `<td >
+
+
+<div  class='row flex gap-3 align-items-center'>
+<div class='tabel-img'>       <img  src="{{ asset('dashboard-assets\media\project-tabel.png') }}" alt='' class='w-100 h-100' />
+        </div>
+                        <div class="flex-column tabel-inner d-flex align-items-start justify-content-center j ">
+                           <h3>${row.title}</h3>
+                           <div class='row flex gap-3'><span class=' text-start' > Project # ${
+                               meta.row + 1
+                           }    <a href="/dashboard/projects/${
+                            row.id
+                        }/edit" >  See project details   </a>   iD: ${
+                            row.id
+                        }</span>       </div>   </div>
+
+</div>
+
+                       </td>`;
+                    },
+                    targets: [0, 1, 2],
+                },
+                { visible: false, targets: [1, 2] },
+
+                {
+                    targets: -2,
+                    data: null,
+                    render: function (data, type, row) {
+                        return `<td> <div class='d-flex align-items-center justify-center for-date'>  <h3> CREATED DATE (<span> ${row.create_since}</span>) </h3> </div>   </td>`;
+                    },
+                },
                 {
                     targets: -1,
                     data: null,
                     render: function (data, type, row) {
-                        if (authorizationUpdate && authorizationDelete && authorizationShow) {
-                            return `
-                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                    ${translate('Actions')}
-                                    <span class="svg-icon svg-icon-5 m-0">
-                                        <i class="fa fa-angle-down mx-1"></i>
-                                    </span>
-                                </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="/dashboard/projects/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
-                                           <span> ${translate('Edit')} </span>
-                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
-                                        </a>
-
-                                    </div><!--end::Menu-->
-                                       <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/projects/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate('Show')} </span>
-                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
-                                    </a>
-
-                                </div>
-                                <!--end::Menu item-->
-
-
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Projects')}">
-                                        <span> ${translate('Delete')} </span>
-                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
-                                    </a>
-                                </div><!--end::Menu item-->
-                            `;
-                        }
-
-                        if (authorizationDelete && authorizationShow) {
-                            return `
-                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                    ${translate('Actions')}
-                                    <span class="svg-icon svg-icon-5 m-0">
-                                        <i class="fa fa-angle-down mx-1"></i>
-                                    </span>
-                                </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-
-                                       <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/projects/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate('Show')} </span>
-                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
-                                    </a>
-
-                                </div>
-                                <!--end::Menu item-->
-
-
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Projects')}">
-                                        <span> ${translate('Delete')} </span>
-                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
-                                    </a>
-                                </div><!--end::Menu item-->
-                            `;
-                        }
-
-                        if (authorizationUpdate && authorizationShow) {
-                            return `
-                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                    ${translate('Actions')}
-                                    <span class="svg-icon svg-icon-5 m-0">
-                                        <i class="fa fa-angle-down mx-1"></i>
-                                    </span>
-                                </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="/dashboard/Projects/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
-                                           <span> ${translate('Edit')} </span>
-                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
-                                        </a>
-
-                                    </div><!--end::Menu-->
-                                       <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/projects/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate('Show')} </span>
-                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
-                                    </a>
-
-                                </div>
-                                <!--end::Menu item-->
-                            `;
-                        }
-
-                        if (authorizationUpdate && authorizationDelete) {
-                            return `
-                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                    ${translate('Actions')}
-                                    <span class="svg-icon svg-icon-5 m-0">
-                                        <i class="fa fa-angle-down mx-1"></i>
-                                    </span>
-                                </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="/dashboard/Projects/${ row.id }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
-                                           <span> ${translate('Edit')} </span>
-                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
-                                        </a>
-
-                                    </div><!--end::Menu-->
-
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Projects')}">
-                                        <span> ${translate('Delete')} </span>
-                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
-                                    </a>
-                                </div><!--end::Menu item-->
-                            `;
-                        }
-
-                        if (authorizationUpdate) {
-                            return `
-                                <!--begin::Menu item-->
-                                <div class="btn btn-light btn-active-light-primary btn-sm">
-                                    <a href="/dashboard/projects/${ row.id }/edit" class="menu-link px-3 d-flex edit-row" >
-                                       <span> ${translate('Edit')} </span>
-                                    </a>
-                                </div><!--end::Menu-->
-                            `;
-                        }
-
-                        if (authorizationShow) {
-                            return `
-                                <!--begin::Menu item-->
-                                <div class="btn btn-light btn-active-light-primary btn-sm">
-                                    <a href="/dashboard/projects/${ row.id }" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate('Show')} </span>
-                                    </a>
-                                </div><!--end::Menu-->
-                            `;
-                        }
-
-                        if (authorizationDelete) {
-                            return `
-                                <div class="btn btn-light-danger btn-active-light-danger btn-sm">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${row.id}" data-type="${translate('Project')}">
-                                        <span class="text-danger"> ${translate('Delete')} </span>
-                                    </a>
-                                </div><!--end::Menu item-->
-                            `;
-                        }
-
                         return `
-                            <div class="text-center px-3">
-                                <span> ${translate('There are no permissions')} </span>
-                            </div>
-                        `;
+
+                                <!--begin::Menu-->
+                                <div class="d-flex actions row" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class=" px-3 action-item ">
+                                        <a href="/dashboard/projects/${
+                                            row.id
+                                        }/edit" class=" px-3 d-flex justify-content-between edit-row" >
+
+                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
+                                        </a>
+
+                                    </div><!--end::Menu-->
+                                       <!--begin::Menu item-->
+                                <div class=" px-3 action-item">
+                                    <a href="/dashboard/projects/${
+                                        row.id
+                                    }" class=" px-3 d-flex justify-content-between" >
+
+                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
+                                    </a>
+
+                                </div>
+                                <!--end::Menu item-->
+
+
+                                <div class=" px-3 action-item">
+                                    <a href="#" class=" px-3 d-flex justify-content-between delete-row" data-row-id="${
+                                        row.id
+                                    }" data-type="${translate("Projects")}">
+
+                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
+                                    </a>
+                                </div><!--end::Menu item-->
+                            `;
                     },
                 },
             ],
-
         });
 
         table = datatable.$;
 
-        datatable.on('draw', function () {
+        datatable.on("draw", function () {
             handleDeleteRows();
             KTMenu.createInstances();
         });
-    }
+    };
 
     // general search in datatable
     let handleSearchDatatable = () => {
-
-        $('#general-search-inp').keyup( function () {
-            datatable.search('search='+$(this).val() ).draw();
+        $("#general-search-inp").keyup(function () {
+            datatable.search("search=" + $(this).val()).draw();
         });
-
-    }
+    };
 
     // Filter Datatable
     let handleFilterDatatable = () => {
+        $(".filter-datatable-inp").each((index, element) => {
+            $(element).change(function () {
+                let columnIndex = $(this).data("filter-index"); // index of the searching column
 
-        $('.filter-datatable-inp').each( (index , element) =>  {
-
-            $(element).change( function () {
-
-                let columnIndex = $(this).data('filter-index'); // index of the searching column
-
-                datatable.column(columnIndex).search( $(this).val()).draw();
+                datatable.column(columnIndex).search($(this).val()).draw();
             });
-
-        })
-    }
+        });
+    };
 
     // Delete record
     let handleDeleteRows = () => {
-
-        $('.delete-row').click(function () {
-
-            let rowId = $(this).data('row-id');
-            let type  = $(this).data('type');
+        $(".delete-row").click(function () {
+            let rowId = $(this).data("row-id");
+            let type = $(this).data("type");
 
             deleteAlert(type).then(function (result) {
-
                 if (result.value) {
-
-                    loadingAlert(translate('deleting now ...'));
+                    loadingAlert(translate("deleting now ..."));
 
                     $.ajax({
-                        method: 'delete',
-                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                        url: '/dashboard/projects/' + rowId,
+                        method: "delete",
+                        headers: {
+                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                                "content"
+                            ),
+                        },
+                        url: "/dashboard/projects/" + rowId,
                         success: () => {
-
-                            setTimeout( () => {
-
-                                successAlert(`${translate('You have deleted the') + ' ' + type + ' ' + translate('successfully !')} `)
-                                    .then(function () {
-                                        datatable.draw();
-                                    });
-
-                            } , 1000)
-
-
-
+                            setTimeout(() => {
+                                successAlert(
+                                    `${
+                                        translate("You have deleted the") +
+                                        " " +
+                                        type +
+                                        " " +
+                                        translate("successfully !")
+                                    } `
+                                ).then(function () {
+                                    datatable.draw();
+                                });
+                            }, 1000);
                         },
                         error: (err) => {
-
-                            if (err.hasOwnProperty('responseJSON')) {
-                                if (err.responseJSON.hasOwnProperty('message')) {
+                            if (err.hasOwnProperty("responseJSON")) {
+                                if (
+                                    err.responseJSON.hasOwnProperty("message")
+                                ) {
                                     errorAlert(err.responseJSON.message);
                                 }
                             }
-                        }
+                        },
                     });
-
-
-                } else if (result.dismiss === 'cancel') {
-
-                    errorAlert( translate('was not deleted !') )
-
+                } else if (result.dismiss === "cancel") {
+                    errorAlert(translate("was not deleted !"));
                 }
             });
-        })
-    }
-
-
-
+        });
+    };
 
     // Public methods
     return {
@@ -312,11 +213,9 @@ let KTDatatable = function () {
             initDatatable();
             handleSearchDatatable();
             // handleFilterDatatable();
-
-
-        }
-    }
-}();
+        },
+    };
+})();
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
