@@ -2,6 +2,14 @@
 @section('title')
     {{__('Login')}}
 @endsection
+
+@section('images')
+    <!--begin::Image-->
+    <img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{asset('dashboard-assets/media/auth/agency.png')}}" alt="" />
+    <img class="theme-dark-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{asset('dashboard-assets/media/auth/agency-dark.png')}}" alt="" />
+    <!--end::Image-->
+@endsection
+
 @section('content')
     <!--begin::Body-->
     <div class="d-flex flex-column-fluid flex-lg-row-auto justify-content-center justify-content-lg-end p-12">
