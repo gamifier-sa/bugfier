@@ -32337,6 +32337,7 @@ fieldset:disabled .btn {
     --kt-white-bg-rgb: 255, 255, 255;
     --kt-black: #000000;
     --kt-black-bg-rgb: 0, 0, 0;
+    --kt-text-light-300: #9E9E9E;
     --kt-text-muted: #A1A5B7;
     --kt-gray-100: #f5f8fa;
     --kt-gray-200: #eff2f5;
@@ -32688,6 +32689,7 @@ fieldset:disabled .btn {
 
 [data-theme=dark] {
     --kt-text-muted: #565674;
+    --kt-text-light-300: #FFFFFF;
     --kt-gray-100: #1b1b29;
     --kt-gray-200: #2B2B40;
     --kt-gray-300: #323248;
