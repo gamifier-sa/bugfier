@@ -32348,6 +32348,7 @@ fieldset:disabled .btn {
     --kt-gray-700: #5E6278;
     --kt-gray-800: #3F4254;
     --kt-gray-900: #181C32;
+    --kt-tabel-color: #FFFFFF;
     --kt-gray-100-rgb: 245, 248, 250;
     --kt-gray-200-rgb: 239, 242, 245;
     --kt-gray-300-rgb: 228, 230, 239;
@@ -32700,6 +32701,8 @@ fieldset:disabled .btn {
     --kt-gray-700: #92929F;
     --kt-gray-800: #CDCDDE;
     --kt-gray-900: #FFFFFF;
+    --kt-tabel-color: #151521;
+    ;
     --kt-gray-100-rgb: 27, 27, 41;
     --kt-gray-200-rgb: 43, 43, 64;
     --kt-gray-300-rgb: 50, 50, 72;
