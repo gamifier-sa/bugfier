@@ -58,7 +58,7 @@ let KTDatatable = (function () {
                         return `<td >
 
 
-<div  class='row flex gap-3 align-items-center'>
+<div  class='row flex gap-3 align-items-center my-td-inner rounded-sm'>
 <div class='tabel-img'>       <img  src="{{ asset('dashboard-assets\media\project-tabel.png') }}" alt='' class='w-100 h-100' />
         </div>
                         <div class="flex-column tabel-inner d-flex align-items-start justify-content-center j ">
@@ -83,7 +83,7 @@ let KTDatatable = (function () {
                     targets: -2,
                     data: null,
                     render: function (data, type, row) {
-                        return `<td> <div class='d-flex align-items-center justify-center for-date'>  <h3> CREATED DATE (<span> ${row.create_since}</span>) </h3> </div>   </td>`;
+                        return `<td> <div class='d-flex my-td-inner align-items-center justify-center for-date'>  <h3> CREATED DATE (<span> ${row.create_since}</span>) </h3> </div>   </td>`;
                     },
                 },
                 {
@@ -93,7 +93,7 @@ let KTDatatable = (function () {
                         return `
 
                                 <!--begin::Menu-->
-                                <div class="d-flex actions row" data-kt-menu="true">
+                                <div class="d-flex actions my-td-inner rounded-sm row" data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class=" px-3 action-item ">
                                         <a href="/dashboard/projects/${
