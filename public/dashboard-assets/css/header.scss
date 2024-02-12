@@ -1,0 +1,35 @@
+.my-header {
+    width: 170px;
+    height: 53px;
+    padding: 10px;
+    box-shadow: 0px 6px 20px 0px #00000014;
+    background: #fafbfc;
+
+    border-radius: 30px;
+    svg {
+        cursor: pointer;
+        font-size: 23px;
+        width: 23px;
+        height: 23px;
+        color: #a3aed0;
+    }
+    .image {
+        width: 33px;
+        height: 33px;
+    }
+    .light {
+        display: none;
+    }
+}
+
+[data-theme="dark"] .my-header {
+    box-shadow: 0px 6px 20px 0px #00000014;
+    background: #313149;
+
+    .light {
+        display: block;
+    }
+    .dark {
+        display: none;
+    }
+}

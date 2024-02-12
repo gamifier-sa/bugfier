@@ -159,11 +159,11 @@
 }
 
 .card-parent {
-    width: 28%;
+    width: 25%;
 }
 
 .row .card-parent:nth-of-type(2) {
-    width: 40%;
+    width: 35%;
 }
 
 /////////////////////////////////////
@@ -215,6 +215,13 @@
 /////////////////////////////////
 
 .status {
+    .card-body {
+        padding: 0px 0px 20px !important;
+        th,
+        td {
+            padding: 0.5rem;
+        }
+    }
     h3 {
         font-size: 1.1rem !important;
         width: 180px !important;
@@ -471,6 +478,63 @@ table {
         rgb(163 174 208 / 10%) 0%,
         rgb(255 255 255 / 9%) 100%
     );
+}
+
+[data-theme="dark"] {
+    .row .card-parent:nth-of-type(3) .my-card,
+    .row .card-parent:first-of-type .my-card {
+        background: #313149;
+    }
+    .row .card-parent:nth-of-type(2) .my-card {
+        background: #1e1e2d;
+    }
+
+    .status {
+        .card,
+        thead {
+            background: #40405b;
+        }
+        tbody,
+        .card-body {
+            background: #32324a;
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    .main-quick-status,
+    .product .card,
+    .count-status {
+        box-shadow: 0px 4px 20px 0px #00000014;
+        background-color: #31314999;
+        overflow: hidden;
+        .my-title {
+            background-color: #313149;
+        }
+
+        .all-card {
+            background: transparent;
+        }
+    }
+
+    .product .card {
+        border-radius: 20px;
+
+        table tr td:first-of-type,
+        table tr td:nth-of-type(2) a {
+            color: #fef6e6 !important;
+        }
+        table tr td span {
+            color: #92e3a9 !important;
+        }
+    }
+    .top-status {
+        .card {
+            background-color: #313149;
+            box-shadow: 0px 4px 20px 0px #00000014;
+        }
+    }
 }
 
 @media (max-width: 1189px) {

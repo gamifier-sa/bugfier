@@ -1,11 +1,23 @@
+@push('styles')
+    <link href="{{ asset('dashboard-assets/css/header.css') }}" rel="stylesheet" type="text/css" />
+@endpush
+
+
+
+
+
+
 <!--begin::Header-->
 <div id="kt_header" class="header">
     <!--begin::Container-->
     <div class="container d-flex flex-stack flex-wrap gap-2" id="kt_header_container">
         <!--begin::Page title-->
-        <div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-5 pb-lg-0" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
+        <div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-5 pb-lg-0"
+            data-kt-swapper="true" data-kt-swapper-mode="prepend"
+            data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
             <!--begin::Heading-->
-            <h1 class="d-flex flex-column text-dark fw-bold my-0 fs-1">{{__('Hello')}}, {{ auth('admin')->user()->full_name}}</h1>
+            <h1 class="d-flex flex-column text-dark fw-bold my-0 fs-1">{{ __('Hello') }},
+                {{ auth('admin')->user()->full_name }}</h1>
             <!--end::Heading-->
         </div>
         <!--end::Page title=-->
@@ -15,17 +27,21 @@
             <div class="btn btn-icon btn-active-icon-primary" id="kt_aside_toggle">
                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
                 <span class="svg-icon svg-icon-1 mt-1">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="currentColor" />
-                        <path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="currentColor" />
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
+                            fill="currentColor" />
+                        <path opacity="0.3"
+                            d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
+                            fill="currentColor" />
                     </svg>
                 </span><!--end::Svg Icon-->
             </div><!--end::Aside mobile toggle-->
 
             <!--begin::Logo-->
-            <a href="{{route('dashboard.home')}}" class="d-flex align-items-center">
+            <a href="{{ route('dashboard.home') }}" class="d-flex align-items-center">
                 <!--begin::Logo-->
-                <a href="{{route('dashboard.home')}}" class="w-100">
+                <a href="{{ route('dashboard.home') }}" class="w-100">
                     <h1 class="h-20px theme-light-show text-center text-bold">Bugfier</h1>
                     <h1 class="h-20px theme-dark-show text-center text-bold">Bugfier</h1>
                 </a><!--end::Logo-->
@@ -36,8 +52,8 @@
         <!--begin::Topbar-->
         <div class="d-flex align-items-center flex-shrink-0">
             <!--begin::Theme mode-->
-            <div class="d-flex align-items-center ms-3 ms-lg-4">
-                <!--begin::Menu toggle-->
+            <div class="d-flex align-items-center my-header justify-content-between ms-3 ms-lg-4">
+                {{-- <!--begin::Menu toggle-->
                 <a href="#" class="btn btn-icon btn-color-gray-700 btn-active-color-primary btn-outline w-40px h-40px" data-kt-menu-trigger="{default:'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                     <!--begin::Svg Icon | path: icons/duotune/general/gen060.svg-->
                     <span class="svg-icon theme-light-show svg-icon-1">
@@ -128,7 +144,42 @@
                     </div>
                     <!--end::Menu item-->
                 </div>
-                <!--end::Menu-->
+                <!--end::Menu--> --}}
+
+                <div class="language" onclick="toggleDirection()"> <svg id="SvgjsSvg1001" width="16" height="16"
+                        xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns:svgjs="http://svgjs.com/svgjs">
+                        <defs id="SvgjsDefs1002"></defs>
+                        <g id="SvgjsG1008"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 513"
+                                width="currentWidth" height="currentHeight">
+                                <path fill="currentColor"
+                                    d="M258.516 288.355c-36.373-13.99-65.676-32.536-88.659-51.176 12.674-14.297 22.609-28.199 30.291-40.682 17.902-29.091 26.586-54.879 30.569-70.005H265.1V82.467H161.562V56.19h-44.025v26.276H14v44.026h170.776c-4.198 12.543-11.367 29.812-23.266 48.769a253.793 253.793 0 0 1-23.792 32.002c-17.081-18.259-27.647-33.938-32.538-41.887l-37.495 23.073c7.857 12.767 20.211 30.234 38.344 49.465-25.046 20.5-54.668 37.367-88.664 50.442l15.805 41.09c44.128-16.972 78.451-38.743 105.039-61.331a371.157 371.157 0 0 0 104.5 61.331l15.807-41.091zm124.293-108.447h-47.663L220.912 455.662h59.414l26.931-67.705h103.438l26.931 67.705H499L382.809 179.908zM327.721 336.51l31.256-78.577 31.255 78.577h-62.511z"
+                                    class="color333 svgShape"></path>
+                            </svg></g>
+                    </svg>
+
+                </div>
+                <div class="image">
+                    <img alt="Profile picture" src="{{ getImageUserPath(auth('admin')->user()->image, 'Admins') }}" />
+                </div>
+                <div class="my-mood">
+                    <div class="dark" onclick="toggleTheme('dark')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-moon-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
+                        </svg>
+                    </div>
+
+                    <div class="light" onclick="toggleTheme('light')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708" />
+                        </svg>
+                    </div>
+                </div>
+
             </div>
             <!--end::Theme mode-->
             <!--begin::Sidebar Toggler-->
@@ -143,7 +194,7 @@
     <script>
         $(document).ready(() => {
 
-            $("#toggle-theme-mode").change( function () {
+            $("#toggle-theme-mode").change(function() {
 
                 let mode = $(this).prop('checked') ? 'dark' : 'light';
 
@@ -151,9 +202,24 @@
 
             });
 
-            $("#toggle-notifications").change(function () {
+            $("#toggle-notifications").change(function() {
 
             });
         })
+
+        function toggleTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+        }
+
+        function toggleLanguage() {
+            const currentLanguage = document.documentElement.getAttribute('lang');
+
+            if (currentLanguage === 'en') {
+                window.location.href = "{{ route('change-language', 'ar') }}";
+            } else {
+                window.location.href = "{{ route('change-language', 'en') }}";
+            }
+        }
     </script>
+    <link href="{{ asset('dashboard-assets/css/header.css') }}" rel="stylesheet" type="text/css" />
 @endpush
