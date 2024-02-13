@@ -175,6 +175,71 @@ table tr td:last-of-type {
     }
 }
 
+[direction="rtl"] .card {
+    table tr th:first-of-type {
+        padding-right: 20px !important;
+        padding-left: 0 !important ;
+        .my-td-inner {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+    }
+
+    table tr th:last-of-type {
+        padding-right: 0px !important;
+        padding-left: 20px !important ;
+        .my-td-inner {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            &::after {
+                display: block !important;
+            }
+        }
+    }
+    table tr td:first-of-type {
+        padding-right: 20px !important;
+        padding-left: 0 !important ;
+        .my-td-inner {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+    }
+
+    table tr td:last-of-type {
+        padding-right: 0px !important;
+        padding-left: 20px !important ;
+
+        .my-td-inner {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+    }
+
+    table tr td:first-of-type {
+        .my-td-inner {
+            &::after {
+                display: block !important;
+            }
+        }
+    }
+
+    table tr td:last-of-type {
+        .my-td-inner {
+            &::after {
+                display: none !important;
+            }
+        }
+    }
+}
+
 @media (max-width: 900px) {
     .card-body {
         padding: 0 0.5rem;

@@ -553,17 +553,17 @@
 
 
 
-            <div class=" count-status card">
+            <div class=" count-status p-0 card">
                 <!--begin::Top Users-->
-                <div class="separator my-title separator-dotted separator-content my-15">
+                <div class="separator my-title separator-dotted separator-content px-6 py-15">
                     <span class="w-250px h3">{{ __('User Count By Status') }}</span>
                 </div>
                 <!--end::Top 3 Users-->
 
-                <div class="d-flex flex-wrap flex-center all-card justify-content-lg-between mx-auto ">
+                <div
+                    class="d-flex flex-wrap flex-center align-items-start all-card justify-content-lg-between count-status-body px-5 ">
                     <!--begin::Item-->
-                    <div
-                        class="d-flex flex-column flex-center h-170px small-card card w-130px h-lg-140px w-lg-130px m-2  ">
+                    <div class="d-flex flex-column flex-center h-170px small-card card w-130px h-lg-140px w-lg-130px   ">
                         <!--begin::Symbol-->
 
 
@@ -605,8 +605,7 @@
                     <!--end::Item-->
 
                     <!--begin::Item-->
-                    <div
-                        class="d-flex flex-column flex-center h-140px small-card card w-130px h-lg-170px w-lg-130px  m-3  ">
+                    <div class="d-flex flex-column flex-center h-140px small-card card w-130px h-lg-170px w-lg-130px    ">
                         <!--begin::Symbol-->
 
 
@@ -647,8 +646,7 @@
                     <!--end::Item-->
 
                     <!--begin::Item-->
-                    <div
-                        class="d-flex flex-column flex-center small-card h-140px card w-130px h-lg-170px w-lg-130px  m-3  ">
+                    <div class="d-flex flex-column flex-center small-card h-140px card w-130px h-lg-170px w-lg-130px    ">
                         <!--begin::Symbol-->
 
 
@@ -716,7 +714,7 @@
 
 
 
-                <div class="col-xl-4">
+                <div class="col-12 top-status">
                     <!--begin::List Widget 3-->
                     <div class="card card-xl-stretch mb-5 mb-xl-8">
                         <!--begin::Header-->
