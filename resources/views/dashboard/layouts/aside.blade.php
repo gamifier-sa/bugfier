@@ -150,7 +150,8 @@
                                     fill="currentColor" />
                             </svg>
                         </i>
-                        <span>PROJECTS</span>
+                        <span>{{ __('Projects') }}
+                        </span>
                         <i id="icon3" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -578,7 +579,7 @@
                     <div class="menu-item px-5 my-1">
                         <a href="{{ route('dashboard.edit-profile') }}"
                             class="menu-link px-5">{{ __('Account
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Settings') }}</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Settings') }}</a>
                     </div>
                     <!--end::Menu item-->
 
