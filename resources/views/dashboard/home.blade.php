@@ -507,7 +507,7 @@
                                     <th>#</th>
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Description') }}</th>
-                                    <th>{{ __('Nambers') }}</th>
+                                    <th>{{ __('Numbers') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

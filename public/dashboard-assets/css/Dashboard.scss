@@ -537,6 +537,35 @@ table {
     }
 }
 
+[direction="rtl"] {
+    .status {
+        th {
+            text-align: start;
+        }
+    }
+    .product .table th,
+    .product .table td {
+        text-align: start;
+    }
+
+    .row .card-parent:first-of-type .my-card {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top-left-radius: 0px;
+        background: #949494;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.35);
+        border-bottom-left-radius: 0px;
+    }
+    .row .card-parent:nth-of-type(3) .my-card {
+        border-top-right-radius: 0px;
+        background: #949494;
+        box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.35);
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 12px;
+        border-top-left-radius: 12px;
+    }
+}
+
 @media (max-width: 1189px) {
     .product,
     .count-status {
