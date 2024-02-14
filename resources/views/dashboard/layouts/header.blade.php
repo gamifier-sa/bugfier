@@ -159,8 +159,22 @@
                     </svg>
 
                 </div>
-                <div class="image">
+                <div class="image " id="profile-image">
                     <img alt="Profile picture" src="{{ getImageUserPath(auth('admin')->user()->image, 'Admins') }}" />
+
+                    <div class="card">
+                        <div class="content">
+                            <img src="https://picsum.photos/id/64/150/150" alt="" title="" />
+                            <h3>John Doe<small>frontend developer</small></h3>
+
+                            <button class="btn">Account settings</button>
+                            <button onclick="return confirm('{{ __('Are you sure to logout') }}');"
+                                onclick="$('#logout-form').submit()" class=" btn "> sign
+                                out</button>
+                            <p>admin153@app.com</p>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="my-mood">
                     <div class="dark" onclick="toggleTheme('dark')">
@@ -220,6 +234,19 @@
                 window.location.href = "{{ route('change-language', 'en') }}";
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileImage = document.getElementById('profile-image');
+
+            profileImage.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the click event from propagating to document body
+                profileImage.classList.toggle('view-profile');
+            });
+
+            document.body.addEventListener('click', function() {
+                profileImage.classList.remove('view-profile');
+            });
+        });
     </script>
     <link href="{{ asset('dashboard-assets/css/header.css') }}" rel="stylesheet" type="text/css" />
 @endpush
