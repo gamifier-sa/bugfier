@@ -221,7 +221,7 @@
 
                 </div>
                 <div class="my-mood">
-                    <div class="dark" onclick="toggleTheme('dark')">
+                    <div class="dark" onclick="toggleTheme('dark')" data-kt-element="mode" data-kt-value="dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-moon-fill" viewBox="0 0 16 16">
                             <path
@@ -229,7 +229,7 @@
                         </svg>
                     </div>
 
-                    <div class="light" onclick="toggleTheme('light')">
+                    <div class="light" onclick="toggleTheme('light')" data-kt-element="mode" data-kt-value="light">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
                             <path
@@ -265,9 +265,22 @@
             });
         })
 
+        // Function to toggle theme and store in local storage
         function toggleTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('selectedTheme', theme);
         }
+
+        // Function to retrieve and apply the theme on page load
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('selectedTheme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+        }
+
+        // Apply the saved theme on page load
+        applySavedTheme();
 
         function toggleLanguage() {
             const currentLanguage = document.documentElement.getAttribute('lang');
