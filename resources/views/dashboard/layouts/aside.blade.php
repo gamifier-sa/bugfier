@@ -4,10 +4,13 @@
     data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
     data-kt-drawer-toggle="#kt_aside_toggle">
     <!--begin::Brand-->
-    <div class="aside-logo flex-column-auto px-9 mb-9" id="kt_aside_logo">
-        <!--begin::Logo-->
-        <a href="{{ route('dashboard.home') }}" class="w-100">
-            <h1 class="h-20px theme-light-show text-center text-bold" style="color: #FFC107;">Bugfier</h1>
+
+    <div class=" sidebar-logo">
+        <a href="{{ route('dashboard.home') }}" href="index.html"
+            class="logo d-flex align-items-center justify-content-center">
+            <img src="{{ asset('dashboard-assets/media/logos/logo bug 1.png') }}" alt="">
+
+            <h1 class="h-20px theme-light-show text-center mx-2 text-bold" style="color: #FFC107;">Bugfier</h1>
             <h1 class="h-20px theme-dark-show text-center text-bold" style="color: #FFC107;">Bugfier</h1>
         </a>
         <!--end::Logo-->
@@ -22,7 +25,7 @@
 
         <a class="nav-btn " href="{{ route('dashboard.home') }}">
 
-            <button>Dashboard</button>
+            <button>{{ __('Dashboard') }} </button>
         </a>
 
 
@@ -64,7 +67,7 @@
                             </svg>
 
                         </i>
-                        <span>Team</span>
+                        <span>{{ __('Team') }}</span>
                         <i id="icon1" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                 height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -72,8 +75,8 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a class="with-border" href="{{ route('dashboard.admins.index') }}">Admin</a>
-                        <a href="{{ route('dashboard.admins.create') }}">add Admin</a>
+                        <a class="with-border" href="{{ route('dashboard.admins.index') }}">{{ __('Admins') }}</a>
+                        <a href="{{ route('dashboard.admins.create') }}">{{ __('Add Admin') }}</a>
                     </div>
                 </div>
 
@@ -119,7 +122,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </i>
-                        <span>management</span>
+                        <span>{{ __('Management') }}</span>
                         <i id="icon2" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -128,8 +131,9 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.roles.index') }}" class="with-border">management</a>
-                        <a href="{{ route('dashboard.roles.create') }}">add management</a>
+                        <a href="{{ route('dashboard.roles.index') }}"
+                            class="with-border">{{ __('Management') }}</a>
+                        <a href="{{ route('dashboard.roles.create') }}">{{ __('Add Management') }}</a>
                     </div>
                 </div>
 
@@ -160,8 +164,9 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.projects.index') }}" class="with-border">project</a>
-                        <a href="{{ route('dashboard.projects.create') }}">add project</a>
+                        <a href="{{ route('dashboard.projects.index') }}"
+                            class="with-border">{{ __('Projects') }}</a>
+                        <a href="{{ route('dashboard.projects.create') }}">{{ __('Add Project') }}</a>
                     </div>
                 </div>
 
@@ -180,7 +185,7 @@
                                     d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0M2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5z" />
                             </svg>
                         </i>
-                        <span>Levels</span>
+                        <span> {{ __('Levels') }}</span>
                         <i id="icon4" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -189,8 +194,8 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.levels.index') }}" class="with-border">levels</a>
-                        <a href="{{ route('dashboard.levels.create') }}">add levels</a>
+                        <a href="{{ route('dashboard.levels.index') }}" class="with-border">{{ __('Levels') }}</a>
+                        <a href="{{ route('dashboard.levels.create') }}">{{ __('Add Level') }}</a>
                     </div>
                 </div>
 
@@ -218,7 +223,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </i>
-                        <span>Bugs</span>
+                        <span>{{ __('Bugs') }}</span>
                         <i id="icon5" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -227,8 +232,8 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.bugs.index') }}" class="with-border">bugs</a>
-                        <a href="{{ route('dashboard.bugs.create') }}">add bugs</a>
+                        <a href="{{ route('dashboard.bugs.index') }}" class="with-border">{{ __('Bugs') }}</a>
+                        <a href="{{ route('dashboard.bugs.create') }}">{{ __('Add Bug') }}</a>
                     </div>
                 </div>
 
@@ -262,7 +267,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </i>
-                        <span>awards</span>
+                        <span>{{ __('Awards') }}</span>
                         <i id="icon6" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -271,8 +276,8 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.awards.index') }}" class="with-border">awards</a>
-                        <a href="{{ route('dashboard.awards.create') }}">add awards</a>
+                        <a href="{{ route('dashboard.awards.index') }}" class="with-border">{{ __('Awards') }}</a>
+                        <a href="{{ route('dashboard.awards.create') }}">{{ __('Add Award') }}</a>
                     </div>
                 </div>
 
@@ -298,7 +303,7 @@
                                     fill="currentColor" />
                             </svg>
                         </i>
-                        <span>statuses</span>
+                        <span> {{ __('Statuses') }}</span>
                         <i id="icon7" class='arrow-margin'> <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-chevron-down"
                                 viewBox="0 0 16 16">
@@ -307,8 +312,9 @@
                             </svg> </i>
                     </div>
                     <div class="dropdown-content absolute">
-                        <a href="{{ route('dashboard.statuses.index') }}" class="with-border">statuses</a>
-                        <a href="{{ route('dashboard.statuses.create') }}">add statuses</a>
+                        <a href="{{ route('dashboard.statuses.index') }}"
+                            class="with-border">{{ __('Statuses') }}</a>
+                        <a href="{{ route('dashboard.statuses.create') }}">{{ __('Add Status') }}</a>
                     </div>
                 </div>
 
@@ -579,7 +585,7 @@
                     <div class="menu-item px-5 my-1">
                         <a href="{{ route('dashboard.edit-profile') }}"
                             class="menu-link px-5">{{ __('Account
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Settings') }}</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Settings') }}</a>
                     </div>
                     <!--end::Menu item-->
 
