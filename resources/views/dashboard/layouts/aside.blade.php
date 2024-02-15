@@ -11,7 +11,7 @@
             <img src="{{ asset('dashboard-assets/media/logos/logo bug 1.png') }}" alt="">
 
             <h1 class="h-20px theme-light-show text-center mx-2 text-bold" style="color: #FFC107;">Bugfier</h1>
-            <h1 class="h-20px theme-dark-show text-center text-bold" style="color: #FFC107;">Bugfier</h1>
+            <h1 class="h-20px theme-dark-show text-center mx-2 text-bold" style="color: hsl(46, 39%, 94%);">Bugfier</h1>
         </a>
         <!--end::Logo-->
     </div>
