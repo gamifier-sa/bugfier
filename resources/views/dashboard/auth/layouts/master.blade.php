@@ -12,12 +12,12 @@
         <!--begin::Page bg image-->
         <style>
             body {
-                background-image: url('{{ asset('dashboard-assets/media/auth/bg10.jpeg') }}');
+                background-image: url('{{ asset('dashboard-assets/media/auth/bg12.png') }}');
             }
 
-            [data-theme="dark"] body {
+            /* [data-theme="dark"] body {
                 background-image: url('{{ asset('dashboard-assets/media/auth/bg10-dark.jpeg') }}');
-            }
+            } */
         </style>
         <!--end::Page bg image-->
         <!--begin::Authentication - Sign-in -->
