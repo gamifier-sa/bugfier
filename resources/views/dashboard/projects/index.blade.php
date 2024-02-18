@@ -18,7 +18,7 @@
                     <!-- end   :: Title -->
                 @endslot
                 <!-- begin :: Item -->
-                <li class="breadcrumb-item col-auto text-muted">{{ __('Project list ') }}</li>
+                <li class="breadcrumb-item col-auto text-muted">{{ __('Project list') }}</li>
                 <!-- end   :: Item -->
             @endcomponent
         </div>
@@ -53,7 +53,7 @@
         </div><!-- end   :: Filter -->
     </div>
     <p class="breadcrumb-item mb-1 container-fluid text-muted">
-        {{ __('Here you can find more details about your projects. ') }}</p><!-- end   :: Item -->
+        {{ __('Here you can find more details about your projects.') }}</p><!-- end   :: Item -->
 
 
 

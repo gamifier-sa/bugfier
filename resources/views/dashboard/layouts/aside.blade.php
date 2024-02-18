@@ -11,7 +11,7 @@
             <img src="{{ asset('dashboard-assets/media/logos/logo bug 1.png') }}" alt="">
 
             <h1 class="h-20px theme-light-show text-center mx-2 text-bold" style="color: #FFC107;">Bugfier</h1>
-            <h1 class="h-20px theme-dark-show text-center text-bold" style="color: #FFC107;">Bugfier</h1>
+            <h1 class="h-20px theme-dark-show text-center mx-2 text-bold" style="color: hsl(46, 39%, 94%);">Bugfier</h1>
         </a>
         <!--end::Logo-->
     </div>
@@ -419,7 +419,8 @@
             <!--end::Wrapper-->
 
             <!--begin::User menu-->
-            <div class="ms-1">
+            {{--
+                <div class="ms-1">
                 <div class="btn btn-sm btn-icon btn-active-color-primary position-relative me-n2"
                     data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-overflow="true"
                     data-kt-menu-placement="top-end">
@@ -473,9 +474,9 @@
                     {{-- <div class="menu-item px-5">
                         <a href="../../demo3/dist/account/overview.html" class="menu-link px-5">My Profile</a>
                     </div> --}}
-                    <!--end::Menu item-->
-                    <!--begin::Menu item-->
-                    {{-- <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+            <!--end::Menu item-->
+            <!--begin::Menu item-->
+            {{-- <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
                         data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
                         <a href="#" class="menu-link px-5">
                             <span class="menu-title">My Subscription</span>
@@ -523,78 +524,79 @@
                         </div>
                         <!--end::Menu sub-->
                     </div> --}}
-                    <!--end::Menu item-->
-                    <!--begin::Menu separator-->
-                    {{-- <div class="separator my-2"></div> --}}
-                    <!--end::Menu separator-->
+            <!--end::Menu item-->
+            <!--begin::Menu separator-->
+            {{-- <div class="separator my-2"></div> --}}
+            <!--end::Menu separator-->
 
-                    <!--begin::Menu item-->
-                    <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
-                        data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
-                        <a href="#" class="menu-link px-5">
-                            <span class="menu-title position-relative">{{ __('Language') }}
-                                @if (getLocale() == 'en')
-                                    <span
-                                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('English') }}
-                                        <img class="w-15px h-15px rounded-1 ms-2"
-                                            src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
-                                            alt="" />
-                                    </span>
-                            </span>
-                        @else
+            <!--begin::Menu item-->
+            {{-- <div class="menu-item px-5" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+                data-kt-menu-placement="right-end" data-kt-menu-offset="-15px, 0">
+                <a href="#" class="menu-link px-5">
+                    <span class="menu-title position-relative">{{ __('Language') }}
+                        @if (getLocale() == 'en')
                             <span
-                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('Arabic') }}
+                                class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('English') }}
                                 <img class="w-15px h-15px rounded-1 ms-2"
-                                    src="{{ asset('dashboard-assets/media/flags/egypt.svg') }}" alt="" />
+                                    src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
+                                    alt="" />
                             </span>
-                            @endif
+                    </span>
+                @else
+                    <span
+                        class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">{{ __('Arabic') }}
+                        <img class="w-15px h-15px rounded-1 ms-2"
+                            src="{{ asset('dashboard-assets/media/flags/egypt.svg') }}" alt="" />
+                    </span>
+                    @endif
+                </a>
+                <!--begin::Menu sub-->
+                <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                    <!--begin::Menu item-->
+                    <div class="menu-item px-3">
+                        <a href="{{ route('change-language', 'en') }}"
+                            class="menu-link d-flex px-5 @if (getLocale() == 'en') active @endif ">
+                            <span class="symbol symbol-20px me-4">
+                                <img class="rounded-1"
+                                    src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
+                                    alt="" />
+                            </span>{{ __('English') }}
                         </a>
-                        <!--begin::Menu sub-->
-                        <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{ route('change-language', 'en') }}"
-                                    class="menu-link d-flex px-5 @if (getLocale() == 'en') active @endif ">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1"
-                                            src="{{ asset('dashboard-assets/media/flags/united-states.svg') }}"
-                                            alt="" />
-                                    </span>{{ __('English') }}
-                                </a>
-                            </div>
-                            <!--end::Menu item-->
-
-                            <!--begin::Menu item-->
-                            <div class="menu-item px-3">
-                                <a href="{{ route('change-language', 'ar') }}"
-                                    class="menu-link d-flex px-5 @if (getLocale() == 'ar') active @endif ">
-                                    <span class="symbol symbol-20px me-4">
-                                        <img class="rounded-1"
-                                            src="{{ asset('dashboard-assets/media/flags/egypt.svg') }}"
-                                            alt="" />
-                                    </span>{{ __('Arabic') }}
-                                </a>
-                            </div>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu sub-->
                     </div>
                     <!--end::Menu item-->
 
                     <!--begin::Menu item-->
-                    <div class="menu-item px-5 my-1">
-                        <a href="{{ route('dashboard.edit-profile') }}"
-                            class="menu-link px-5">{{ __('Account
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Settings') }}</a>
+                    <div class="menu-item px-3">
+                        <a href="{{ route('change-language', 'ar') }}"
+                            class="menu-link d-flex px-5 @if (getLocale() == 'ar') active @endif ">
+                            <span class="symbol symbol-20px me-4">
+                                <img class="rounded-1" src="{{ asset('dashboard-assets/media/flags/egypt.svg') }}"
+                                    alt="" />
+                            </span>{{ __('Arabic') }}
+                        </a>
                     </div>
-                    <!--end::Menu item-->
-
-                    <!--begin::Menu item-->
-
                     <!--end::Menu item-->
                 </div>
+                <!--end::Menu sub-->
+            </div> --}}
+            <!--end::Menu item-->
+
+            <!--begin::Menu item-->
+            {{-- <div class="menu-item px-5 my-1">
+                <a href="{{ route('dashboard.edit-profile') }}"
+                    class="menu-link px-5">{{ __('Account
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Settings') }}</a>
+            </div> --}}
+            <!--end::Menu item-->
+
+            <!--begin::Menu item-->
+
+            <!--end::Menu item-->
+            {{-- </div>
                 <!--end::User account menu-->
-            </div>
+            </div>  --}}
+
+
             <!--end::User menu-->
         </div>
         <!--end::User panel-->
