@@ -59,9 +59,11 @@ let KTDatatable = (function () {
                         return `<td> <div class='d-flex my-td-inner align-items-center justify-center for-date'>
 
 
-                           <h3> <span> # ${meta.row + 1}   </span>   ${
+                           <h3> <span class='me-1 my-span'> # ${
+                               meta.row + 1
+                           }   </span>   ${
                             row.name
-                        } <span>(id:${row.id})</span></h3>
+                        } <span class='ms-2 my-span'>(id:${row.id})</span></h3>
 
 
 </div>

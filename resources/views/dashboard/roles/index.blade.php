@@ -7,7 +7,7 @@
     <link href="{{ asset('dashboard-assets/css/Tabels.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 @section('content')
-    <div class="d-flex justify-content-between flex-sm-row flex-col align-items-center">
+    <div class="d-flex justify-content-between flex-sm-row flex-col mb-5 align-items-center">
         <div class="col-auto">
 
             @component('components.dashboard.breadcrumb')

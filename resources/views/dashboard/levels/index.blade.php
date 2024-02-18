@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-between flex-sm-row flex-col align-items-center">
+    <div class="d-flex justify-content-between flex-sm-row mb-5 flex-col align-items-center">
         <div class="col-auto">
             @component('components.dashboard.breadcrumb')
                 @slot('breadcrumb_title')

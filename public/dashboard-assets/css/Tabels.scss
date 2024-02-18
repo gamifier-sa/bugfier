@@ -79,6 +79,19 @@
     }
 }
 
+.dataTables_length {
+    label {
+        .form-select-solid {
+            background-color: #ffc107;
+            color: #ffffff;
+        }
+    }
+}
+.pagination li:nth-of-type(2) a {
+    background-color: #ffc107;
+    color: #ffffff;
+}
+
 th {
     border: none !important;
     padding: 0 !important;
@@ -168,10 +181,22 @@ table tr td:last-of-type {
     }
 }
 
-[data-theme="dark"] .card {
-    background-color: #1e1e2d !important;
-    td {
-        box-shadow: none !important;
+[data-theme="dark"] {
+    .card {
+        background-color: #1e1e2d !important;
+        td {
+            box-shadow: none !important;
+        }
+    }
+    .my-span {
+        color: #ffc107;
+        a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        span {
+            color: #ffffff;
+        }
     }
 }
 
