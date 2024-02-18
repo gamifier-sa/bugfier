@@ -52,7 +52,7 @@
 
         </div><!-- end   :: Filter -->
     </div>
-    <p class="breadcrumb-item mb-1 container-fluid text-muted">
+    <p class="breadcrumb-item mb-1 container-fluid text-muted mb-5">
         {{ __('Here you can find more details about your projects.') }}</p><!-- end   :: Item -->
 
 

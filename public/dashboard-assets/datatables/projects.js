@@ -55,7 +55,11 @@ let KTDatatable = (function () {
                 { targets: [-3, -4, -5], searchable: false },
                 {
                     render: function (data, type, row, meta) {
-                        return `<td >
+                        const currentLanguage =
+                            document.documentElement.getAttribute("lang");
+
+                        if (currentLanguage === "en") {
+                            return `<td >
 
 
 <div  class='row flex gap-3 align-items-center my-td-inner rounded-sm'>
@@ -63,17 +67,38 @@ let KTDatatable = (function () {
         </div>
                         <div class="flex-column tabel-inner d-flex align-items-start justify-content-center j ">
                            <h3>${row.title}</h3>
-                           <div class='row flex gap-3'><span class=' text-start' > Project # ${
+                           <div class='row flex gap-3'><span class=' text-start' >Project# ${
                                meta.row + 1
                            }    <a href="/dashboard/projects/${
-                            row.id
-                        }/edit" >  See project details   </a>   iD: ${
-                            row.id
-                        }</span>       </div>   </div>
+                                row.id
+                            }/edit" >  See project details   </a>   iD: ${
+                                row.id
+                            }</span>       </div>   </div>
 
 </div>
 
                        </td>`;
+                        } else {
+                            return `<td >
+
+
+<div  class='row flex gap-3 align-items-center my-td-inner rounded-sm'>
+<div class='tabel-img'>       <img  src="{{ asset('dashboard-assets\media\project-tabel.png') }}" alt='' class='w-100 h-100' />
+        </div>
+                        <div class="flex-column tabel-inner d-flex align-items-start justify-content-center j ">
+                           <h3>${row.title}</h3>
+                           <div class='row flex gap-3'><span class=' my-span text-start' >  المشروع #   ${
+                               meta.row + 1
+                           }    <a href="/dashboard/projects/${
+                                row.id
+                            }/edit" >   مشاهدة تفاصيل المشروع   </a>   iD:  ${
+                                row.id
+                            }</span>       </div>   </div>
+
+</div>
+
+                       </td>`;
+                        }
                     },
                     targets: [0, 1, 2],
                 },
@@ -82,8 +107,18 @@ let KTDatatable = (function () {
                 {
                     targets: -2,
                     data: null,
+
+                    // Update the template literal with the translated string
+
                     render: function (data, type, row) {
-                        return `<td> <div class='d-flex my-td-inner align-items-center justify-center for-date'>  <h3> CREATED DATE (<span> ${row.create_since}</span>) </h3> </div>   </td>`;
+                        const currentLanguage =
+                            document.documentElement.getAttribute("lang");
+
+                        if (currentLanguage === "en") {
+                            return `<div class='d-flex my-td-inner align-items-center justify-center for-date'>  <h3 class='my-span'> CREATED DATE (<span> ${row.create_since}</span>) </h3> </div>`;
+                        } else {
+                            return `<div class='d-flex my-td-inner align-items-center justify-center for-date'>  <h3 class='my-span'> تاريخ الإنشاء (<span> ${row.create_since}</span>) </h3> </div>`;
+                        }
                     },
                 },
                 {
