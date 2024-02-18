@@ -60,9 +60,11 @@ let KTDatatable = (function () {
                         return `<td> <div class='d-flex my-td-inner align-items-center justify-center for-date'>
 
 
-                           <h3> <span> # ${meta.row + 1}   </span>   ${
+                           <h3> <span class='my-span me-1'> # ${
+                               meta.row + 1
+                           }   </span>   ${
                             row.title
-                        } <span>(id:${row.id})</span></h3>
+                        } <span class='my-span ms-2'>(id:${row.id})</span></h3>
 
 
 </div>
@@ -93,47 +95,46 @@ let KTDatatable = (function () {
                     targets: -1,
                     data: null,
                     render: function (data, type, row) {
-                        return `
-                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
-                                    ${translate("Actions")}
-                                    <span class="svg-icon svg-icon-5 m-0">
-                                        <i class="fa fa-angle-down mx-1"></i>
-                                    </span>
-                                </a>
-                                <!--begin::Menu-->
-                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class="menu-item px-3">
-                                        <a href="/dashboard/awards/${
-                                            row.id
-                                        }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
-                                           <span> ${translate("Edit")} </span>
-                                           <span>  <i class="fa fa-edit text-primary"></i> </span>
-                                        </a>
+                        // return `
+                        //         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-flip="top-end">
+                        //             ${translate("Actions")}
+                        //             <span class="svg-icon svg-icon-5 m-0">
+                        //                 <i class="fa fa-angle-down mx-1"></i>
+                        //             </span>
+                        //         </a>
+                        //         <!--begin::Menu-->
+                        //         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
+                        //             <!--begin::Menu item-->
+                        //             <div class="menu-item px-3">
+                        //                 <a href="/dashboard/awards/${
+                        //                     row.id
+                        //                 }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
+                        //                    <span> ${translate("Edit")} </span>
+                        //                    <span>  <i class="fa fa-edit text-primary"></i> </span>
+                        //                 </a>
 
-                                    </div><!--end::Menu-->
-                                       <!--begin::Menu item-->
-                                <div class="menu-item px-3">
-                                    <a href="/dashboard/awards/${
-                                        row.id
-                                    }" class="menu-link px-3 d-flex justify-content-between" >
-                                       <span> ${translate("Show")} </span>
-                                       <span>  <i class="fa fa-eye text-black-50"></i> </span>
-                                    </a>
+                        //             </div><!--end::Menu-->
+                        //                <!--begin::Menu item-->
+                        //         <div class="menu-item px-3">
+                        //             <a href="/dashboard/awards/${
+                        //                 row.id
+                        //             }" class="menu-link px-3 d-flex justify-content-between" >
+                        //                <span> ${translate("Show")} </span>
+                        //                <span>  <i class="fa fa-eye text-black-50"></i> </span>
+                        //             </a>
 
-                                </div>
-                                <!--end::Menu item-->
+                        //         </div>
+                        //         <!--end::Menu item-->
 
-
-                                <div class="menu-item px-3">
-                                    <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${
-                                        row.id
-                                    }" data-type="${translate("Awards")}">
-                                        <span> ${translate("Delete")} </span>
-                                        <span>  <i class="fa fa-trash text-danger"></i> </span>
-                                    </a>
-                                </div><!--end::Menu item-->
-                            `;
+                        //         <div class="menu-item px-3">
+                        //             <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${
+                        //                 row.id
+                        //             }" data-type="${translate("Awards")}">
+                        //                 <span> ${translate("Delete")} </span>
+                        //                 <span>  <i class="fa fa-trash text-danger"></i> </span>
+                        //             </a>
+                        //         </div><!--end::Menu item-->
+                        //     `;
                         return `
 
                                 <!--begin::Menu-->

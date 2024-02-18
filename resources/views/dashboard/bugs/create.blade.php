@@ -41,7 +41,7 @@
                         </span><!-- end   :: Indicator -->
                     </button><!-- end   :: Submit btn -->
 
-                    <a class="btn " href="{{ route('dashboard.bugs.index') }}"> {{ __('Cancel') }} </a>
+                    <a class="btn warning-hover " href="{{ route('dashboard.bugs.index') }}"> {{ __('Cancel') }} </a>
                 </div><!-- end   :: Form footer -->
             </form><!-- end   :: Form -->
         </div><!-- end   :: Card body -->

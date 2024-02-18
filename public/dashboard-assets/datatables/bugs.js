@@ -123,29 +123,50 @@ let KTDatatable = (function () {
 
                                 <!--begin::Menu-->
                                 <div class="d-flex actions my-td-inner rounded-sm row" data-kt-menu="true">
-                                    <!--begin::Menu item-->
-                                    <div class=" px-3 action-item ">
+
+
+
+
+<div class="dropdown  action-item">
+  <button class="btn p-0 dropdown-toggle my-drop" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <span style='margin-top:9px'>  <i class="fa fa-edit text-primary"></i> </span>
+  </button>
+  <ul class="dropdown-menu  " style='z-index:100'>
+      <!--begin::Menu item iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii-->
+                                    <li class=" px-3  ">
                                         <a href="/dashboard/bugs/${
                                             row.id
-                                        }/edit"  class=" px-3 d-flex justify-content-between edit-row" >
-
+                                        }/edit"  class=" px-3 d-flex menu-link align-items-center justify-content-between edit-row" >
+ <span style='font-size:8px;'> ${translate(" main edit")} </span>
                                            <span style='margin-top:9px'>  <i class="fa fa-edit text-primary"></i> </span>
                                         </a>
 
-                                    </div><!--end::Menu-->
+                                    </li><!--end::Menu-->
                                        <!--begin::Menu item-->
 
- <div class="action-item  px-3">
+                            <li class="  px-3">
                                  <a href="/dashboard/bugs-update-exp/${
                                      row.id
-                                 }/edit" class="menu-link d-flex flex-column align-items-start px-3 d-flex justify-content-between edit-row" >
+                                 }/edit" class="menu-link d-flex  align-items-center px-3 d-flex justify-content-between edit-row" >
                                     <span style='font-size:8px;'> ${translate(
-                                        " Exp"
+                                        " Experience edit"
                                     )} </span>
                                     <span>  <i class="fa fa-edit text-primary"></i> </span>
                                  </a>
 
-                             </div>
+                             </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+
+
+
 
 
                                 <div class=" px-3 action-item">
@@ -157,7 +178,7 @@ let KTDatatable = (function () {
                                     </a>
 
                                 </div>
-                                <!--end::Menu item-->
+
 
 
                                 <div class=" px-3 action-item">
@@ -167,6 +188,7 @@ let KTDatatable = (function () {
                                         <span style='margin-top:9px'>  <i class="fa fa-trash text-danger"></i> </span>
                                     </a>
                                 </div><!--end::Menu item-->
+                                </div>
                             `;
 
                         // if (authorizationUpdate && authorizationDelete && authorizationShow) {

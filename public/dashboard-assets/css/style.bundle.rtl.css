@@ -57654,3 +57654,7 @@ body {
     font-weight: bold;
     color: #FFFFFF;
 }
+.form-footer a:hover {
+    background-color: var(--kt-warning) !important;
+    color: black !important;
+}
