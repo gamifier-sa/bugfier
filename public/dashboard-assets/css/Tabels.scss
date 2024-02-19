@@ -78,18 +78,21 @@
         }
     }
 }
-
-.dataTables_length {
-    label {
-        .form-select-solid {
-            background-color: #ffc107;
-            color: #ffffff;
-        }
+.my-drop {
+    &::after {
+        display: none;
     }
 }
-.pagination li:nth-of-type(2) a {
-    background-color: #ffc107;
-    color: #ffffff;
+.dropdown-menu.show {
+    z-index: 100;
+    position: absolute;
+    inset: auto 0px 0px auto !important;
+    margin: 0px;
+    transform: translate3d(0.5px, -23.5px, 0px) !important;
+    -webkit-transform: translate3d(0.5px, -23.5px, 0px) !important;
+    -moz-transform: translate3d(0.5px, -23.5px, 0px) !important;
+    -ms-transform: translate3d(0.5px, -23.5px, 0px) !important;
+    -o-transform: translate3d(0.5px, -23.5px, 0px) !important;
 }
 
 th {

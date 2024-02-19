@@ -110,12 +110,10 @@
                             <div class="card my-card  mb-xl-8 ">
                                 <!--begin::Body-->
                                 <div class="image">
-                                    <img src="{{ asset('dashboard-assets\media\svg\shapes\crown.png') }}" alt=''
-                                        class='card-img-top' />
                                     <img src="{{ getImageUserPath($admin->image, 'Admins') }}" alt=""
                                         class="" />
 
-                                    <div class="degree"> <span>2</span></div>
+                                    {{-- <div class="degree"> <span>2</span></div> --}}
                                 </div>
                                 <div class="card-body d-flex align-items-center pt-3 pb-0">
                                     <div class="d-flex flex-column flex-grow-1 py-2 py-lg-13 me-2">

@@ -57961,11 +57961,16 @@ body {
 .form-footer button {
     background-color: #8E6FAF;
     font-weight: bold;
-color:#FFFFFF ;
+    color: #FFFFFF;
 }
 
 .form-footer a {
     background-color: #979797;
     font-weight: bold;
     color: #FFFFFF;
+}
+
+.form-footer a:hover {
+    background-color: var(--kt-warning) !important;
+    color: black !important;
 }
