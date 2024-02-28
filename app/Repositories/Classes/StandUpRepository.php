@@ -55,7 +55,7 @@ class StandUpRepository extends BasicRepository implements IAdminRepository, IMa
      */
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(orderBy: $request->order);
+        return $this->all(relations: ['admin' => ['id', 'name_ar','name_en']], orderBy: $request->order);
     }
 
     /**

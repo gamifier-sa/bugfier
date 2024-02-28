@@ -71,6 +71,21 @@
                             <div class='d-flex my-td-inner align-items-center justify-center for-date'
                                 style="background-color: #8E6FAF;
 ">
+                                <h3 class="fs-6"> {{ __('Name') }}</h3>
+                            </div>
+                        </th>
+
+                                                <th>
+                            <div class='d-flex my-td-inner align-items-center justify-center for-date'
+                                style="background-color: #8E6FAF;
+">
+                                <h3 class="fs-6"> {{ __('Attendance') }}</h3>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class='d-flex my-td-inner align-items-center justify-center for-date'
+                                style="background-color: #8E6FAF;">
                                 <h3 class="fs-6"> {{ __('Created Date') }}</h3>
                             </div>
                         </th>

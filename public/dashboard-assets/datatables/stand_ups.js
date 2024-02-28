@@ -14,7 +14,7 @@ let KTDatatable = (function () {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[5, "desc"]], // display records number and ordering type
+            order: [[4, "desc"]], // display records number and ordering type
             stateSave: false,
             select: {
                 style: "os",
@@ -28,7 +28,7 @@ let KTDatatable = (function () {
                     datatable
                         .DataTable()
                         .ajax.url(
-                        `/dashboard/daily-stand-up?page=${
+                        `/dashboard/stand-ups?page=${
                             info.page + 1
                         }&per_page=${info.length}`
                     );
@@ -48,19 +48,20 @@ let KTDatatable = (function () {
 
                 {data: null},
                 {data: null},
-                {data: "create_since"},
+                {data: 'admin.full_name'},
+                {data: null},
                 {data: null},
                 {data: null},
             ],
             columnDefs: [
-                {targets: [-4, -5], searchable: false},
+                {targets: [-4, -5, -6], searchable: false},
                 {
                     render: function (data, type, row, meta) {
                         return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date">
                         <h3> <span class="my-span me-1" > # ${
                             meta.row + 1
                         }   </span>   ${
-                            row.title
+                            row.admin.full_name
                         } <span class="my-span ms-2">(id:${row.id})</span></h3></div>
 
                        </td>`;
@@ -71,6 +72,13 @@ let KTDatatable = (function () {
 
                 {
                     targets: -3,
+                    data: null,
+                    render: function (data, type, row) {
+                        return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date">  <h3>   ${translate(row.attendance ?? 'Not Found')} </h3> </div>   </td>`;
+                    },
+                },
+                {
+                    targets: -2,
                     data: null,
                     render: function (data, type, row) {
                         return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date">  <h3>   ${row.create_since} </h3> </div>   </td>`;
@@ -86,7 +94,7 @@ let KTDatatable = (function () {
                                 <div class="d-flex actions my-td-inner rounded-sm row" data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class=" px-3 action-item ">
-                                        <a href="/dashboard/daily-stand-up/${
+                                        <a href="/dashboard/stand-ups/${
                             row.id
                         }/edit" class=" px-3 d-flex justify-content-between edit-row" >
 
@@ -99,7 +107,7 @@ let KTDatatable = (function () {
                                 <div class=" px-3 action-item">
                                      <a href="#" class="menu-link px-3 d-flex justify-content-between delete-row" data-row-id="${
                             row.id
-                        }" data-type="${translate("status")}">
+                        }" data-type="${translate("Stand Up")}">
 
                                         <span>  <i class="fa fa-trash text-danger"></i> </span>
                                     </a>
@@ -128,7 +136,7 @@ let KTDatatable = (function () {
                         //         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                         //             <!--begin::Menu item-->
                         //             <div class="menu-item px-3">
-                        //                 <a href="/dashboard/daily-stand-up/${
+                        //                 <a href="/dashboard/stand-ups/${
                         //                     row.id
                         //                 }/edit" class="menu-link px-3 d-flex justify-content-between edit-row" >
                         //                    <span> ${translate("Edit")} </span>
@@ -152,7 +160,7 @@ let KTDatatable = (function () {
                         //         return `
                         //         <!--begin::Menu item-->
                         //         <div class="btn btn-light btn-active-light-primary btn-sm">
-                        //             <a href="/dashboard/daily-stand-up/${
+                        //             <a href="/dashboard/stand-ups/${
                         //                 row.id
                         //             }/edit" class="menu-link px-3 d-flex edit-row" >
                         //                <span> ${translate("Edit")} </span>
@@ -230,7 +238,7 @@ let KTDatatable = (function () {
                                 "content"
                             ),
                         },
-                        url: "/dashboard/daily-stand-up/" + rowId,
+                        url: "/dashboard/stand-ups/" + rowId,
                         success: () => {
                             setTimeout(() => {
                                 successAlert(

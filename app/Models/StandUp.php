@@ -10,6 +10,18 @@ class StandUp extends Model
 
     protected $guarded = [];
 
+
+    protected $appends = ['create_since'];
+
+
+    /**
+     * @return null
+     */
+    public function getCreateSinceAttribute()
+    {
+        return $this->created_at?->diffForHumans();
+    }
+
     /**
      * @return BelongsTo
      */
