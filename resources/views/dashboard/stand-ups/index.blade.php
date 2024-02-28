@@ -6,7 +6,7 @@
     <link href="{{ asset('dashboard-assets/css/Tabels.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 @section('title')
-    {{ __('Status list') }}
+    {{ __('Stand Up list') }}
 @endsection
 
 @section('content')
@@ -14,11 +14,11 @@
         <div class="col-auto">
             @component('components.dashboard.breadcrumb')
                 @slot('breadcrumb_title')
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __('Statuses') }}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __('Stand Ups') }}</h1>
                     <!-- end   :: Title -->
                 @endslot
                 <!-- begin :: Item -->
-                <li class="breadcrumb-item text-muted">{{ __('Status list') }}</li><!-- end   :: Item -->
+                <li class="breadcrumb-item text-muted">{{ __('Stand Up list') }}</li><!-- end   :: Item -->
             @endcomponent
 
 
@@ -31,18 +31,16 @@
                 <span class="svg-icon svg-icon-1 position-absolute ms-6">
                     <i class="fa fa-search fa-lg"></i>
                 </span>
-                <input type="text" class="form-control form-control-solid w-200px ps-15 border-gray-300 border-1"
-                    id="general-search-inp" style="border-radius: 20px;" placeholder="{{ __('Search ...') }}">
+                <input type="text" class="form-control form-control-solid w-200px ps-15 border-gray-300 border-1" id="general-search-inp" style="border-radius: 20px;" placeholder="{{ __('Search ...') }}">
 
             </div><!-- end   :: General Search -->
 
 
             <!-- begin :: Toolbar -->
             <div class="d-flex justify-content-end align-items-center" data-kt-docs-table-toolbar="base">
-                @can('create_statuses')
+                @can('create_stand_ups')
                     <!-- begin :: Add Button -->
-                    <a href="{{ route('dashboard.statuses.create') }}" class="btn my-gold p-1 pe-0" data-bs-toggle="tooltip"
-                        title="">
+                    <a href="{{ route('dashboard.stand-ups.create') }}" class="btn my-gold p-1 pe-0" data-bs-toggle="tooltip" title="">
 
                         <span class="svg-icon svg-icon-2" style="margin:0!important; ">
                             <i class="fa fa-plus fa-lg"></i>
@@ -73,24 +71,25 @@
                             <div class='d-flex my-td-inner align-items-center justify-center for-date'
                                 style="background-color: #8E6FAF;
 ">
-                                <h3 class="fs-6">{{ __('Title') }}</h3>
+                                <h3 class="fs-6"> {{ __('Name') }}</h3>
                             </div>
-
                         </th>
-                        <th>
+
+                                                <th>
                             <div class='d-flex my-td-inner align-items-center justify-center for-date'
                                 style="background-color: #8E6FAF;
 ">
+                                <h3 class="fs-6"> {{ __('Attendance') }}</h3>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class='d-flex my-td-inner align-items-center justify-center for-date'
+                                style="background-color: #8E6FAF;">
                                 <h3 class="fs-6"> {{ __('Created Date') }}</h3>
                             </div>
                         </th>
-                        <th>
-                            <div class='d-flex my-td-inner align-items-center justify-center for-date'
-                                style="background-color: #8E6FAF;
-">
-                                <h3 class="fs-6"> {{ __('Default') }}</h3>
-                            </div>
-                        </th>
+
                         <th class="min-w-100px">
                             <div class='d-flex my-td-inner align-items-center justify-center for-date'
                                 style="background-color: #8E6FAF;
@@ -110,23 +109,23 @@
 @endsection
 @push('scripts')
     <script>
-        let route = "{{ route('dashboard.statuses.index') }}";
+        let route = "{{ route('dashboard.stand-ups.index') }}";
         let csrfToken = "{{ csrf_token() }}";
         let currentUserId = {{ auth()->id() }};
         let authorizationUpdate =
-            @can('update_statuses')
+            @can('update_stand_ups')
                 'true'
             @else
                 ''
             @endcan ;
         let authorizationDelete =
-            @can('delete_statuses')
+            @can('delete_stand_ups')
                 'true'
             @else
                 ''
             @endcan ;
         let authorizationShow =
-            @can('show_statuses')
+            @can('show_stand_ups')
                 'true'
             @else
                 ''
@@ -134,5 +133,5 @@
     </script>
 
     <script src="{{ asset('dashboard-assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-    <script src="{{ asset('dashboard-assets/datatables/statuses.js') }}"></script>
+    <script src="{{ asset('dashboard-assets/datatables/stand_ups.js') }}"></script>
 @endpush

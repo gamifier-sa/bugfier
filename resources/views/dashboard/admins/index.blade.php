@@ -104,9 +104,9 @@
             </div><!--end::Filter-->
             <!-- begin :: Toolbar -->
             <div class="d-flex justify-content-end align-items-center" data-kt-docs-table-toolbar="base">
-                @can('create_levels')
+                @can('create_admins')
                     <!-- begin :: Add Button -->
-                    <a href="{{ route('dashboard.levels.create') }}" class="btn my-gold p-1 pe-0" data-bs-toggle="tooltip"
+                    <a href="{{ route('dashboard.admins.create') }}" class="btn my-gold p-1 pe-0" data-bs-toggle="tooltip"
                         title="">
 
                         <span class="svg-icon svg-icon-2" style="margin:0!important; ">

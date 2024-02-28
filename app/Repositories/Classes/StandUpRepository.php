@@ -2,28 +2,25 @@
 
 namespace App\Repositories\Classes;
 
-use App\Models\Admin;
+use App\Models\{StandUp};
 use App\Repositories\Interfaces\{IAdminRepository, IMainRepository};
 use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class AdminRepository extends BasicRepository implements IAdminRepository, IMainRepository
+class StandUpRepository extends BasicRepository implements IAdminRepository, IMainRepository
 {
     /**
      * @var array
      */
-    protected array $fieldSearchable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone', 'level_id'
-    ];
-
+    protected array $fieldSearchable = ['id'];
 
     /**
      * Configure the Model
-     **/
+     * @return string
+     */
     public function model(): string
     {
-        return Admin::class;
+        return StandUp::class;
     }
 
     /**
@@ -44,29 +41,38 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         return $this->model->searchRelationShip;
     }
 
-    public function translationKey()
+    /**
+     * @return mixed
+     */
+    public function translationKey() : mixed
     {
         return $this->model->translationKey();
     }
 
+    /**
+     * @param Request $request
+     * @return Collection|array
+     */
     public function findBy(Request $request): Collection|array
     {
-        return $this->all(relations: ['level' => ['id', 'name_ar', 'name_en', 'exp']], orderBy: $request->order);
+        return $this->all(relations: ['admin' => ['id', 'name_ar','name_en']], orderBy: $request->order);
     }
 
     /**
      * @param $data
+     * @return void
      */
     public function store($data) : void
     {
-        $data['password'] = bcrypt($data['password']);
-        $user =  $this->create($data);
-        $user->roles()->sync($data['roles']);
+        $this->create($data);
     }
 
+    /**
+     * @return array|Builder[]|Collection
+     */
     public function list()
     {
-        return $this->all(andsFilters: [['daily_attendance', 1]]);
+        return $this->all();
     }
 
     /**
@@ -85,15 +91,7 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
      */
     public function update($request, $id = null) : Model|Collection|Builder|array|null
     {
-        if (!isset($request['password'])) {
-            unset($request['password']);
-        }
-        if (isset($request['password'])) {
-            $request['password'] = Hash::make($request['password']);
-        }
-        $user  = $this->save($request, $id);
-        $user->roles()->sync($request['roles']);
-        return $user;
+        return $this->save($request, $id);
     }
 
     /**
@@ -105,16 +103,4 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         return $this->delete($id);
     }
 
-    /**
-     * @param $data
-     * @return void
-     */
-    public function updateProfile($data) : void
-    {
-        if (isset($data['image'])) {
-            $data['image'] = uploadImage($data['image'],'Admins');
-        }
-
-        auth()->user()->update($data);
-    }
 }

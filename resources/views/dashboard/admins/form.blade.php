@@ -80,7 +80,7 @@
     <!-- begin :: Row -->
     <div class="row mb-8 p-5">
         <!-- begin :: Column -->
-        <div class="col-md-4 fv-row">
+        <div class="col-md-6 fv-row">
             <label class="fs-5 fw-bold mb-2" for="levels-sp">{{ __("Levels") }}</label>
             <select class="form-select" data-control="select2" name="level_id" id="levels-sp" data-placeholder="{{ __("Choose the levels") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
                 <option></option>
@@ -92,7 +92,7 @@
         </div><!-- end   :: Column -->
 
         <!-- begin :: Column -->
-        <div class="col-md-4 fv-row">
+        <div class="col-md-6 fv-row">
             <label class="fs-5 fw-bold mb-2" for="status-sp">{{ __("Status") }}</label>
             <select class="form-select" data-control="select2" name="status" id="status-sp" data-placeholder="{{ __("Choose the status") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
                 <option></option>
@@ -103,9 +103,12 @@
             <p class="invalid-feedback" id="status" ></p>
         </div><!-- end   :: Column -->
 
+    </div><!-- end   :: Row -->
 
+    <!-- begin :: Row -->
+    <div class="row mb-8 p-5">
         <!-- begin :: Column -->
-        <div class="col-md-4 fv-row">
+        <div class="col-md-6 fv-row">
             <label class="fs-5 fw-bold mb-2 @if(!request()->segment(4) == 'edit') required @endif" for="roles-sp">{{ __("Roles") }}</label>
             <select class="form-select" data-control="select2" name="roles[]" @if(!request()->segment(4) == 'edit') required @endif multiple id="roles-sp" data-placeholder="{{ __("Choose the role") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
                 @foreach( $roles as $role)
@@ -114,4 +117,16 @@
             </select>
             <p class="invalid-feedback" id="roles" ></p>
         </div><!-- end   :: Column -->
-    </div><!-- end   :: Row -->
+
+
+        <!-- begin :: Column -->
+        <div class="col-md-6 fv-row">
+            <label class="fs-5 fw-bold mb-2" for="daily_attendance-sp">{{ __("Does he have daily attendance?") }}</label>
+            <select class="form-select" data-control="select2" name="daily_attendance" id="daily_attendance-sp" data-placeholder="{{ __("Please Choose") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+                <option></option>
+                <option @selected(old('daily_attendance', $admin->daily_attendance) == 0) value="0">{{ __('Does not have attendance') }}</option>
+                <option @selected(old('daily_attendance', $admin->daily_attendance) == 1) value="1">{{ __('He has attendance') }}</option>
+            </select>
+            <p class="invalid-feedback" id="daily_attendance" ></p>
+        </div><!-- end   :: Column -->
+    </div>
