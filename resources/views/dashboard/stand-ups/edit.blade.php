@@ -19,8 +19,37 @@
                 @csrf
                 @method('PUT')
 
-                @include('dashboard.stand-ups.form')
+                <!-- begin :: Row -->
+                <div class="row form-group mb-8 p-5">
+                    <!-- begin :: Column -->
+                    <div class="col-md-3">
+                        <h1 class="pt-3">
+                            <!--begin::Label-->
 
+                            <label class="col-form-label text-lg-start">{{$standUp->admin->full_name}}:</label><!--end::Label-->
+                        </h1>
+                        <input type="hidden" name="user_id" value="{{$standUp->user_id}}">
+                    </div><!-- end   :: Column -->
+
+                    <!-- begin :: Column -->
+                    <div class="col-md-4 fv-row">
+                        <label class="fs-5 fw-bold mb-2" for="date_inp">{{ __("Attendance date") }}: </label>
+                        <input type="datetime-local" class="form-control gui-input" id="date_inp" name="date" value="{{now()}}" autocomplete="off"/>
+                        <p class="invalid-feedback" id="date"></p>
+                    </div><!-- end   :: Column -->
+
+                    <!-- begin :: Column -->
+                    <div class="col-md-4 fv-row">
+                        <label class="fs-5 fw-bold mb-2" for="attendance_inp">{{__('Did you come today?')}}</label>
+                        <select id="attendance_inp" class="form-control" name="attendance" data-control="select2" data-hide-search="false" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+                            <option selected disabled>{{__('Please Choose')}}</option>
+                            <option @selected(old('attendance', $standUp->attendance) == 'attend') value="attend">{{__('attend')}}</option>
+                            <option @selected(old('attendance', $standUp->attendance) == 'not_attend') value="not_attend">{{__('not_attend')}}</option>
+                            <option @selected(old('attendance', $standUp->attendance) == 'vacation') value="vacation">{{__('vacation')}}</option>
+                        </select>
+                        <p class="invalid-feedback" id="attendance"></p>
+                    </div><!-- end   :: Column -->
+                </div><!-- end   :: Row -->
 
                 <!-- begin :: Form footer -->
                 <div class="form-footer">

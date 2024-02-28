@@ -95,7 +95,7 @@ class StandUpController extends Controller
     public function update(StandUpRequest $request,string $id)
     {
         $this->authorize('update_stand_ups');
-        $this->standUpRepository->update($request->validated(), $id);
+        $this->standUpRepository->update($request->all(), $id);
     }
 
     /**
