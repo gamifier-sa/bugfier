@@ -15,7 +15,7 @@ class StandUp extends Model
      */
     public function admin() : BelongsTo
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(Admin::class,'user_id');
     }
 
     /**
