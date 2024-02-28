@@ -24,6 +24,7 @@ class RoleSeeder extends Seeder
             'awards',
             'statuses',
             'levels',
+            'stand_ups',
         ];
 
         $bugsActions = [
