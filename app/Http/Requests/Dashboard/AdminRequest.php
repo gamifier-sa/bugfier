@@ -30,6 +30,7 @@ class AdminRequest extends FormRequest
             'email'     => 'required|email|unique:admins',
             'level_id'  => 'required',
             'status'    => 'nullable|in:active,pending,block',
+            'daily_attendance'    => 'nullable|in:0,1',
             'roles'     => ['required','array','min:1'],
 
         ];
@@ -48,6 +49,7 @@ class AdminRequest extends FormRequest
             'email'    => ['required', 'email', 'max:125', 'min:9', "email:rfc,dns", Rule::unique('admins')->ignore(request()->segment(3))],
             'level_id' => 'required',
             'roles'    => ['required','array','min:1'],
+            'daily_attendance'    => 'nullable|in:0,1',
             'status'   => 'nullable|in:active,pending,block',
         ];
     }

@@ -12,7 +12,7 @@ class Admin extends Authenticatable
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status', 'level_id'
+        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status', 'level_id','daily_attendance'
     ];
     public       $timestamps         = true;
     public array $searchRelationShip = [];
