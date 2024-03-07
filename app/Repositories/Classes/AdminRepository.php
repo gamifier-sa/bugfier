@@ -64,9 +64,10 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
         $user->roles()->sync($data['roles']);
     }
 
+
     public function list()
     {
-        return $this->all(andsFilters: [['daily_attendance', 1]]);
+        return $this->model->where('daily_attendance', '1')->get();
     }
 
     /**

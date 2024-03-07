@@ -322,8 +322,8 @@
 
 
                 <div class="menu-link {{ Route::currentRouteName() === 'dashboard.stand-ups.index' ? 'active' : '' }} {{ Route::currentRouteName() === 'dashboard.stand-ups.create' ? 'active' : '' }} "
-                    id="dropdown7">
-                    <div class="nav-link collapsed" onclick="toggleDropdown(7)">
+                    id="dropdown8">
+                    <div class="nav-link collapsed" onclick="toggleDropdown(8)">
                         <i>
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35"
                                  fill="none">

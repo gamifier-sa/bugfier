@@ -22,9 +22,9 @@
         <label class="fs-5 fw-bold mb-2" for="admins[{{$admin->id}}]attendance_inp">{{__('Did you come today?')}}</label>
         <select id="admins[{{$admin->id}}]attendance_inp" class="form-control" name="admins[{{ $admin->id }}][attendance]" data-control="select2" data-hide-search="false" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
             <option selected disabled>{{__('Please Choose')}}</option>
-            <option @selected(old('attendance', $admin->attendance) == 'attend') value="attend">{{__('attend')}}</option>
-            <option @selected(old('attendance', $admin->attendance) == 'not_attend') value="not_attend">{{__('not_attend')}}</option>
-            <option @selected(old('attendance', $admin->attendance) == 'vacation') value="vacation">{{__('vacation')}}</option>
+            <option @selected(old('attendance', $admin->attendance) == 'attend') value="attend">{{__('Attend')}}</option>
+            <option @selected(old('attendance', $admin->attendance) == 'not_attend') value="not_attend">{{__('Not Attend')}}</option>
+            <option @selected(old('attendance', $admin->attendance) == 'vacation') value="vacation">{{__('Vacation')}}</option>
         </select>
         <p class="invalid-feedback" id="admins[{{$admin->id}}]attendance"></p>
     </div><!-- end   :: Column -->
