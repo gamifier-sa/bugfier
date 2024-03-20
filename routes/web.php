@@ -28,13 +28,14 @@ Route::group(['middleware' => [
     Route::post('admin/logout', [AdminAuthController::class,'logout'])->name('admin.logout');
 
     Route::view('pending-register','dashboard.auth.pending_register')->name('pending.register');
-    Route::get('/install', function () {
+    Route::get('/cache', function () {
         Artisan::call('route:cache');
         Artisan::call('config:cache');
         Artisan::call('migrate:fresh');
         Artisan::call('db:seed');
         Artisan::call('storage:link');
 
-        return redirect()->back();
+        dd('d');
+//        return redirect()->back();
     });
 });

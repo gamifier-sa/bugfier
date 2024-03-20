@@ -37,12 +37,11 @@
             <p class="invalid-feedback" id="email" ></p>
         </div><!-- end   :: Column -->
 
-
         <!-- begin :: Column -->
         <div class="col-md-6 fv-row">
-            <label class="fs-5 fw-bold mb-2  @if(!request()->segment(4) == 'edit') required @endif">{{ __("Phone") }}</label>
+            <label class="fs-5 fw-bold mb-2">{{ __("Phone") }}</label>
             <div class="form-floating">
-                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{10}" value="{{old('phone', $admin->phone)}}"  @if(!request()->segment(4) == 'edit') required @endif/>
+                <input type="tel" class="form-control" id="phone_inp" name="phone" maxlength="11" pattern="[0-9]{10}" value="{{old('phone', $admin->phone)}}"/>
                 <label for="phone_inp">{{ __("Enter the phone") }}</label>
             </div>
             <p class="invalid-feedback" id="phone" ></p>
@@ -93,8 +92,8 @@
 
         <!-- begin :: Column -->
         <div class="col-md-6 fv-row">
-            <label class="fs-5 fw-bold mb-2" for="status-sp">{{ __("Status") }}</label>
-            <select class="form-select" data-control="select2" name="status" id="status-sp" data-placeholder="{{ __("Choose the status") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}">
+            <label class="fs-5 fw-bold mb-2 required" for="status-sp">{{ __("Status") }}</label>
+            <select class="form-select" data-control="select2" name="status" id="status-sp" data-placeholder="{{ __("Choose the status") }}" data-dir="{{ isArabic() ? 'rtl' : 'ltr' }}" required>
                 <option></option>
                 @foreach($statuses as $status)
                     <option @selected(old('status', $admin->status) == $status->value) value="{{ $status->value}}">{{ __($status->name) }}</option>

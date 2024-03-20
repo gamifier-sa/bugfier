@@ -25,14 +25,10 @@ let KTDatatable = (function () {
                 data: function () {
                     let datatable = $("#kt_datatable");
                     let info = datatable.DataTable().page.info();
-                    datatable
-                        .DataTable()
-                        .ajax.url(
-                        `/dashboard/stand-ups?page=${
-                            info.page + 1
-                        }&per_page=${info.length}`
-                    );
+                    console.log(datatable.DataTable())
+                    datatable.DataTable().ajax.url(`/dashboard/stand-ups?page=${info.page + 1}&per_page=${info.length}`).load();
                 },
+
             },
 
             columns: [
@@ -74,7 +70,18 @@ let KTDatatable = (function () {
                     targets: -3,
                     data: null,
                     render: function (data, type, row) {
-                        return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date">  <h3>   ${translate(row.attendance ?? 'Not Found')} </h3> </div>   </td>`;
+                        if (row.attendance === 'attend')
+                        {
+                            return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date ">  <h3>   <span class="badge badge-light-success text-success">${translate(row.attendance ?? 'Not Found')}</span> </h3> </div>   </td>`;
+
+                        } else if (row.attendance === 'not_attend') {
+                            return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date ">  <h3>   <span class="badge badge-light-danger text-danger">${translate(row.attendance ?? 'Not Found')}</span> </h3> </div>   </td>`;
+                        }
+                        else if (row.attendance === 'vacation')
+                        {
+                            return `<td> <div class="d-flex my-td-inner align-items-center justify-center for-date ">  <h3>   <span class="badge badge-light-warning text-warning">${translate(row.attendance ?? 'Not Found')}</span> </h3> </div>   </td>`;
+
+                        }
                     },
                 },
                 {
@@ -203,6 +210,17 @@ let KTDatatable = (function () {
         });
     };
 
+    // // Function to handle change in date inputs
+    // let handleDateInputChange = function () {
+    //     $("#from-date, #to-date").change(function () {
+    //         let fromDate = $("#from-date").val();
+    //         let toDate = $("#to-date").val();
+    //
+    //         // Update URL for AJAX request
+    //         datatable.ajax.url(`/dashboard/stand-ups?from_date=${fromDate}&to_date=${toDate}`).load();
+    //     });
+    // };
+
     // general search in datatable
     let handleSearchDatatable = () => {
         $("#general-search-inp").keyup(function () {
@@ -276,6 +294,7 @@ let KTDatatable = (function () {
         init: function () {
             initDatatable();
             handleSearchDatatable();
+            // handleDateInputChange();
             // handleFilterDatatable();
         },
     };

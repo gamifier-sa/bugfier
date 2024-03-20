@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\{Factory, View};
 use Illuminate\Foundation\Application as ApplicationAlias;
 use Illuminate\Http\{JsonResponse, Request};
 
-class AdminController extends Controller
+class  AdminController extends Controller
 {
     /**
      * @var AdminRepository
@@ -122,12 +122,8 @@ class AdminController extends Controller
         $this->adminRepository->update($request->validated(), $id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param string $id
-     * @return void
-     */
+
+
     public function destroy(string $id)
     {
         $this->authorize('delete_admins');

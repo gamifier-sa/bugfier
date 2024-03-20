@@ -295,11 +295,19 @@ abstract class BasicRepository
 
     /**
      * @param $id
-     * @return bool|mixed|null
+     * @return false|Builder|Builder[]|Collection|Model|null
      */
-    public function delete($id) : mixed
+    public function delete($id) : Model|Collection|false|Builder|array|null
     {
         $data = $this->find($id, ['*'], [], true);
-        return $data ? $data->delete() : false;
+
+        $result = $data->delete();
+
+        if ($result) {
+            return $data;
+        } else {
+            return false;
+        }
+
     }
 }

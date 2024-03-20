@@ -99,11 +99,13 @@ class AdminRepository extends BasicRepository implements IAdminRepository, IMain
 
     /**
      * @param $id
-     * @return mixed
+     * @return array|false|Builder|Builder[]|Collection|Model|null
      */
-    public function destroy($id): mixed
+    public function destroy($id) : Model|Collection|Builder|false|array|null
     {
-        return $this->delete($id);
+        $admin = $this->delete($id);
+        $admin->standups()->delete();
+        return $admin;
     }
 
     /**

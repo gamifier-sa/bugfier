@@ -23,6 +23,7 @@ class CreateAdminsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('level_id')->nullable();
             $table->enum('status', ['active', 'pending', 'block'])->default('pending');
+            $table->enum('daily_attendance', [0, 1])->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

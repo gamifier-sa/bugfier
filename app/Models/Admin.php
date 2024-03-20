@@ -102,6 +102,14 @@ class Admin extends Authenticatable
     }
 
     /**
+     * @return HasMany
+     */
+    public function standups() : HasMany
+    {
+        return $this->hasMany(StandUp::class, 'user_id');
+    }
+
+    /**
      * @return string
      */
     public function getInfo() : string

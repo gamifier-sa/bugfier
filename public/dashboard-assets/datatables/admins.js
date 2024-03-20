@@ -26,11 +26,7 @@ let KTDatatable = (function () {
                     let info = datatable.DataTable().page.info();
                     datatable
                         .DataTable()
-                        .ajax.url(
-                            `/dashboard/admins?page=${info.page + 1}&per_page=${
-                                info.length
-                            }`
-                        );
+                        .ajax.url(`/dashboard/admins?page=${info.page + 1}&per_page=${info.length}`);
                 },
             },
             columns: [
