@@ -12,7 +12,7 @@ class Admin extends Authenticatable
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status', 'level_id'
+        'id', 'name_ar', 'name_en', 'email', 'phone', 'image', 'password', 'status', 'level_id','daily_attendance'
     ];
     public       $timestamps         = true;
     public array $searchRelationShip = [];
@@ -99,6 +99,14 @@ class Admin extends Authenticatable
     public function bugs_responsible_admin() : HasMany
     {
         return $this->hasMany(Bug::class, 'responsible_admin');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function standups() : HasMany
+    {
+        return $this->hasMany(StandUp::class, 'user_id');
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\{AdminController,
     ProjectController,
     RoleController,
     SettingController,
+    StandUpController,
     StatusController,
     UserController};
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::group([
     Route::resource('awards', AwardController::class);
     Route::resource('statuses', StatusController::class);
     Route::resource('levels', LevelController::class);
+    Route::resource('stand-ups', StandUpController::class);
     Route::resource('settings', SettingController::class)->only(['index', 'store', 'changeMode']);
 
     Route::view('edit-profile', 'dashboard.admins.edit-profile')->name('edit-profile');

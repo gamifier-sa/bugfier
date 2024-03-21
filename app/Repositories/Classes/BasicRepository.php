@@ -83,6 +83,8 @@ abstract class BasicRepository
 
     function all($orsFilters = [], $andsFilters = [], $relations = [], $searchingColumns = null, $withTrashed = false, $orderBy = [], $group = null, $Between = [], $subRelation = [])
     {
+
+
         $columns = $searchingColumns ?? $this->model->getConnection()->getSchemaBuilder()->getColumnListing($this->model->getTable());
         $relationsWithColumns = $this->getRelationWithColumns($relations); // this fn takes [ brand => [ id , name ] ] then returns : brand:id,name to use it in with clause
 
@@ -124,6 +126,7 @@ abstract class BasicRepository
 
         }
 
+
         // filter search
         if ($itemsBeforeSearch == $this->model->count() && $params) {
 
@@ -135,6 +138,7 @@ abstract class BasicRepository
             if ($searchingKeys->count() > 0) {
                 /** search in the original table **/
                 foreach ($searchingKeys as $column) {
+
                     if (!($column['name'] == 'created_at' or $column['name'] == 'date'))
                         array_push($andsFilters, [$column['name'], '=', $column['search']['value']]);
                     else {
@@ -148,8 +152,11 @@ abstract class BasicRepository
 
             }
         } else {
+
             return $this->model->get();
         }
+
+
 
         $this->model = $this->model->where(function ($query) use ($orsFilters) {
             foreach ($orsFilters as $filter) $query->orWhere([$filter]);
@@ -162,7 +169,9 @@ abstract class BasicRepository
 
         }
 
+
         if ($andsFilters)
+
             $this->model->where($andsFilters);
         if ($Between && $Between[1] != null && $Between[2] != null) {
 
@@ -286,11 +295,19 @@ abstract class BasicRepository
 
     /**
      * @param $id
-     * @return bool|mixed|null
+     * @return false|Builder|Builder[]|Collection|Model|null
      */
-    public function delete($id) : mixed
+    public function delete($id) : Model|Collection|false|Builder|array|null
     {
         $data = $this->find($id, ['*'], [], true);
-        return $data ? $data->delete() : false;
+
+        $result = $data->delete();
+
+        if ($result) {
+            return $data;
+        } else {
+            return false;
+        }
+
     }
 }

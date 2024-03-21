@@ -1,48 +1,63 @@
 @extends('dashboard.layouts.master')
-@section('title')  {{ __("Roles list") }} @endsection
+@section('title')
+    {{ __('Roles list') }}
+@endsection
 
+@push('styles')
+    <link href="{{ asset('dashboard-assets/css/Tabels.css') }}" rel="stylesheet" type="text/css" />
+@endpush
 @section('content')
-    @component('components.dashboard.breadcrumb')
-        @slot('breadcrumb_title')
-            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __("Roles") }}</h1><!-- end   :: Title -->
-        @endslot
-        <!-- begin :: Item -->
-        <li class="breadcrumb-item text-muted">{{__('Roles list')}}</li><!-- end   :: Item -->
-    @endcomponent
+    <div class="d-flex justify-content-between flex-sm-row flex-col mb-5 align-items-center">
+        <div class="col-auto">
 
-
-    <!-- begin :: Row -->
-    <div class="row">
+            @component('components.dashboard.breadcrumb')
+                @slot('breadcrumb_title')
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">{{ __('Roles') }}</h1>
+                    <!-- end   :: Title -->
+                @endslot
+                <!-- begin :: Item -->
+                <li class="breadcrumb-item text-muted">{{ __('Roles list') }}</li><!-- end   :: Item -->
+            @endcomponent
+        </div>
         <!-- begin :: Filter -->
-        <div class="m-8 d-flex flex-stack flex-wrap mb-15">
+        <div class="d-flex col-auto  align-items-cener m-0 flex-wrap  ">
 
             <!-- begin :: General Search -->
-            <form action="" method="get" class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
+            <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
                 <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                       <i class="fa fa-search fa-lg" ></i>
+                    <i class="fa fa-search fa-lg"></i>
                 </span>
-                <input type="text" class="form-control form-control-solid w-250px ps-15 border-gray-300 border-1" id="general-search-inp" placeholder="{{ __("Search ...") }}">
-            </form><!-- end   :: General Search -->
+                <input type="text" class="form-control form-control-solid w-200px ps-15 border-gray-300 border-1"
+                    id="general-search-inp" style="border-radius: 20px;" placeholder="{{ __('Search ...') }}">
+
+            </div><!-- end   :: General Search -->
 
 
             <!-- begin :: Toolbar -->
-            <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
-                @can('create_roles')
+            <div class="d-flex justify-content-end align-items-center" data-kt-docs-table-toolbar="base">
+                @can('create_levels')
                     <!-- begin :: Add Button -->
-                    <a href="{{ route('dashboard.roles.create') }}" class="btn btn-primary" data-bs-toggle="tooltip" title="">
+                    <a href="{{ route('dashboard.levels.create') }}" class="btn my-gold p-1 pe-0" data-bs-toggle="tooltip"
+                        title="">
 
-                        <span class="svg-icon svg-icon-2">
+                        <span class="svg-icon svg-icon-2" style="margin:0!important; ">
                             <i class="fa fa-plus fa-lg"></i>
                         </span>
-                        {{ __("Add New Role") }}
+
                     </a><!-- end   :: Add Button -->
                 @endcan
             </div><!-- end   :: Toolbar -->
 
         </div><!-- end   :: Filter -->
+    </div>
+
+
+    <!-- begin :: Row -->
+    <div class="row">
+
         <!-- begin :: Roles -->
 
-        @foreach($roles as $role)
+        @foreach ($roles as $role)
             <div class="col-md-4 my-10">
                 <!--begin::Card-->
                 <div class="card card-flush h-md-100">
@@ -58,24 +73,24 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-1">
                         <!--begin::Users-->
-                        <div class="fw-bolder text-gray-600 mb-5">{{ __('Total users with this role') }} : {{ $role->admins->count() }}</div>
+                        <div class="fw-bolder text-gray-600 mb-5">{{ __('Total users with this role') }} :
+                            {{ $role->admins->count() }}</div>
                         <!--end::Users-->
                         <!--begin::Permissions-->
                         <div class="d-flex flex-column text-gray-600">
 
-                            @foreach( $role->abilities->shuffle()->take(5) as $ability)
-
+                            @foreach ($role->abilities->shuffle()->take(5) as $ability)
                                 <div class="d-flex align-items-center py-2">
-                                    <span class="bullet bg-primary me-3"></span> {{ __( $ability->action ) . ' ' . __( str_replace("_", " " , $ability->category) ) }}
+                                    <span class="bullet bg-primary me-3"></span>
+                                    {{ __($ability->action) . ' ' . __(str_replace('_', ' ', $ability->category)) }}
                                 </div>
-
                             @endforeach
 
-                            @if( $role->abilities->count() - 5 > 0)
-                            <div class="d-flex align-items-center py-2">
-                                <span class="bullet bg-primary me-3"></span>
-                                <em>{{ __("and") . ' ' . ( $role->abilities->count() - 5 ) . ' '. __("more") }} ...</em>
-                            </div>
+                            @if ($role->abilities->count() - 5 > 0)
+                                <div class="d-flex align-items-center py-2">
+                                    <span class="bullet bg-primary me-3"></span>
+                                    <em>{{ __('and') . ' ' . ($role->abilities->count() - 5) . ' ' . __('more') }} ...</em>
+                                </div>
                             @endif
                         </div>
                         <!--end::Permissions-->
@@ -83,13 +98,15 @@
                     <!--end::Card body-->
                     <!--begin::Card footer-->
                     <div class="card-footer text-center flex-wrap pt-0">
-                        <a href="{{ route('dashboard.roles.show',$role->id) }}" class="btn btn-light btn-active-primary my-1 me-2">{{ __("View Role") }}</a>
+                        <a href="{{ route('dashboard.roles.show', $role->id) }}"
+                            class="btn btn-light btn-active-primary my-1 me-2">{{ __('View Role') }}</a>
 
-                        <button type="button" class="btn btn-light btn-active-light-primary my-1 edit-role-btn" data-role-id="{{$role->id}}" >
-                            <span class="indicator-label">{{ __("Edit Role") }}</span>
+                        <button type="button" class="btn btn-light btn-active-light-primary my-1 edit-role-btn"
+                            data-role-id="{{ $role->id }}">
+                            <span class="indicator-label">{{ __('Edit Role') }}</span>
 
                             <!-- begin :: Indicator -->
-                            <span class="indicator-progress">{{ __("Please wait ...") }}
+                            <span class="indicator-progress">{{ __('Please wait ...') }}
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
                             </span>
                             <!-- end   :: Indicator -->
@@ -112,12 +129,14 @@
                 <!--begin::Card body-->
                 <div class="card-body d-flex flex-center">
                     <!--begin::Button-->
-                    <button type="button" class="btn btn-clear d-flex flex-column flex-center" id="add-role-btn" data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
+                    <button type="button" class="btn btn-clear d-flex flex-column flex-center" id="add-role-btn"
+                        data-bs-toggle="modal" data-bs-target="#kt_modal_add_role">
                         <!--begin::Illustration-->
-                        <img src="{{ asset('dashboard-assets/media/illustrations/sketchy-1/4.png') }}" alt="" class="mw-100 mh-150px mb-7">
+                        <img src="{{ asset('dashboard-assets/media/illustrations/sketchy-1/4.png') }}" alt=""
+                            class="mw-100 mh-150px mb-7">
                         <!--end::Illustration-->
                         <!--begin::Label-->
-                        <div class="fw-bolder fs-3 text-gray-600 text-hover-primary">{{ __("Add New Role") }}</div>
+                        <div class="fw-bolder fs-3 text-gray-600 text-hover-primary">{{ __('Add New Role') }}</div>
                         <!--end::Label-->
                     </button>
                     <!--begin::Button-->
@@ -143,14 +162,18 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">{{ __("Add a Role") }}</h2>
+                    <h2 class="fw-bolder">{{ __('Add a Role') }}</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" onclick="$('#kt_modal_add_role').modal('hide')" data-kt-roles-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" onclick="$('#kt_modal_add_role').modal('hide')"
+                        data-kt-roles-modal-action="close">
                         <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="black"></rect>
                             </svg>
                         </span>
                     </div>
@@ -160,35 +183,45 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-lg-5 my-7">
                     <!--begin::Form-->
-                    <form id="role_form_add" data-form-type="add" method="POST" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="{{ route('dashboard.roles.store') }}" data-redirection-url="/dashboard/roles">
+                    <form id="role_form_add" data-form-type="add" method="POST"
+                        class="form fv-plugins-bootstrap5 fv-plugins-framework"
+                        action="{{ route('dashboard.roles.store') }}" data-redirection-url="/dashboard/roles">
                         @csrf
                         <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_role_header" data-kt-scroll-wrappers="#kt_modal_add_role_scroll" data-kt-scroll-offset="300px" style="max-height: 637px;">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_role_scroll"
+                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_role_header"
+                            data-kt-scroll-wrappers="#kt_modal_add_role_scroll" data-kt-scroll-offset="300px"
+                            style="max-height: 637px;">
                             <!-- begin :: Row -->
                             <div class="row mb-8">
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp">{{ __("Name In Arabic") }}</label>
-                                    <input type="text" class="form-control gui-input" name="name_ar" id="name_ar_inp"/>
-                                    <p class="invalid-feedback" id="name_ar" ></p>
+                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp">{{ __('Name In Arabic') }}</label>
+                                    <input type="text" class="form-control gui-input" name="name_ar"
+                                        id="name_ar_inp" />
+                                    <p class="invalid-feedback" id="name_ar"></p>
                                 </div><!-- end   :: Column -->
 
                                 <!-- begin :: Column -->
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp">{{ __("Name In English") }}</label>
-                                    <input type="text" class="form-control en-input" name="name_en" id="name_en_inp" />
-                                    <p class="invalid-feedback" id="name_en" ></p>
+                                    <label class="fs-5 fw-bold mb-2"
+                                        for="name_en_inp">{{ __('Name In English') }}</label>
+                                    <input type="text" class="form-control en-input" name="name_en"
+                                        id="name_en_inp" />
+                                    <p class="invalid-feedback" id="name_en"></p>
                                 </div><!-- end   :: Column -->
                             </div><!-- end   :: Row -->
 
                             <!--begin::Permissions-->
                             <div class="fv-row">
                                 <div class="text-center m-auto" style="width:fit-content">
-                                    <p class="bg-danger invalid-feedback text-white rounded p-2" id="abilities" ></p>
+                                    <p class="bg-danger invalid-feedback text-white rounded p-2" id="abilities"></p>
                                 </div>
 
                                 <!--begin::Label-->
-                                <label class="fs-5 fw-bolder form-label mb-2">{{ __("Role Permissions") }}</label><!--end::Label-->
+                                <label
+                                    class="fs-5 fw-bolder form-label mb-2">{{ __('Role Permissions') }}</label><!--end::Label-->
 
                                 <!--begin::Table wrapper-->
                                 <div class="table-responsive">
@@ -197,46 +230,52 @@
                                         <!--begin::Table body-->
                                         <tbody class="text-gray-600 fw-bold">
 
-                                        <!--begin::Table row-->
-                                        <tr>
-                                            <td class="text-gray-800">{{ __('Administrator Access') }}
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="{{__("Allows a full access to the system")}}" aria-label="{{__("Allows a full access to the system")}}"></i></td>
-                                            <td>
-                                                <!--begin::Checkbox-->
-                                                <label class="form-check form-check-custom form-check-solid me-9">
-                                                    <input class="form-check-input" type="checkbox" id="add-select-all" data-form-type="add" >
-                                                    <span class="form-check-label">{{ __("Select all") }}</span>
-                                                </label><!--end::Checkbox-->
-                                            </td>
-                                        </tr><!--end::Table row-->
-
-                                        @foreach( $modules as $module)
-
+                                            <!--begin::Table row-->
                                             <tr>
-                                                <!--begin::Label-->
-                                                <td class="text-gray-800"> {{ __(ucwords( str_replace('_' , ' ' , $module) ))  }} </td>
-                                                <!--end::Label-->
-                                                <!--begin::Input group-->
-                                                <td>
-                                                    <!--begin::Wrapper-->
-                                                    <div class="d-flex">
-                                                    @foreach($abilities->where('category', $module) as $ability)
-
-                                                        <!--begin::Checkbox-->
-                                                            <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                <input class="form-check-input add-checkbox" type="checkbox" id="add_{{$ability->name}}" data-id="{{$ability->id}}"  name="abilities[]" >
-                                                                <label  class="custom-control-label mx-4" for="add_{{$ability->name}}">{{ __($ability->action ) }}</label>
-                                                            </label>
-                                                        <!--end::Checkbox-->
-
-                                                    @endforeach
-                                                    </div>
-                                                    <!--end::Wrapper-->
+                                                <td class="text-gray-800">{{ __('Administrator Access') }}
+                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                        data-bs-toggle="tooltip" title=""
+                                                        data-bs-original-title="{{ __('Allows a full access to the system') }}"
+                                                        aria-label="{{ __('Allows a full access to the system') }}"></i>
                                                 </td>
-                                                <!--end::Input group-->
-                                            </tr>
+                                                <td>
+                                                    <!--begin::Checkbox-->
+                                                    <label class="form-check form-check-custom form-check-solid me-9">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="add-select-all" data-form-type="add">
+                                                        <span class="form-check-label">{{ __('Select all') }}</span>
+                                                    </label><!--end::Checkbox-->
+                                                </td>
+                                            </tr><!--end::Table row-->
 
-                                        @endforeach
+                                            @foreach ($modules as $module)
+                                                <tr>
+                                                    <!--begin::Label-->
+                                                    <td class="text-gray-800">
+                                                        {{ __(ucwords(str_replace('_', ' ', $module))) }} </td>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input group-->
+                                                    <td>
+                                                        <!--begin::Wrapper-->
+                                                        <div class="d-flex">
+                                                            @foreach ($abilities->where('category', $module) as $ability)
+                                                                <!--begin::Checkbox-->
+                                                                <label
+                                                                    class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input add-checkbox"
+                                                                        type="checkbox" id="add_{{ $ability->name }}"
+                                                                        data-id="{{ $ability->id }}" name="abilities[]">
+                                                                    <label class="custom-control-label mx-4"
+                                                                        for="add_{{ $ability->name }}">{{ __($ability->action) }}</label>
+                                                                </label>
+                                                                <!--end::Checkbox-->
+                                                            @endforeach
+                                                        </div>
+                                                        <!--end::Wrapper-->
+                                                    </td>
+                                                    <!--end::Input group-->
+                                                </tr>
+                                            @endforeach
 
                                         </tbody>
                                         <!--end::Table body-->
@@ -250,14 +289,16 @@
                         <!--end::Scroll-->
                         <!--begin::Actions-->
                         <div class="text-center pt-4">
-                            <button type="submit" class="btn btn-primary" id="submit-btn" data-kt-roles-modal-action="submit">
-                                <span class="indicator-label">{{ __("Save") }}</span>
-                                <span class="indicator-progress">{{ __("Please wait ...") }}
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            <button type="submit" class="btn btn-primary" id="submit-btn"
+                                data-kt-roles-modal-action="submit">
+                                <span class="indicator-label">{{ __('Save') }}</span>
+                                <span class="indicator-progress">{{ __('Please wait ...') }}
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 
                             </button>
-                            <div class="btn btn-secondary" onclick="resetForm(); $('#kt_modal_add_role').modal('hide')" data-kt-roles-modal-action="close">
-                                {{__("Cancel")}}
+                            <div class="btn btn-secondary" onclick="resetForm(); $('#kt_modal_add_role').modal('hide')"
+                                data-kt-roles-modal-action="close">
+                                {{ __('Cancel') }}
                             </div>
                         </div>
                         <!--end::Actions-->
@@ -283,14 +324,18 @@
                 <!--begin::Modal header-->
                 <div class="modal-header">
                     <!--begin::Modal title-->
-                    <h2 class="fw-bolder">{{ __("Update Role") }}</h2>
+                    <h2 class="fw-bolder">{{ __('Update Role') }}</h2>
                     <!--end::Modal title-->
                     <!--begin::Close-->
-                    <div class="btn btn-icon btn-sm btn-active-icon-primary" onclick="$('#kt_modal_update_role').modal('hide')" data-kt-roles-modal-action="close">
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                        onclick="$('#kt_modal_update_role').modal('hide')" data-kt-roles-modal-action="close">
                         <span class="svg-icon svg-icon-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
-                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black"></rect>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                    transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                    transform="rotate(45 7.41422 6)" fill="black"></rect>
                             </svg>
                         </span>
                     </div>
@@ -300,117 +345,140 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-5 my-7">
                     <!--begin::Form-->
-                    <form id="role_form_update" data-form-type="update" class="form fv-plugins-bootstrap5 fv-plugins-framework" method="POST" data-redirection-url="/dashboard/roles" data-trailing="_edit" >
+                    <form id="role_form_update" data-form-type="update"
+                        class="form fv-plugins-bootstrap5 fv-plugins-framework" method="POST"
+                        data-redirection-url="/dashboard/roles" data-trailing="_edit">
                         @csrf
                         @method('PUT')
                         <!--begin::Scroll-->
-                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header" data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px" style="max-height: 637px;">
+                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_role_scroll"
+                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                            data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_role_header"
+                            data-kt-scroll-wrappers="#kt_modal_update_role_scroll" data-kt-scroll-offset="300px"
+                            style="max-height: 637px;">
                             <!--begin::Input group-->
                             <div class="fv-row mb-10 fv-plugins-icon-container">
 
-                            <!-- begin :: Row -->
-                            <div class="row mb-8">
+                                <!-- begin :: Row -->
+                                <div class="row mb-8">
 
-                                <!-- begin :: Column -->
-                                <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_ar_inp_edit">{{ __("Name In Arabic") }}</label>
-                                    <input type="text" class="form-control gui-input" id="name_ar_inp_edit" name="name_ar" />
-                                    <p class="invalid-feedback" id="name_ar_edit" ></p>
+                                    <!-- begin :: Column -->
+                                    <div class="col-md-6 fv-row">
+                                        <label class="fs-5 fw-bold mb-2"
+                                            for="name_ar_inp_edit">{{ __('Name In Arabic') }}</label>
+                                        <input type="text" class="form-control gui-input" id="name_ar_inp_edit"
+                                            name="name_ar" />
+                                        <p class="invalid-feedback" id="name_ar_edit"></p>
+                                    </div>
+                                    <!-- end   :: Column -->
+
+                                    <!-- begin :: Column -->
+                                    <div class="col-md-6 fv-row">
+                                        <label class="fs-5 fw-bold mb-2"
+                                            for="name_en_inp_edit">{{ __('Name In English') }}</label>
+                                        <input type="text" class="form-control en-input" id="name_en_inp_edit"
+                                            name="name_en" />
+                                        <p class="invalid-feedback" id="name_en_edit"></p>
+                                    </div>
+                                    <!-- end   :: Column -->
+
                                 </div>
-                                <!-- end   :: Column -->
+                                <!-- end   :: Row -->
 
-                                <!-- begin :: Column -->
-                                <div class="col-md-6 fv-row">
-                                    <label class="fs-5 fw-bold mb-2" for="name_en_inp_edit">{{ __("Name In English") }}</label>
-                                    <input type="text" class="form-control en-input" id="name_en_inp_edit" name="name_en" />
-                                    <p class="invalid-feedback" id="name_en_edit" ></p>
-                                </div>
-                                <!-- end   :: Column -->
+                                <!--end::Input group-->
+                                <!--begin::Permissions-->
+                                <div class="fv-row">
 
-                            </div>
-                            <!-- end   :: Row -->
+                                    <div class="text-center m-auto" style="width:fit-content">
+                                        <p class="bg-danger invalid-feedback text-white rounded p-2" id="abilities_edit">
+                                        </p>
+                                    </div>
 
-                            <!--end::Input group-->
-                            <!--begin::Permissions-->
-                            <div class="fv-row">
+                                    <!--begin::Label-->
+                                    <label class="fs-5 fw-bolder form-label mb-2">{{ __('Role Permissions') }}</label>
+                                    <!--end::Label-->
+                                    <!--begin::Table wrapper-->
+                                    <div class="table-responsive">
+                                        <!--begin::Table-->
+                                        <table class="table align-middle table-row-dashed fs-6 gy-5">
+                                            <!--begin::Table body-->
+                                            <tbody class="text-gray-600 fw-bold">
 
-                                <div class="text-center m-auto" style="width:fit-content">
-                                    <p class="bg-danger invalid-feedback text-white rounded p-2" id="abilities_edit" ></p>
-                                </div>
-
-                                <!--begin::Label-->
-                                <label class="fs-5 fw-bolder form-label mb-2">{{ __("Role Permissions") }}</label>
-                                <!--end::Label-->
-                                <!--begin::Table wrapper-->
-                                <div class="table-responsive">
-                                    <!--begin::Table-->
-                                    <table class="table align-middle table-row-dashed fs-6 gy-5">
-                                        <!--begin::Table body-->
-                                        <tbody class="text-gray-600 fw-bold">
-
-                                        <!--begin::Table row-->
-                                        <tr>
-                                            <td class="text-gray-800">{{ __('Administrator Access') }}
-                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Allows a full access to the system" aria-label="Allows a full access to the system"></i></td>
-                                            <td>
-                                                <!--begin::Checkbox-->
-                                                <label class="form-check form-check-sm form-check-custom form-check-solid me-9">
-                                                    <input class="form-check-input" type="checkbox" id="edit-select-all" data-form-type="update" >
-                                                    <span class="form-check-label">{{ __("Select all") }}</span>
-                                                </label>
-                                                <!--end::Checkbox-->
-                                            </td>
-                                        </tr>
-                                        <!--end::Table row-->
-
-                                        @foreach( $modules as $module)
-
-                                            <tr>
-                                                <!--begin::Label-->
-                                                <td class="text-gray-800"> {{ __(ucwords( str_replace('_' , ' ' , $module) ))  }} </td>                                                <!--end::Label-->
-                                                <!--begin::Input group-->
-                                                <td>
-                                                    <!--begin::Wrapper-->
-                                                    <div class="d-flex">
-                                                    @foreach($abilities->where('category', $module) as $ability)
-
+                                                <!--begin::Table row-->
+                                                <tr>
+                                                    <td class="text-gray-800">{{ __('Administrator Access') }}
+                                                        <i class="fas fa-exclamation-circle ms-1 fs-7"
+                                                            data-bs-toggle="tooltip" title=""
+                                                            data-bs-original-title="Allows a full access to the system"
+                                                            aria-label="Allows a full access to the system"></i>
+                                                    </td>
+                                                    <td>
                                                         <!--begin::Checkbox-->
-                                                            <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                <input class="form-check-input edit-checkbox" type="checkbox" id="edit_{{$ability->name}}" data-id="{{$ability->id}}"  name="abilities[]" >
-                                                                <label  class="custom-control-label mx-4" for="edit_{{$ability->name}}">{{ __($ability->action ) }}</label>
-                                                            </label>
-                                                            <!--end::Checkbox-->
+                                                        <label
+                                                            class="form-check form-check-sm form-check-custom form-check-solid me-9">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="edit-select-all" data-form-type="update">
+                                                            <span class="form-check-label">{{ __('Select all') }}</span>
+                                                        </label>
+                                                        <!--end::Checkbox-->
+                                                    </td>
+                                                </tr>
+                                                <!--end::Table row-->
 
-                                                        @endforeach
-                                                    </div>
-                                                    <!--end::Wrapper-->
-                                                </td>
-                                                <!--end::Input group-->
-                                            </tr>
+                                                @foreach ($modules as $module)
+                                                    <tr>
+                                                        <!--begin::Label-->
+                                                        <td class="text-gray-800">
+                                                            {{ __(ucwords(str_replace('_', ' ', $module))) }} </td>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input group-->
+                                                        <td>
+                                                            <!--begin::Wrapper-->
+                                                            <div class="d-flex">
+                                                                @foreach ($abilities->where('category', $module) as $ability)
+                                                                    <!--begin::Checkbox-->
+                                                                    <label
+                                                                        class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                        <input class="form-check-input edit-checkbox"
+                                                                            type="checkbox"
+                                                                            id="edit_{{ $ability->name }}"
+                                                                            data-id="{{ $ability->id }}"
+                                                                            name="abilities[]">
+                                                                        <label class="custom-control-label mx-4"
+                                                                            for="edit_{{ $ability->name }}">{{ __($ability->action) }}</label>
+                                                                    </label>
+                                                                    <!--end::Checkbox-->
+                                                                @endforeach
+                                                            </div>
+                                                            <!--end::Wrapper-->
+                                                        </td>
+                                                        <!--end::Input group-->
+                                                    </tr>
+                                                @endforeach
 
-                                        @endforeach
-
-                                        </tbody>
-                                        <!--end::Table body-->
-                                    </table>
-                                    <!--end::Table-->
+                                            </tbody>
+                                            <!--end::Table body-->
+                                        </table>
+                                        <!--end::Table-->
+                                    </div>
+                                    <!--end::Table wrapper-->
                                 </div>
-                                <!--end::Table wrapper-->
+                                <!--end::Permissions-->
                             </div>
-                            <!--end::Permissions-->
+                            <!--end::Scroll-->
                         </div>
-                        <!--end::Scroll-->
-                       </div>
 
                         <!--begin::Actions-->
                         <div class="text-center pt-4 mt-1">
-                            <button type="submit" class="btn btn-primary" id="submit-btn" data-kt-roles-modal-action="submit">
-                                <span class="indicator-label">{{ __("Save") }}</span>
-                                <span class="indicator-progress">{{ __("Please wait ...") }}
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            <button type="submit" class="btn btn-primary" id="submit-btn"
+                                data-kt-roles-modal-action="submit">
+                                <span class="indicator-label">{{ __('Save') }}</span>
+                                <span class="indicator-progress">{{ __('Please wait ...') }}
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                             </button>
-                            <div class="btn btn-secondary" onclick=" $('#kt_modal_update_role').modal('hide')" data-kt-roles-modal-action="close">
-                                {{__("Cancel")}}
+                            <div class="btn btn-secondary" onclick=" $('#kt_modal_update_role').modal('hide')"
+                                data-kt-roles-modal-action="close">
+                                {{ __('Cancel') }}
                             </div>
                         </div>
                         <!--end::Actions-->
@@ -427,15 +495,14 @@
     <!-- end   :: Update role modal-->
 
     <!-- end   :: Modals -->
-
 @endsection
 @push('scripts')
     <script>
         // start code for resetting add new role modal
-        $("#add-role-btn").click( function () {
-            $('.add-checkbox').prop('checked',false);
+        $("#add-role-btn").click(function() {
+            $('.add-checkbox').prop('checked', false);
             removeValidationMessages();
-        });// end code for resetting add new role modal
+        }); // end code for resetting add new role modal
 
 
         function resetForm() {
@@ -452,7 +519,6 @@
             document.getElementById('name_en').textContent = '';
             document.getElementById('abilities').textContent = '';
         }
-
     </script>
     <script src="{{ asset('js/dashboard/forms/roles/common.js') }}"></script>
 @endpush
